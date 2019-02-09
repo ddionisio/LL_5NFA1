@@ -55,7 +55,7 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
             }
         }
     }
-
+    
     [Header("Data")]
     [SerializeField]
     int _defaultMaxDigits = 16;
