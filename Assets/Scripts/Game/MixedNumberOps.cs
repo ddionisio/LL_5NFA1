@@ -4,11 +4,6 @@ using UnityEngine;
 
 [System.Serializable]
 public class MixedNumberOps {
-    public enum Operator {
-        Add,
-        Subtract
-    }
-
     [System.Serializable]
     public class Operand {
         public MixedNumber[] numbers; //set to > 0 to have this as a fixed number, otherwise ApplyNumber needs to be called.
@@ -48,7 +43,7 @@ public class MixedNumberOps {
     }
 
     public Operand[] operands; //at least two
-    public Operator[] operators; //must be one less the number of operands
+    public OperatorType[] operators; //must be one less the number of operands
 
     public bool isAnyOperandEmpty {
         get {
@@ -104,10 +99,10 @@ public class MixedNumberOps {
                 continue;
 
             switch(operators[i]) {
-                case Operator.Add:
+                case OperatorType.Add:
                     result += op2.number;
                     break;
-                case Operator.Subtract:
+                case OperatorType.Subtract:
                     result -= op2.number;
                     break;
             }

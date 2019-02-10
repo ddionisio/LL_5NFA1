@@ -8,6 +8,8 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
     public int numerator;
     public int denominator;
     
+    public bool isValid { get { return denominator != 0; } }
+
     public bool isNegative { get { return whole < 0f || numerator < 0f; } }
 
     public float sign { get { return isNegative ? -1f : 1f; } }
@@ -20,7 +22,53 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
             return sign * (Mathf.Abs(whole) + (float)Mathf.Abs(numerator) / denominator);
         }
     }
-        
+
+    /// <summary>
+    /// Convert only one whole number to fraction. E.g. [2 1/2] => [1 3/2]
+    /// </summary>
+    public void WholeToFractionSingle() {
+        if(whole == 0)
+            return;
+
+        bool _isNegative = isNegative;
+
+        whole = Mathf.Abs(whole);
+        numerator = Mathf.Abs(numerator);
+
+        numerator += denominator;
+        whole--;
+
+        if(_isNegative) {
+            if(whole > 0)
+                whole = -whole;
+            else
+                numerator = -numerator;
+        }
+    }
+
+    /// <summary>
+    /// Convert only a single whole number from numerator. E.g. [5/2] => [1 3/2]
+    /// </summary>
+    public void FractionToWholeSingle() {
+        if(whole == 0)
+            return;
+
+        bool _isNegative = isNegative;
+
+        whole = Mathf.Abs(whole);
+        numerator = Mathf.Abs(numerator);
+
+        numerator += denominator;
+        whole--;
+
+        if(_isNegative) {
+            if(whole > 0)
+                whole = -whole;
+            else
+                numerator = -numerator;
+        }
+    }
+
     /// <summary>
     /// Convert whole number to fraction. E.g. [1 1/2] => [3/2]
     /// </summary>
@@ -30,10 +78,8 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
         whole = Mathf.Abs(whole);
         numerator = Mathf.Abs(numerator);
 
-        while(whole > 0) {
-            whole--;
-            numerator += denominator;
-        }
+        numerator += whole * denominator;
+        whole = 0;
 
         if(_isNegative)
             numerator = -numerator;
@@ -48,9 +94,10 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
         whole = Mathf.Abs(whole);
         numerator = Mathf.Abs(numerator);
 
-        while(numerator > denominator) {
-            whole += 1;
-            numerator -= denominator;
+        if(numerator > denominator) {
+            int amt = Mathf.FloorToInt((float)numerator / denominator);
+            whole += amt;
+            numerator -= amt * denominator;
         }
 
         if(_isNegative) {
@@ -101,9 +148,9 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
     }
 
     public static MixedNumber operator +(MixedNumber a, MixedNumber b) {
-        if(a.denominator == 0)
+        if(a.isValid)
             return b;
-        else if(b.denominator == 0)
+        else if(b.isValid)
             return a;
 
         a.WholeToFraction();
@@ -117,15 +164,13 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
             result = new MixedNumber { numerator = a.numerator * b.denominator + b.numerator * a.denominator, denominator = a.denominator * b.denominator };
         }
 
-        result.Simplify();
-
         return result;
     }
 
     public static MixedNumber operator -(MixedNumber a, MixedNumber b) {
-        if(a.denominator == 0)
+        if(a.isValid)
             return -b;
-        else if(b.denominator == 0)
+        else if(b.isValid)
             return a;
 
         a.WholeToFraction();
@@ -138,8 +183,6 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
         else {
             result = new MixedNumber { numerator = a.numerator * b.denominator - b.numerator * a.denominator, denominator = a.denominator * b.denominator };
         }
-
-        result.Simplify();
 
         return result;
     }

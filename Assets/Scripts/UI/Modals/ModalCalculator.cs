@@ -65,8 +65,8 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
     InputKeyboardFlag _inputKeyboardFlags = InputKeyboardFlag.Numeric | InputKeyboardFlag.Proceed | InputKeyboardFlag.Erase;
 
     [Header("Display")]
-    public Text inputLabel;
-    public Text numericLabel;
+    public TMPro.TMP_Text inputLabel;
+    public TMPro.TMP_Text numericLabel;
 
     [Header("Signals")]
     public SignalFloat signalValueUpdate;
@@ -95,7 +95,7 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
             UpdateInputDisplay();
         }
 
-        SetCurrentValue(0);
+        ApplyCurrentValue(0);
     }
 
     public void Erase() {
@@ -195,7 +195,7 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
     }
 
     public void PI() {
-        SetCurrentValue(System.Math.PI);
+        ApplyCurrentValue(System.Math.PI);
         mCurValueIsSpecial = true;
     }
 
@@ -214,6 +214,13 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
     public void Proceed() {
         if(signalProceed)
             signalProceed.Invoke((float)mCurValue);
+    }
+
+    public void SetCurrentValue(double val) {
+        mCurValue = val; //prevent value update signal from invoking when calling SetCurrentValue
+        ApplyCurrentValue(val);
+
+        ClearInput();
     }
 
     //void Awake() {
@@ -242,10 +249,7 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
                 mMaxDigits = _defaultMaxDigits;
         }
 
-        mCurValue = val; //prevent value update signal from invoking when calling SetCurrentValue
         SetCurrentValue(val);
-
-        ClearInput();
     }
 
     void M8.IModalActive.SetActive(bool aActive) {
@@ -368,7 +372,7 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
         }
 
         //clear input and apply value
-        SetCurrentValue(newVal);
+        ApplyCurrentValue(newVal);
     }
 
     private void AddOperator(InputType type) {
@@ -453,7 +457,7 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
         if(IsOperator(lastType))
             evalValue = EvaluateInputType(lastType, evalValue, mCurValue);
 
-        SetCurrentValue(evalValue);
+        ApplyCurrentValue(evalValue);
     }
 
     private void ModifyInput(int ind, InputType type, string displayText, double val) {
@@ -507,7 +511,7 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
         }
     }
 
-    private void SetCurrentValue(double val) {
+    private void ApplyCurrentValue(double val) {
         var prevVal = mCurValue;
 
         mCurInput.Remove(0, mCurInput.Length);
