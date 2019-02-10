@@ -179,44 +179,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1215731715100456755, guid: f74ed32f903cf574b9bffc56e6a1b616,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f74ed32f903cf574b9bffc56e6a1b616, type: 3}
---- !u!224 &29500956 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 702230288877368318, guid: f74ed32f903cf574b9bffc56e6a1b616,
-    type: 3}
-  m_PrefabInstance: {fileID: 29500955}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &203456439 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 203456439, guid: f74ed32f903cf574b9bffc56e6a1b616,
-    type: 3}
-  m_PrefabInstance: {fileID: 29500955}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &203456440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203456439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 845f4973e26083d47af82f9d7142300a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _exclusive: 0
-  _defaultMaxDigits: 3
-  _inputKeyboardFlags: 7
-  inputLabel: {fileID: 0}
-  numericLabel: {fileID: 0}
-  signalValueUpdate: {fileID: 0}
-  signalProceed: {fileID: 0}
 --- !u!1 &444799928
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,14 +527,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192954255}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 569735587}
   - {fileID: 664339784}
-  m_Father: {fileID: 29500956}
-  m_RootOrder: 2
+  m_Father: {fileID: 1642619446}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -729,8 +693,19 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223202754098094910, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b39c4987e1807742ae7b35c468fd939, type: 3}
+--- !u!224 &1642619446 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+    type: 3}
+  m_PrefabInstance: {fileID: 1642619445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1797544442
 GameObject:
   m_ObjectHideFlags: 0

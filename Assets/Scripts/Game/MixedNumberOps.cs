@@ -40,6 +40,18 @@ public class MixedNumberOps {
         public void RemoveNumber() {
             mIsEmpty = true;
         }
+
+        public Operand Clone() {
+            var ret = new Operand();
+            ret.numbers = new MixedNumber[numbers.Length];
+            System.Array.Copy(numbers, ret.numbers, numbers.Length);
+
+            ret.mNumber = mNumber;
+            ret.mNumberIndex = mNumberIndex;
+            ret.mIsEmpty = mIsEmpty;
+            
+            return ret;
+        }
     }
 
     public Operand[] operands; //at least two
@@ -54,6 +66,19 @@ public class MixedNumberOps {
 
             return false;
         }
+    }
+
+    public MixedNumberOps Clone() {
+        var ret = new MixedNumberOps();
+
+        ret.operands = new Operand[operands.Length];
+        for(int i = 0; i < operands.Length; i++)
+            ret.operands[i] = operands[i].Clone();
+
+        ret.operators = new OperatorType[operators.Length];
+        System.Array.Copy(operators, ret.operators, operators.Length);
+
+        return ret;
     }
 
     public void ApplyOperand(int index, MixedNumber number) {

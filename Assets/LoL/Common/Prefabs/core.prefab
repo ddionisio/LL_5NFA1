@@ -105,7 +105,6 @@ MonoBehaviour:
   userSettings: {fileID: 11400000, guid: 9ab6acfbc605b1b45aa1c7a95ea3ebb6, type: 2}
   _useFadeMusicScale: 1
   _fadeMusicScale: 0.8
-  _ignorePlaySoundOnMute: 1
   _speakQueueStartDelay: 0.3
   signalProgressUpdate: {fileID: 11400000, guid: 639e3a00c6e5d6a468b0762512980c7b,
     type: 2}
@@ -204,10 +203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2fab7d999b5f940950ce17ae6b15ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: {fileID: 0}
-  m_VerticalAxis: {fileID: 0}
-  m_SubmitButton: {fileID: 0}
-  m_CancelButton: {fileID: 0}
+  m_HorizontalAxis: {fileID: 11400000, guid: d1c75cb5a37a4414488f49a2e9bcae8f, type: 2}
+  m_VerticalAxis: {fileID: 11400000, guid: bfdfaa2220c7c1d4181b9f6f2b35f586, type: 2}
+  m_SubmitButton: {fileID: 11400000, guid: d04264778c197b0459642ff7c7bcfdc3, type: 2}
+  m_CancelButton: {fileID: 11400000, guid: 98e633f7fb6034941a9fc534c71d2d14, type: 2}
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0

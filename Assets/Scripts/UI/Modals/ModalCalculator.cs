@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Basic calculator
 /// </summary>
-public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActive {
+public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.IModalActive {
     public const string parmInitValue = "initialValue";
     public const string parmMaxDigit = "maxDigit";
 
@@ -68,7 +68,10 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
     public TMPro.TMP_Text inputLabel;
     public TMPro.TMP_Text numericLabel;
 
-    [Header("Signals")]
+    [Header("Signal Listens")]
+    public SignalFloat signalValueChange;
+
+    [Header("Signal Invokes")]
     public SignalFloat signalValueUpdate;
     public SignalFloat signalProceed;
 
@@ -223,8 +226,10 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
         ClearInput();
     }
 
-    //void Awake() {
-    //}
+    void M8.IModalPop.Pop() {
+        if(signalValueChange)
+            signalValueChange.callback -= OnValueChanged;
+    }
 
     void M8.IModalPush.Push(M8.GenericParams parms) {
         double val = 0;
@@ -250,6 +255,9 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
         }
 
         SetCurrentValue(val);
+
+        if(signalValueChange)
+            signalValueChange.callback += OnValueChanged;
     }
 
     void M8.IModalActive.SetActive(bool aActive) {
@@ -292,6 +300,10 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalActiv
                     Erase();
             }
         }
+    }
+
+    void OnValueChanged(float val) {
+        SetCurrentValue(val);
     }
 
     private static double EvaluateInputType(InputType type, double lhs, double rhs) {
