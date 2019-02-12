@@ -41,6 +41,8 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDrag
         }
     }
 
+    public Transform anchor { get; set; }
+
     private M8.PoolDataController mPoolData;
 
     private DragAreaType mDragAreaBeginType;
@@ -51,6 +53,13 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDrag
     public void Release() {
         if(mPoolData)
             mPoolData.Release();
+
+        anchor = null;
+    }
+
+    void Update() {
+        if(anchor)
+            transform.position = anchor.position;
     }
 
     void M8.IPoolSpawn.OnSpawned(M8.GenericParams parms) {
@@ -100,16 +109,18 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDrag
             case DragAreaType.Whole:
                 if(canDragInside) {
                     if(mDragAreaBeginType == DragAreaType.Fraction) {
-                        numberWidget.number.FractionToWhole();
-                        numberWidget.RefreshDisplay();
+                        var num = numberWidget.number;
+                        num.FractionToWhole();
+                        numberWidget.number = num;
                     }
                 }
                 break;
             case DragAreaType.Fraction:
                 if(canDragInside) {
                     if(mDragAreaBeginType == DragAreaType.Whole) {
-                        numberWidget.number.WholeToFraction();
-                        numberWidget.RefreshDisplay();
+                        var num = numberWidget.number;
+                        num.WholeToFraction();
+                        numberWidget.number = num;
                     }
                 }
                 break;

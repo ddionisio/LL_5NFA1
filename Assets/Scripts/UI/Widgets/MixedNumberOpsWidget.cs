@@ -183,6 +183,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
                 mCardParms[CardWidget.parmCanDragOutside] = false;
 
                 var newCard = mPool.Spawn<CardWidget>(cardTemplate.name, "", cardContainer, operandSlot.anchor.position, mCardParms);
+                newCard.anchor = operandSlot.anchor;
 
                 operandSlot.SetCard(newCard);
             }
@@ -202,10 +203,10 @@ public class MixedNumberOpsWidget : MonoBehaviour {
             var opSlot = operatorSlots[i];
 
             opSlot.SetOperator(op);
-            opSlot.gameObject.SetActive(false);
+            opSlot.gameObject.SetActive(true);
         }
 
-        for(int i = 0; i < operatorSlots.Length; i++) //hide other operands
+        for(int i = operatorCount; i < operatorSlots.Length; i++) //hide other operands
             operatorSlots[i].gameObject.SetActive(false);
         //
 

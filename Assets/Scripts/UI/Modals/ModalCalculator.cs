@@ -115,10 +115,14 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, 
         UpdateCurrentValueFromInput();
     }
 
-    public void InputNumber(int num) {
+    public void InputNumber(int num) {        
         //don't add if we are already at limit
         int count = mCurInput.Length;
-        if(count > 0) {
+        if(count == 1 && mCurInput[0] == '0') {
+            //special case, replace 0 if it's the only character
+            mCurInput.Clear();
+        }
+        else if(count > 0) {
             if(mCurInput[0] == '-')
                 count--;
             if(CurrentInputGetPeriodIndex() != -1)
@@ -129,6 +133,7 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, 
         }
 
         mCurInput.Append(num);
+
         UpdateCurrentValueFromInput();
     }
 
@@ -241,6 +246,8 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, 
                     val = (float)obj;
                 else if(obj is double)
                     val = (double)obj;
+                else if(obj is int)
+                    val = (int)obj;
                 else
                     val = 0;
             }

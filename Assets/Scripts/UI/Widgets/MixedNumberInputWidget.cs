@@ -135,7 +135,7 @@ public class MixedNumberInputWidget : MonoBehaviour {
                     else
                         ClickDenominator();
                 }
-                else if(inputVertical)
+                else if(inputVertical.IsPressed())
                     ClickDenominator();
                 break;
             case SelectType.Denominator:
@@ -145,7 +145,7 @@ public class MixedNumberInputWidget : MonoBehaviour {
                     else
                         ClickNumerator();
                 }
-                else if(inputVertical)
+                else if(inputVertical.IsPressed())
                     ClickNumerator();
                 break;
         }
@@ -158,12 +158,15 @@ public class MixedNumberInputWidget : MonoBehaviour {
         switch(mCurSelect) {
             case SelectType.Whole:
                 _num.whole = iVal;
+                wholeText.text = iVal.ToString();
                 break;
             case SelectType.Numerator:
                 _num.numerator = iVal;
+                numeratorText.text = iVal.ToString();
                 break;
             case SelectType.Denominator:
                 _num.denominator = iVal;
+                denominatorText.text = iVal.ToString();
                 break;
         }
 
