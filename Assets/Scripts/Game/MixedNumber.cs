@@ -70,7 +70,7 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
     }
 
     /// <summary>
-    /// Convert whole number to fraction. E.g. [1 1/2] => [3/2]
+    /// Convert whole number to fraction. E.g. [2 1/2] => [5/2]
     /// </summary>
     public void WholeToFraction() {
         bool _isNegative = isNegative;
@@ -86,9 +86,9 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
     }
 
     /// <summary>
-    /// Convert numerators to whole, and simplify fraction. E.g. [6/4] => [1 1/2]
+    /// Convert fraction to whole number. E.g. [5/2] => [2 1/2]
     /// </summary>
-    public void Simplify() {
+    public void FractionToWhole() {
         bool _isNegative = isNegative;
 
         whole = Mathf.Abs(whole);
@@ -106,11 +106,34 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
             else
                 numerator = -numerator;
         }
+    }
+
+    /// <summary>
+    /// Convert numerators to whole, and simplify fraction. E.g. [6/4] => [1 1/2]
+    /// </summary>
+    public void Simplify() {
+        bool _isNegative = isNegative;
+
+        whole = Mathf.Abs(whole);
+        numerator = Mathf.Abs(numerator);
+
+        if(numerator > denominator) {
+            int amt = Mathf.FloorToInt((float)numerator / denominator);
+            whole += amt;
+            numerator -= amt * denominator;
+        }
 
         int gcf = M8.MathUtil.Gcf(numerator, denominator);
 
         numerator /= gcf;
         denominator /= gcf;
+
+        if(_isNegative) {
+            if(whole > 0)
+                whole = -whole;
+            else
+                numerator = -numerator;
+        }
     }
 
     public int CompareTo(MixedNumber other) {

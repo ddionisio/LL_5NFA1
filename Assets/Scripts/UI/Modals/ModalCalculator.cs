@@ -69,7 +69,7 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, 
     public TMPro.TMP_Text numericLabel;
 
     [Header("Signal Listens")]
-    public SignalFloat signalValueChange;
+    public SignalFloat signalValueChanged;
 
     [Header("Signal Invokes")]
     public SignalFloat signalValueUpdate;
@@ -227,8 +227,8 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, 
     }
 
     void M8.IModalPop.Pop() {
-        if(signalValueChange)
-            signalValueChange.callback -= OnValueChanged;
+        if(signalValueChanged)
+            signalValueChanged.callback -= OnValueChanged;
     }
 
     void M8.IModalPush.Push(M8.GenericParams parms) {
@@ -256,8 +256,8 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, 
 
         SetCurrentValue(val);
 
-        if(signalValueChange)
-            signalValueChange.callback += OnValueChanged;
+        if(signalValueChanged)
+            signalValueChanged.callback += OnValueChanged;
     }
 
     void M8.IModalActive.SetActive(bool aActive) {

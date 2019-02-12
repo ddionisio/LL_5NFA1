@@ -68,15 +68,18 @@ public class MixedNumberOps {
         }
     }
 
-    public MixedNumberOps Clone() {
+    public MixedNumberOps Clone(int operandCount) {
         var ret = new MixedNumberOps();
 
-        ret.operands = new Operand[operands.Length];
-        for(int i = 0; i < operands.Length; i++)
+        int _operandCount = Mathf.Min(operandCount, operands.Length);
+        int _operatorCount = _operandCount > 1 ? Mathf.Min(_operandCount - 1, operators.Length) : 0;
+
+        ret.operands = new Operand[_operandCount];
+        for(int i = 0; i < _operandCount; i++)
             ret.operands[i] = operands[i].Clone();
 
-        ret.operators = new OperatorType[operators.Length];
-        System.Array.Copy(operators, ret.operators, operators.Length);
+        ret.operators = new OperatorType[_operatorCount];
+        System.Array.Copy(operators, ret.operators, _operatorCount);
 
         return ret;
     }

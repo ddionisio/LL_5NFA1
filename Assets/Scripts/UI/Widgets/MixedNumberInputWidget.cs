@@ -116,6 +116,12 @@ public class MixedNumberInputWidget : MonoBehaviour {
     }
 
     void Update() {
+        //deselect if numpad is closed
+        if(mCurSelect != SelectType.None) {
+            if(!M8.ModalManager.main.IsInStack(modalNumpad))
+                SetSelect(SelectType.None);
+        }
+
         //input
         switch(mCurSelect) {
             case SelectType.Whole:

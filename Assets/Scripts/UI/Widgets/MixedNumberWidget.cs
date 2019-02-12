@@ -27,7 +27,7 @@ public class MixedNumberWidget : MonoBehaviour {
     private MixedNumber mNumber;
 
     public void RefreshDisplay() {
-        wholeText.text = mNumber.whole.ToString();
+        wholeText.text = mNumber.whole != 0 ? mNumber.whole.ToString() : "";
         numeratorText.text = mNumber.numerator.ToString();
         denominatorText.text = mNumber.denominator.ToString();
     }
