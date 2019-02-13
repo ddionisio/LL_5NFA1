@@ -24,12 +24,15 @@ public class TestController : GameModeController<TestController> {
 
     protected override IEnumerator Start() {
         yield return base.Start();
-
+        
         opsWidget.operation = testOps;
         opsWidget.Show();
     }
 
     void OnOpsProceed(bool correct) {
-
+        if(correct)
+            Debug.Log("CORRECT");
+        else
+            Debug.Log("WRONG");
     }
 }

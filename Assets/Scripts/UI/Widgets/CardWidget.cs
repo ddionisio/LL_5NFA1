@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginDragHandler, IDragHandler, IEndDragHandler {
     public enum DragAreaType {
         None,        
         Whole,
@@ -23,6 +23,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDrag
     public MixedNumberWidget numberWidget;
 
     [Header("Drag")]
+    public Transform dragRoot;
     public GameObject dragInsideGO; //when dragging inside
     public GameObject dragWholeToFractionGO;
     public GameObject dragFractionToWholeGO;
@@ -40,9 +41,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDrag
             return mRectTransform;
         }
     }
-
-    public Transform anchor { get; set; }
-
+    
     private M8.PoolDataController mPoolData;
 
     private DragAreaType mDragAreaBeginType;
@@ -50,16 +49,20 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDrag
 
     private RectTransform mRectTransform;
 
+    private Vector3 mDragRootDefaultLocalPos;
+
     public void Release() {
         if(mPoolData)
             mPoolData.Release();
-
-        anchor = null;
     }
 
-    void Update() {
-        if(anchor)
-            transform.position = anchor.position;
+    void Awake() {
+        if(dragRoot)
+            mDragRootDefaultLocalPos = dragRoot.localPosition;
+    }
+
+    void M8.IPoolDespawn.OnDespawned() {
+        ResetDrag();
     }
 
     void M8.IPoolSpawn.OnSpawned(M8.GenericParams parms) {
@@ -82,10 +85,11 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDrag
 
         numberWidget.number = number;
 
-        mDragAreaBeginType = DragAreaType.None;
-        mDragAreaCurType = DragAreaType.None;
+        //no drag inside if number is < 1.0
+        if(canDragInside)
+            canDragInside = Mathf.Abs(number.fValue) >= 1.0f;
 
-        RefreshDragDisplay(Vector2.zero);
+        ResetDrag();
     }
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData) {
@@ -130,10 +134,8 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDrag
                 }
                 break;
         }
-
-        mDragAreaBeginType = DragAreaType.None;
-        mDragAreaCurType = DragAreaType.None;
-        RefreshDragDisplay(eventData.position);
+                
+        ResetDrag();
     }
 
     void RefreshDragDisplay(Vector2 pos) {
@@ -152,12 +154,39 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, IBeginDragHandler, IDrag
                 break;
             case DragAreaType.Outside:
                 //set drag display position
+                var dragAreaRoot = DragArea.transform;
+                if(dragRoot.parent != dragAreaRoot)
+                    dragRoot.SetParent(dragAreaRoot, false);
+
+                dragRoot.position = pos;
                 break;
+        }
+
+        //revert drag root if no longer "outside"
+        if(mDragAreaCurType != DragAreaType.Outside) {
+            if(dragRoot.parent != transform) {
+                dragRoot.SetParent(transform, false);
+                dragRoot.localPosition = mDragRootDefaultLocalPos;
+            }
         }
 
         if(dragInsideGO) dragInsideGO.SetActive(_dragInside);
         if(dragWholeToFractionGO) dragWholeToFractionGO.SetActive(_dragWholeToFraction);
         if(dragFractionToWholeGO) dragFractionToWholeGO.SetActive(_dragFractionToWhole);
+    }
+
+    private void ResetDrag() {
+        mDragAreaBeginType = DragAreaType.None;
+        mDragAreaCurType = DragAreaType.None;
+
+        if(dragRoot) {
+            dragRoot.SetParent(transform, false);
+            dragRoot.localPosition = mDragRootDefaultLocalPos;
+        }
+
+        if(dragInsideGO) dragInsideGO.SetActive(false);
+        if(dragWholeToFractionGO) dragWholeToFractionGO.SetActive(false);
+        if(dragFractionToWholeGO) dragFractionToWholeGO.SetActive(false);
     }
 
     private DragAreaType GetDragType(Vector2 pos) {

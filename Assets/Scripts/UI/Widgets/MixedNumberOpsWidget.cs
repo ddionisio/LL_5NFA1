@@ -3,50 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MixedNumberOpsWidget : MonoBehaviour {
-    [System.Serializable]
-    public class OperandData {
-        public RectTransform anchor;
-        public GameObject emptyGO;
-        public GameObject highlightGO;
-
-        public bool isFixed { get { return card != null && !card.canDragOutside; } }
-        public CardWidget card { get; private set; }
-
-        public void SetActive(bool aActive) {
-            anchor.gameObject.SetActive(aActive);
-        }
-
-        public void SetCard(CardWidget aCard) {
-            if(card != aCard) {
-                if(card) card.Release();
-
-                card = aCard;
-            }
-        }
-
-        public void SetEmpty(bool empty) {
-            if(empty) {
-                if(emptyGO)
-                    emptyGO.SetActive(true);
-
-                SetCard(null);
-            }
-            else {
-                if(emptyGO)
-                    emptyGO.SetActive(false);
-            }
-        }
-
-        public void Init() {
-            SetCard(null);
-
-            if(emptyGO)
-                emptyGO.SetActive(false);
-
-            if(highlightGO)
-                highlightGO.SetActive(false);
-        }
-    }
+    
         
     [Header("Main")]
     public GameObject activeGO; //when operation is active
@@ -54,10 +11,9 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     [Header("Card")]
     public string cardPoolGroup = "cardPool";
     public GameObject cardTemplate; //operand display
-    public Transform cardContainer;
 
     [Header("Operation")]
-    public OperandData[] operandSlots;
+    public CardSlotsWidget operandSlots;
     public OperatorWidget[] operatorSlots;
 
     [Header("Answer")]
@@ -79,7 +35,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         get { return mOperation; }
 
         set {
-            mOperation = value.Clone(operandSlots.Length);
+            mOperation = value.Clone(operandSlots.slots.Length);
 
             ApplyCurrentOperation();
         }
@@ -90,7 +46,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     private MixedNumberOps mOperation;
 
     private M8.GenericParams mCardParms = new M8.GenericParams();
-
+    
     public void Show() {
         StopAllCoroutines();
 
@@ -114,9 +70,12 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
     void Awake() {
         mPool = M8.PoolController.CreatePool(cardPoolGroup);
-        mPool.AddType(cardTemplate, operandSlots.Length, operandSlots.Length);
+        mPool.AddType(cardTemplate, operandSlots.slots.Length, operandSlots.slots.Length);
                 
         answerInput.submitCallback += OnInputSubmit;
+
+        if(animator && !string.IsNullOrEmpty(takeEnter))
+            animator.ResetTake(takeEnter);
     }
 
     void OnInputSubmit() {
@@ -126,7 +85,10 @@ public class MixedNumberOpsWidget : MonoBehaviour {
                 
         var opAnswer = mOperation.Evaluate();
 
-        bool isCorrect = answerInput.number == opAnswer;
+        //NOTE: assume we can only input positives
+        opAnswer.isNegative = false;
+
+        bool isCorrect = answerInput.number.isValid && answerInput.number == opAnswer;
 
         if(!isCorrect) {
             if(animator && !string.IsNullOrEmpty(takeWrong))
@@ -137,18 +99,14 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     }
 
     IEnumerator DoShow() {
-        answerInput.gameObject.SetActive(false);
-
         if(activeGO) activeGO.SetActive(true);
 
         if(animator && !string.IsNullOrEmpty(takeEnter))
             yield return animator.PlayWait(takeEnter);
-
-        RefreshAnswerInput();
     }
 
     IEnumerator DoHide() {
-        answerInput.gameObject.SetActive(false);
+        answerInput.isLocked = true;
 
         if(animator && !string.IsNullOrEmpty(takeExit))
             yield return animator.PlayWait(takeExit);
@@ -157,10 +115,9 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     }
 
     private void Clear() {
-        for(int i = 0; i < operandSlots.Length; i++)
-            operandSlots[i].Init();
+        operandSlots.Init();
 
-        answerInput.gameObject.SetActive(false);
+        answerInput.isLocked = false;
 
         if(activeGO) activeGO.SetActive(false);
     }
@@ -173,26 +130,26 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
         for(int i = 0; i < operandCount; i++) {
             var operand = mOperation.operands[i];
-            var operandSlot = operandSlots[i];
 
-            operandSlot.SetEmpty(operand.isEmpty);
+            CardWidget newCard;
 
-            if(!operand.isEmpty) {
+            if(operand.isEmpty)
+                newCard = null;
+            else {
                 mCardParms[CardWidget.parmNumber] = operand.number;
                 mCardParms[CardWidget.parmCanDragInside] = true;
                 mCardParms[CardWidget.parmCanDragOutside] = false;
 
-                var newCard = mPool.Spawn<CardWidget>(cardTemplate.name, "", cardContainer, operandSlot.anchor.position, mCardParms);
-                newCard.anchor = operandSlot.anchor;
-
-                operandSlot.SetCard(newCard);
+                newCard = mPool.Spawn<CardWidget>(cardTemplate.name, "", null, mCardParms);
             }
 
-            operandSlot.SetActive(true);
+            operandSlots.SetCard(i, newCard);
         }
 
-        for(int i = operandCount; i < operandSlots.Length; i++) //hide other operands
-            operandSlots[i].SetActive(false);
+        for(int i = operandCount; i < operandSlots.slots.Length; i++) //hide other operands
+            operandSlots.SetActive(i, false);
+
+        operandSlots.ClearHighlights();
         //
 
         //setup operators
@@ -217,18 +174,18 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     private void RefreshAnswerInput() {
         bool isValid = !mOperation.isAnyOperandEmpty;
 
-        if(answerInput.gameObject.activeSelf != isValid) {
-            answerInput.CloseNumpad();
+        answerInput.CloseNumpad();
 
-            if(isValid) {
-                var opAnswer = mOperation.Evaluate();
+        if(isValid) {
+            var opAnswer = mOperation.Evaluate();
 
-                bool isWholeEnabled = opAnswer.whole != 0 || opAnswer.numerator > opAnswer.denominator;
+            bool isWholeEnabled = Mathf.Abs(opAnswer.fValue) >= 1.0f;
 
-                answerInput.Init(isWholeEnabled);
-            }   
-
-            answerInput.gameObject.SetActive(isValid);
+            answerInput.Init(isWholeEnabled, opAnswer.isNegative);
         }
+        else
+            answerInput.Init(false, false);
+
+        answerInput.isLocked = !isValid;
     }
 }

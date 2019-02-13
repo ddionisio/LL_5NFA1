@@ -14,7 +14,11 @@ public class MixedNumberInputWidget : MonoBehaviour {
     [Header("Data")]
     public string modalNumpad = "numpad";
 
+    [Header("Lock")]
+    public GameObject lockGO;
+
     [Header("Whole")]
+    public GameObject negativeSignGO;
     public GameObject wholeRootGO;
     public GameObject wholeActiveGO;
     public TMPro.TMP_Text wholeText;
@@ -26,6 +30,9 @@ public class MixedNumberInputWidget : MonoBehaviour {
     [Header("Denominator")]
     public GameObject denominatorActiveGO;
     public TMPro.TMP_Text denominatorText;
+
+    [Header("Submit")]
+    public Selectable submitSelectable;
 
     [Header("Input")]
     public M8.InputAction inputHorizontal;
@@ -39,10 +46,19 @@ public class MixedNumberInputWidget : MonoBehaviour {
         
     public event System.Action submitCallback;
 
+    public bool isLocked {
+        get { return lockGO.activeSelf; }
+        set {
+            lockGO.SetActive(value);
+            submitSelectable.interactable = !value;
+        }
+    }
+
     public MixedNumber number { get; private set; }
 
     private SelectType mCurSelect;
     private bool mIsWholeEnabled;
+    private bool mIsNegative;
 
     private M8.GenericParams mNumpadParms = new M8.GenericParams();
 
@@ -57,6 +73,7 @@ public class MixedNumberInputWidget : MonoBehaviour {
 
         if(mCurSelect != SelectType.Whole) {
             SetSelect(SelectType.Whole);
+            OnSignalValueChanged(number.whole);
             ActivateInputValue();
         }
     }
@@ -64,6 +81,7 @@ public class MixedNumberInputWidget : MonoBehaviour {
     public void ClickNumerator() {
         if(mCurSelect != SelectType.Numerator) {
             SetSelect(SelectType.Numerator);
+            OnSignalValueChanged(number.numerator);
             ActivateInputValue();
         }
     }
@@ -71,6 +89,7 @@ public class MixedNumberInputWidget : MonoBehaviour {
     public void ClickDenominator() {
         if(mCurSelect != SelectType.Denominator) {
             SetSelect(SelectType.Denominator);
+            OnSignalValueChanged(number.denominator);
             ActivateInputValue();
         }
     }
@@ -82,23 +101,31 @@ public class MixedNumberInputWidget : MonoBehaviour {
             submitCallback();
     }
 
-    public void Init(bool isWholeEnabled) {
+    public void Init(bool isWholeEnabled, bool isNegative) {
         number = new MixedNumber();
 
         mCurSelect = SelectType.None;
 
         mIsWholeEnabled = isWholeEnabled;
+        mIsNegative = isNegative;
 
-        if(wholeRootGO) wholeRootGO.SetActive(mIsWholeEnabled);
-
+        if(mIsWholeEnabled) {
+            if(wholeRootGO) wholeRootGO.SetActive(mIsWholeEnabled);
+            if(negativeSignGO) negativeSignGO.SetActive(false);
+        }
+        else {
+            if(wholeRootGO) wholeRootGO.SetActive(false);
+            if(negativeSignGO) negativeSignGO.SetActive(mIsNegative);
+        }
+        
         if(wholeActiveGO) wholeActiveGO.SetActive(false);
-        if(wholeText) wholeText.text = "";
+        if(wholeText) wholeText.text = mIsWholeEnabled && mIsNegative ? "-" : "0";
 
         if(numeratorActiveGO) numeratorActiveGO.SetActive(false);
-        if(numeratorText) numeratorText.text = "";
+        if(numeratorText) numeratorText.text = "0";
 
         if(denominatorActiveGO) denominatorActiveGO.SetActive(false);
-        if(denominatorText) denominatorText.text = "";
+        if(denominatorText) denominatorText.text = "0";
     }
 
     void OnDisable() {
@@ -152,13 +179,22 @@ public class MixedNumberInputWidget : MonoBehaviour {
     }
 
     void OnSignalValueChanged(float val) {
+        //NOTE: only input positives
+
         var _num = number;
-        var iVal = Mathf.FloorToInt(val);
+        var iVal = Mathf.FloorToInt(Mathf.Abs(val));
 
         switch(mCurSelect) {
             case SelectType.Whole:
                 _num.whole = iVal;
-                wholeText.text = iVal.ToString();
+                if(mIsNegative) {
+                    if(iVal > 0)
+                        wholeText.text = (-iVal).ToString();
+                    else
+                        wholeText.text = "-";
+                }
+                else
+                    wholeText.text = iVal.ToString();
                 break;
             case SelectType.Numerator:
                 _num.numerator = iVal;
