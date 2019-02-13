@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class TestController : GameModeController<TestController> {
     [Header("Data")]
-    public MixedNumberOpsWidget opsWidget;
-
     public MixedNumberOps testOps;
+    public MixedNumber[] testDeck;
 
+    [Header("Widgets")]
+    public MixedNumberOpsWidget opsWidget;
+    public CardDeckWidget deckWidget;
+    
+    [Header("Signals")]
     public SignalBoolean signalSubmit;
 
     protected override void OnInstanceDeinit() {
@@ -27,6 +31,8 @@ public class TestController : GameModeController<TestController> {
         
         opsWidget.operation = testOps;
         opsWidget.Show();
+
+        deckWidget.Init(testDeck);
     }
 
     void OnOpsProceed(bool correct) {

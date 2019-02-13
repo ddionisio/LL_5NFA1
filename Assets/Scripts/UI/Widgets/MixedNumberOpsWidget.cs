@@ -10,8 +10,9 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
     [Header("Card")]
     public string cardPoolGroup = "cardPool";
+    public int cardPoolCapacity = 4;
     public GameObject cardTemplate; //operand display
-
+    
     [Header("Operation")]
     public CardSlotsWidget operandSlots;
     public OperatorWidget[] operatorSlots;
@@ -66,13 +67,17 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     void OnDestroy() {
         if(answerInput)
             answerInput.submitCallback -= OnInputSubmit;
+
+        if(operandSlots)
+            operandSlots.updateCallback -= OnSlotUpdated;
     }
 
     void Awake() {
         mPool = M8.PoolController.CreatePool(cardPoolGroup);
-        mPool.AddType(cardTemplate, operandSlots.slots.Length, operandSlots.slots.Length);
+        mPool.AddType(cardTemplate, cardPoolCapacity, cardPoolCapacity);
                 
         answerInput.submitCallback += OnInputSubmit;
+        operandSlots.updateCallback += OnSlotUpdated;
 
         if(animator && !string.IsNullOrEmpty(takeEnter))
             animator.ResetTake(takeEnter);
@@ -96,6 +101,32 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         }
 
         signalAnswer.Invoke(isCorrect);
+    }
+
+    void OnSlotUpdated() {
+        if(mOperation == null) //fail-safe
+            return;
+        
+        var prevResult = mOperation.Evaluate();
+        var prevAnyEmpty = mOperation.isAnyOperandEmpty;
+
+        //update operands
+        for(int i = 0; i < operandSlots.slots.Length; i++) {
+            var op = mOperation.operands[i];
+
+            if(operandSlots.slots[i].card)
+                op.ApplyNumber(operandSlots.slots[i].card.number);
+            else
+                op.RemoveNumber();
+        }
+
+        //check if result value has changed
+        var newResult = mOperation.Evaluate();
+        var newAnyEmpty = mOperation.isAnyOperandEmpty;
+
+        //reset input
+        if(newResult != prevResult || newAnyEmpty != prevAnyEmpty)
+            RefreshAnswerInput();
     }
 
     IEnumerator DoShow() {
@@ -139,6 +170,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
                 mCardParms[CardWidget.parmNumber] = operand.number;
                 mCardParms[CardWidget.parmCanDragInside] = true;
                 mCardParms[CardWidget.parmCanDragOutside] = false;
+                mCardParms[CardWidget.parmCardDrop] = operandSlots;
+                mCardParms[CardWidget.parmCardDropIndex] = i;
 
                 newCard = mPool.Spawn<CardWidget>(cardTemplate.name, "", null, mCardParms);
             }
@@ -148,8 +181,6 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
         for(int i = operandCount; i < operandSlots.slots.Length; i++) //hide other operands
             operandSlots.SetActive(i, false);
-
-        operandSlots.ClearHighlights();
         //
 
         //setup operators

@@ -119,7 +119,7 @@ public class MixedNumberOps {
         else if(operands.Length == 1)
             return operands[0].number;
 
-        MixedNumber result = operands[0].number;
+        MixedNumber result = operands[0].isEmpty ? new MixedNumber() : operands[0].number;
 
         for(int i = 0; i < operators.Length; i++) {
             var op2 = operands[i + 1];
