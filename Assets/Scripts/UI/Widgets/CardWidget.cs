@@ -15,6 +15,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     public const string parmNumber = "mixedNumber";
     public const string parmCanDragOutside = "dragOutside";
     public const string parmCanDragInside = "dragInside";
+    public const string parmFractionVisual = "fractionVisual";
 
     public const string parmCardDrop = "cardDrop";
     public const string parmCardDropIndex = "cardDropIndex";
@@ -24,6 +25,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
 
     [Header("Display")]
     public MixedNumberWidget numberWidget;
+    public GameObject fractionVisualGO;
 
     [Header("Drag")]
     public RectTransform dragRoot;
@@ -35,7 +37,16 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
 
     public MixedNumber number { get { return numberWidget.number; } set { numberWidget.number = value; } }
 
+    public bool isFractionVisual {
+        get { return mIsFractionVisual; }
+        set {
+            mIsFractionVisual = value;
+            UpdateFractionVisualShow();
+        }
+    }
+
     public bool canDragOutside { get; set; }
+
     public bool canDragInside {
         get { return mCanDragInside && Mathf.Abs(number.fValue) >= 1.0f; }
         set { mCanDragInside = value; }
@@ -72,6 +83,20 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
 
     private bool mCanDragInside;
 
+    private bool mIsFractionVisual;
+
+    private bool mIsDragging;
+    private Coroutine mRout;
+
+    void OnApplicationFocus(bool focus) {
+        if(!focus) {
+            if(mIsDragging) {
+                ResetDrag(true);
+                UpdateFractionVisualShow();
+            }
+        }
+    }
+
     void Awake() {
         if(dragRoot)
             mDragRootDefaultLocalPos = dragRoot.localPosition;
@@ -81,6 +106,9 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
         currentCardDrop = null;
 
         ResetDrag(true);
+
+        if(fractionVisualGO)
+            fractionVisualGO.SetActive(false);
     }
 
     void M8.IPoolSpawn.OnSpawned(M8.GenericParams parms) {
@@ -89,6 +117,8 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
 
         currentCardDrop = null;
         currentCardDropIndex = -1;
+
+        mIsFractionVisual = false;
 
         if(parms != null) {
             if(parms.ContainsKey(parmNumber))
@@ -100,6 +130,9 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
             if(parms.ContainsKey(parmCanDragOutside))
                 canDragOutside = parms.GetValue<bool>(parmCanDragOutside);
 
+            if(parms.ContainsKey(parmFractionVisual))
+                mIsFractionVisual = parms.GetValue<bool>(parmFractionVisual);
+
             if(parms.ContainsKey(parmCardDrop))
                 currentCardDrop = parms[parmCardDrop] as CardDropWidgetBase;
 
@@ -110,24 +143,35 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
         numberWidget.number = number;
         
         ResetDrag(true);
+
+        UpdateFractionVisualShow();
     }
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData) {
-        StopAllCoroutines();
-
         mDragAreaBeginType = GetDragType(eventData.position);
         mDragAreaCurType = mDragAreaBeginType;
 
         RefreshDragDisplay(eventData.position);
+
+        if(mDragAreaBeginType != DragAreaType.None) {
+            mIsDragging = true;
+            UpdateFractionVisualShow();
+        }
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData) {
+        if(!mIsDragging)
+            return;
+
         mDragAreaCurType = GetDragType(eventData.position);
 
         RefreshDragDisplay(eventData.position);
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData) {
+        if(!mIsDragging)
+            return;
+
         mDragAreaCurType = GetDragType(eventData.position);
                 
         //determine action
@@ -142,6 +186,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
                 }
 
                 ResetDrag(true);
+                UpdateFractionVisualShow();
                 break;
             case DragAreaType.Fraction:
                 if(canDragInside) {
@@ -153,6 +198,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
                 }
 
                 ResetDrag(true);
+                UpdateFractionVisualShow();
                 break;
             case DragAreaType.Outside:
                 if(canDragOutside) {
@@ -181,36 +227,39 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     }
 
     IEnumerator DoMoveDragAnchorToOrigin() {
-        if(!dragRoot)
-            yield break;
+        if(dragRoot) {
+            Vector2 startPos = dragRoot.position;
 
-        Vector2 startPos = dragRoot.position;
-        
-        dragRoot.SetParent(DragArea.transform, true);
+            dragRoot.SetParent(DragArea.transform, true);
 
-        var easeFunc = DG.Tweening.Core.Easing.EaseManager.ToEaseFunction(dragReturnEase);
+            var easeFunc = DG.Tweening.Core.Easing.EaseManager.ToEaseFunction(dragReturnEase);
 
-        dragRoot.position = startPos;
+            dragRoot.position = startPos;
 
-        var curTime = 0f;
-        while(curTime < dragReturnDelay) {
-            yield return null;
+            var curTime = 0f;
+            while(curTime < dragReturnDelay) {
+                yield return null;
 
-            curTime += Time.deltaTime;
+                curTime += Time.deltaTime;
 
-            var t = easeFunc(curTime, dragReturnDelay, 0f, 0f);
+                var t = easeFunc(curTime, dragReturnDelay, 0f, 0f);
 
-            Vector2 endPos = transform.TransformPoint(mDragRootDefaultLocalPos);
+                Vector2 endPos = transform.TransformPoint(mDragRootDefaultLocalPos);
 
-            dragRoot.position = Vector2.Lerp(startPos, endPos, t);
+                dragRoot.position = Vector2.Lerp(startPos, endPos, t);
+            }
+
+            dragRoot.SetParent(transform, true);
         }
 
-        dragRoot.SetParent(transform, true);
+        mRout = null;
+
+        UpdateFractionVisualShow();
     }
 
     private void MoveDragAnchorToOrigin() {
-        StopAllCoroutines();
-        StartCoroutine(DoMoveDragAnchorToOrigin());
+        StopRoutine();
+        mRout = StartCoroutine(DoMoveDragAnchorToOrigin());
     }
 
     private void SetCurrentCardDrop(CardDropWidgetBase cardDrop, int index) {
@@ -280,8 +329,9 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     }
 
     private void ResetDrag(bool resetDragRoot) {
-        StopAllCoroutines();
+        StopRoutine();
 
+        mIsDragging = false;
         mDragAreaBeginType = DragAreaType.None;
         mDragAreaCurType = DragAreaType.None;
 
@@ -293,6 +343,18 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
         if(dragInsideGO) dragInsideGO.SetActive(false);
         if(dragWholeToFractionGO) dragWholeToFractionGO.SetActive(false);
         if(dragFractionToWholeGO) dragFractionToWholeGO.SetActive(false);
+    }
+
+    private void StopRoutine() {
+        if(mRout != null) {
+            StopCoroutine(mRout);
+            mRout = null;
+        }
+    }
+
+    private void UpdateFractionVisualShow() {
+        if(fractionVisualGO)
+            fractionVisualGO.SetActive(mIsFractionVisual && !mIsDragging && mRout == null);
     }
 
     private DragAreaType GetDragType(Vector2 pos) {

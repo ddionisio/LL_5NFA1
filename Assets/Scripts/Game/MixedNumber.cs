@@ -52,6 +52,14 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
         }
     }
 
+    public MixedNumber simplified {
+        get {
+            var ret = this;
+            ret.Simplify();
+            return ret;
+        }
+    }
+
     /// <summary>
     /// Convert only one _whole number to fraction. E.g. [2 1/2] => [1 3/2]
     /// </summary>
@@ -82,12 +90,20 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
         _whole = 0;
     }
 
+    public int GetWholeFromFraction() {
+        return _numerator > _denominator ? Mathf.FloorToInt((float)_numerator / _denominator) : 0;
+    }
+
+    public int GetGreatestCommonFactor() {
+        return M8.MathUtil.Gcf(_numerator, _denominator);
+    }
+
     /// <summary>
     /// Convert fraction to _whole number. E.g. [5/2] => [2 1/2]
     /// </summary>
     public void FractionToWhole() {
-        if(_numerator > _denominator) {
-            int amt = Mathf.FloorToInt((float)_numerator / _denominator);
+        var amt = GetWholeFromFraction();
+        if(amt > 0) {
             _whole += amt;
             _numerator -= amt * _denominator;
         }
@@ -103,12 +119,12 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
             _numerator -= amt * _denominator;
         }
 
-        int gcf = M8.MathUtil.Gcf(_numerator, _denominator);
+        int gcf = GetGreatestCommonFactor();
 
         _numerator /= gcf;
         _denominator /= gcf;
     }
-
+        
     public int CompareTo(MixedNumber other) {
         if(fValue < other.fValue)
             return -1;

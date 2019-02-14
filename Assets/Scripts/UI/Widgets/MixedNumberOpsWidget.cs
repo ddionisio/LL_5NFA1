@@ -170,6 +170,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
                 mCardParms[CardWidget.parmNumber] = operand.number;
                 mCardParms[CardWidget.parmCanDragInside] = true;
                 mCardParms[CardWidget.parmCanDragOutside] = false;
+                mCardParms[CardWidget.parmFractionVisual] = true;
                 mCardParms[CardWidget.parmCardDrop] = operandSlots;
                 mCardParms[CardWidget.parmCardDropIndex] = i;
 

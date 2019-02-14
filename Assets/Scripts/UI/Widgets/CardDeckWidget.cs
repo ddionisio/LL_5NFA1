@@ -43,6 +43,7 @@ public class CardDeckWidget : CardDropWidgetBase {
             mCardParms[CardWidget.parmNumber] = numbers[i];
             mCardParms[CardWidget.parmCanDragInside] = false;
             mCardParms[CardWidget.parmCanDragOutside] = true;
+            mCardParms[CardWidget.parmFractionVisual] = false;
             mCardParms[CardWidget.parmCardDrop] = this;
             mCardParms[CardWidget.parmCardDropIndex] = i;
 
@@ -110,6 +111,7 @@ public class CardDeckWidget : CardDropWidgetBase {
         cards[index] = card;
 
         if(card) {
+            card.isFractionVisual = false;
             card.canDragInside = false;
             card.transform.SetParent(slotAnchors[index], false);
             card.transform.localPosition = Vector3.zero;

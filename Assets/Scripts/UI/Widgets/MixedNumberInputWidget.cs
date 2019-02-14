@@ -119,13 +119,13 @@ public class MixedNumberInputWidget : MonoBehaviour {
         }
         
         if(wholeActiveGO) wholeActiveGO.SetActive(false);
-        if(wholeText) wholeText.text = mIsWholeEnabled && mIsNegative ? "-" : "0";
+        if(wholeText) wholeText.text = mIsWholeEnabled && mIsNegative ? "-" : "";
 
         if(numeratorActiveGO) numeratorActiveGO.SetActive(false);
-        if(numeratorText) numeratorText.text = "0";
+        if(numeratorText) numeratorText.text = "";
 
         if(denominatorActiveGO) denominatorActiveGO.SetActive(false);
-        if(denominatorText) denominatorText.text = "0";
+        if(denominatorText) denominatorText.text = "";
     }
 
     void OnDisable() {

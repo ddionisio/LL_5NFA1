@@ -23,6 +23,7 @@ public class CardSlotsWidget : CardDropWidgetBase {
                 card = aCard;
                 
                 if(card) {
+                    card.isFractionVisual = true;
                     card.canDragInside = true;
 
                     card.transform.SetParent(anchor, false);

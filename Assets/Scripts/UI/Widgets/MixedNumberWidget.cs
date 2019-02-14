@@ -15,12 +15,14 @@ public class MixedNumberWidget : MonoBehaviour {
     public MixedNumber number {
         get { return mNumber; }
         set {
-            mNumber = value;
+            if(mNumber.isNegative != value.isNegative || mNumber.whole != value.whole || mNumber.numerator != value.numerator || mNumber.denominator != value.denominator) {
+                mNumber = value;
 
-            RefreshDisplay();
+                RefreshDisplay();
 
-            if(numberUpdateCallback != null)
-                numberUpdateCallback();
+                if(numberUpdateCallback != null)
+                    numberUpdateCallback();
+            }
         }
     }
 
