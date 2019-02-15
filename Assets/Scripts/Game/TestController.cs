@@ -28,6 +28,8 @@ public class TestController : GameModeController<TestController> {
 
     protected override IEnumerator Start() {
         yield return base.Start();
+
+        ModalDialog.Open("", "test", ModalDialog.CloseGeneric);
         
         opsWidget.operation = testOps;
         opsWidget.Show();

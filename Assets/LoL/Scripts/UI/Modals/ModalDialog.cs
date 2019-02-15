@@ -11,11 +11,19 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
     public const string parmDialogTextRef = "t";
     public const string parmNextCallback = "c";
 
+    [Header("Display")]
     public Image portraitImage;
-    public Text nameLabel;
-    public Text textLabel;
+    public bool portraitResize;
 
-    public bool isPortraitResize;
+    public TMPro.TMP_Text nameLabel;
+
+    public TMPro.TMP_Text textLabel;
+    public float textCharPerSecond = 0.3f;
+
+    public GameObject textProcessFinishGO;
+
+    [Header("Data")]
+    public float nextDelay = 1f; //when we are allowed to process next since active
     public bool isCloseOnNext;
     public bool isTextSpeechAuto = true;
 
@@ -26,6 +34,16 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
 
     private string mDialogTextRef;
     private System.Action mNextCallback;
+
+    private Coroutine mTextProcessRout;
+
+    private System.Text.StringBuilder mTextProcessSB = new System.Text.StringBuilder();
+    private string mTextDialog;
+
+    private bool mIsActive;
+    private float mLastActiveTime;
+
+    private bool mIsNextProcessed;
 
     /// <summary>
     /// Open generic dialog: modalNameGeneric
@@ -45,8 +63,7 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
 
             dlg.SetupTextContent(nameTextRef, dialogTextRef);
 
-            if(dlg.isTextSpeechAuto)
-                dlg.PlayDialogSpeech();
+            dlg.ApplyActive();
         }
         else {
             mParms[parmNameTextRef] = nameTextRef;
@@ -78,8 +95,7 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
 
             dlg.SetupPortraitTextContent(portrait, nameTextRef, dialogTextRef);
 
-            if(dlg.isTextSpeechAuto)
-                dlg.PlayDialogSpeech();
+            dlg.ApplyActive();
         }
         else {
             mParms[parmPortraitSprite] = portrait;
@@ -91,7 +107,35 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
         }
     }
 
+    /// <summary>
+    /// Close generic modal dialog
+    /// </summary>
+    public static void CloseGeneric() {
+        var uiMgr = M8.ModalManager.main;
+
+        if(uiMgr.IsInStack(modalNameGeneric)) {
+            uiMgr.CloseUpTo(modalNameGeneric, true);
+        }
+    }
+
     public void Next() {
+        if(mIsNextProcessed)
+            return;
+
+        if(!mIsActive)
+            return;
+        
+        if(mTextProcessRout != null) { //finish up text process, need to click next one more time
+            if(Time.time - mLastActiveTime < nextDelay)
+                return;
+
+            StopTextProcess();
+            textLabel.text = mTextDialog;
+            return;
+        }
+
+        mIsNextProcessed = true;
+
         var nextCB = mNextCallback;
         mNextCallback = null;
 
@@ -111,12 +155,32 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
     }
         
     void M8.IModalActive.SetActive(bool aActive) {
-        //play text speech if auto
-        if(aActive && isTextSpeechAuto)
-            PlayDialogSpeech();
+        mIsActive = aActive;
+
+        ApplyActive();
+    }
+
+    private void ApplyActive() {
+        if(mIsActive) {
+            mIsNextProcessed = false;
+
+            mLastActiveTime = Time.time;
+
+            //play text speech if auto
+            if(isTextSpeechAuto)
+                PlayDialogSpeech();
+
+            PlayTextProcess();
+        }   
     }
 
     void M8.IModalPop.Pop() {
+        mIsActive = false;
+
+        StopTextProcess();
+
+        if(textProcessFinishGO) textProcessFinishGO.SetActive(false);
+
         mNextCallback = null;
     }
 
@@ -129,6 +193,10 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
 
             mNextCallback = parms.GetValue<System.Action>(parmNextCallback);
         }
+
+        if(textProcessFinishGO) textProcessFinishGO.SetActive(false);
+
+        mIsNextProcessed = false;
     }
 
     private void SetupPortraitTextContent(Sprite portrait, string nameTextRef, string dialogTextRef) {        
@@ -137,7 +205,7 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
                 portraitImage.gameObject.SetActive(true);
 
                 portraitImage.sprite = portrait;
-                if(isPortraitResize)
+                if(portraitResize)
                     portraitImage.SetNativeSize();
             }
             else
@@ -148,6 +216,10 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
     }
 
     private void SetupTextContent(string nameTextRef, string dialogTextRef) {
+        StopTextProcess();
+
+        if(textProcessFinishGO) textProcessFinishGO.SetActive(false);
+
         //setup other stuff?
 
         mDialogTextRef = dialogTextRef;
@@ -156,8 +228,40 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
             nameLabel.text = !string.IsNullOrEmpty(nameTextRef) ? M8.Localize.Get(nameTextRef) : "";
         }
 
-        if(textLabel) {
-            textLabel.text = !string.IsNullOrEmpty(dialogTextRef) ? M8.Localize.Get(dialogTextRef) : "";
+        textLabel.text = "";
+
+        mTextDialog = !string.IsNullOrEmpty(dialogTextRef) ? M8.Localize.Get(dialogTextRef) : "";
+    }
+
+    private void PlayTextProcess() {
+        StopTextProcess();
+        mTextProcessRout = StartCoroutine(DoTextProcess());
+    }
+
+    private void StopTextProcess() {
+        if(mTextProcessRout != null) {
+            StopCoroutine(mTextProcessRout);
+            mTextProcessRout = null;
         }
+    }
+
+    IEnumerator DoTextProcess() {
+        if(textProcessFinishGO) textProcessFinishGO.SetActive(false);
+
+        mTextProcessSB.Clear();
+
+        var waitDelay = new WaitForSeconds(textCharPerSecond);
+
+        for(int i = 0; i < mTextDialog.Length; i++) {
+            mTextProcessSB.Append(mTextDialog[i]);
+
+            textLabel.text = mTextProcessSB.ToString();
+
+            yield return waitDelay;
+        }
+
+        mTextProcessRout = null;
+
+        if(textProcessFinishGO) textProcessFinishGO.SetActive(true);
     }
 }
