@@ -59,7 +59,7 @@ public class MixedNumberVisualWidget : MonoBehaviour {
             mMultCount = 1;
 
         //whole
-        var wholeCount = mixedNumberWidget.number.GetWholeFromFraction();
+        var wholeCount = mixedNumberWidget.number.whole + mixedNumberWidget.number.GetWholeFromFraction();
         if(wholeCount > 0) {
             wholeGO.SetActive(true);
             wholeAmountText.text = wholeCount.ToString();
@@ -70,19 +70,19 @@ public class MixedNumberVisualWidget : MonoBehaviour {
 
         //mult
         multText.text = "x" + mMultCount.ToString();
-
-        multButtonLeft.interactable = mMultCount > 1;
-        multButtonRight.interactable = mMultCount < fractionMaxMult;
-
+                
         //fraction
         mNumerator = mixedNumberWidget.number.numerator / mMultCount;
         mDenominator = mixedNumberWidget.number.denominator / mMultCount;
 
-        var fVal = mDenominator > 0 ? (float)mNumerator / mDenominator : 0f;
+        var fVal = mDenominator > 0 && mNumerator < mDenominator ? (float)mNumerator / mDenominator : 0f;
 
         fractionFill.fillAmount = fVal;
         
         UpdateFractionLines();
+
+        multButtonLeft.interactable = mMultCount > 1 && mDenominator > 0;
+        multButtonRight.interactable = mMultCount < fractionMaxMult && mDenominator > 0;
     }
 
     void OnMultPrevClick() {
@@ -118,7 +118,7 @@ public class MixedNumberVisualWidget : MonoBehaviour {
             mPool.AddType(lineTemplate, linePoolStartCapacity, linePoolMaxCapacity);
         }
 
-        int count = mDenominator * mMultCount - 1;
+        int count = mNumerator > 0 && mNumerator < mDenominator ? mDenominator * mMultCount - 1 : 0;
 
         if(mLines.Count != count) {
             ClearLines();

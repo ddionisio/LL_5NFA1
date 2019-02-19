@@ -35,6 +35,9 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     public GameObject dragWholeToFractionGO;
     public GameObject dragFractionToWholeGO;
 
+    [Header("Signals")]
+    public M8.Signal signalFractionVisibleUpdate;
+
     public MixedNumber number { get { return numberWidget.number; } set { numberWidget.number = value; } }
 
     public bool isFractionVisual {
@@ -88,6 +91,11 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     private bool mIsDragging;
     private Coroutine mRout;
 
+    public void MoveDragAnchorToOrigin() {
+        StopRoutine();
+        mRout = StartCoroutine(DoMoveDragAnchorToOrigin());
+    }
+
     void OnApplicationFocus(bool focus) {
         if(!focus) {
             if(mIsDragging) {
@@ -103,6 +111,9 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     }
 
     void M8.IPoolDespawn.OnDespawned() {
+        if(signalFractionVisibleUpdate)
+            signalFractionVisibleUpdate.callback -= UpdateFractionVisualShow;
+
         currentCardDrop = null;
 
         ResetDrag(true);
@@ -145,6 +156,9 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
         ResetDrag(true);
 
         UpdateFractionVisualShow();
+
+        if(signalFractionVisibleUpdate)
+            signalFractionVisibleUpdate.callback += UpdateFractionVisualShow;
     }
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData) {
@@ -256,12 +270,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
 
         UpdateFractionVisualShow();
     }
-
-    private void MoveDragAnchorToOrigin() {
-        StopRoutine();
-        mRout = StartCoroutine(DoMoveDragAnchorToOrigin());
-    }
-
+        
     private void SetCurrentCardDrop(CardDropWidgetBase cardDrop, int index) {
         if(currentCardDrop != cardDrop || currentCardDropIndex != index) {
             var prevCardDrop = currentCardDrop;
@@ -354,7 +363,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
 
     private void UpdateFractionVisualShow() {
         if(fractionVisualGO)
-            fractionVisualGO.SetActive(mIsFractionVisual && !mIsDragging && mRout == null);
+            fractionVisualGO.SetActive(mIsFractionVisual && !mIsDragging && FractionVisualToggle.isVisible && mRout == null);
     }
 
     private DragAreaType GetDragType(Vector2 pos) {

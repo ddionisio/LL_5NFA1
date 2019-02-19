@@ -34,12 +34,17 @@ public class TestController : GameModeController<TestController> {
         opsWidget.operation = testOps;
         opsWidget.Show();
 
-        deckWidget.Init(testDeck);
+        deckWidget.Fill(testDeck);
     }
 
     void OnOpsProceed(bool correct) {
-        if(correct)
+        if(correct) {
             Debug.Log("CORRECT");
+
+            opsWidget.MoveAnswerToOperand(0);
+
+            deckWidget.Fill(testDeck);
+        }
         else
             Debug.Log("WRONG");
     }

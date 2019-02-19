@@ -51,7 +51,13 @@ public class MixedNumberWidget : MonoBehaviour {
             }
         }
 
-        numeratorText.text = mNumber.numerator.ToString();
-        denominatorText.text = mNumber.denominator.ToString();
+        if(mNumber.denominator > 0) {
+            numeratorText.text = mNumber.numerator.ToString();
+            denominatorText.text = mNumber.denominator.ToString();
+        }
+        else {
+            numeratorText.text = "-";
+            denominatorText.text = "-";
+        }
     }
 }

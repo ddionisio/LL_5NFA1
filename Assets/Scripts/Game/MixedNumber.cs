@@ -67,6 +67,10 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
         if(_whole == 0)
             return;
 
+        if(_denominator == 0) {
+            _denominator = 1;
+        }
+
         _numerator += _denominator;
         _whole--;
     }
@@ -86,12 +90,18 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
     /// Convert _whole number to fraction. E.g. [2 1/2] => [5/2]
     /// </summary>
     public void WholeToFraction() {
-        _numerator += _whole * _denominator;
+        if(_denominator > 0)
+            _numerator += _whole * _denominator;
+        else {
+            _numerator += _whole;
+            _denominator = 1;
+        }
+
         _whole = 0;
     }
 
     public int GetWholeFromFraction() {
-        return _numerator > _denominator ? Mathf.FloorToInt((float)_numerator / _denominator) : 0;
+        return _numerator >= _denominator ? Mathf.FloorToInt((float)_numerator / _denominator) : 0;
     }
 
     public int GetGreatestCommonFactor() {

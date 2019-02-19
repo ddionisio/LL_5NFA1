@@ -10,7 +10,7 @@ public class MixedNumberOps {
 
         public MixedNumber number {
             get {
-                if(numbers.Length > 0) {
+                if(numbers != null && numbers.Length > 0) {
                     if(numbers.Length == 1)
                         return numbers[0];
                     else {
@@ -26,7 +26,7 @@ public class MixedNumberOps {
         }
         
         public bool isFixed { get { return numbers.Length > 0; } }
-        public bool isEmpty { get { return numbers.Length == 0 && mIsEmpty; } }
+        public bool isEmpty { get { return (numbers == null || numbers.Length == 0) && mIsEmpty; } }
 
         private MixedNumber mNumber;
         private int mNumberIndex = -1;
@@ -34,11 +34,13 @@ public class MixedNumberOps {
 
         public void ApplyNumber(MixedNumber toNumber) {
             mNumber = toNumber;
+            numbers = null;
             mIsEmpty = false;
         }
 
         public void RemoveNumber() {
             mIsEmpty = true;
+            numbers = null;
         }
 
         public Operand Clone() {
@@ -83,35 +85,7 @@ public class MixedNumberOps {
 
         return ret;
     }
-
-    public void ApplyOperand(int index, MixedNumber number) {
-        if(index < 0 || index >= operands.Length) {
-            Debug.LogWarning("Invalid operand index: " + index);
-            return;
-        }
-
-        if(operands[index].isFixed) {
-            Debug.LogWarning("Operand is fixed at index: " + index);
-            return;
-        }
-
-        operands[index].ApplyNumber(number);
-    }
-
-    public void RemoveOperand(int index) {
-        if(index < 0 || index >= operands.Length) {
-            Debug.LogWarning("Invalid operand index: " + index);
-            return;
-        }
-
-        if(operands[index].isFixed) {
-            Debug.LogWarning("Operand is fixed at index: " + index);
-            return;
-        }
-
-        operands[index].RemoveNumber();
-    }
-
+    
     public MixedNumber Evaluate() {
         //fail-safe
         if(operands.Length == 0)

@@ -744,6 +744,8 @@ MonoBehaviour:
   dragInsideGO: {fileID: 3403798821485927360}
   dragWholeToFractionGO: {fileID: 3827612306411308397}
   dragFractionToWholeGO: {fileID: 1112177728829428692}
+  signalFractionVisibleUpdate: {fileID: 11400000, guid: 5de399f1d5872c04c943b84c816bcd5a,
+    type: 2}
 --- !u!114 &1009670505626939709
 MonoBehaviour:
   m_ObjectHideFlags: 0

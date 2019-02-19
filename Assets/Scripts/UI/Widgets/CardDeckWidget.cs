@@ -22,7 +22,7 @@ public class CardDeckWidget : CardDropWidgetBase {
 
     private M8.GenericParams mCardParms = new M8.GenericParams();
         
-    public void Init(MixedNumber[] numbers) {
+    public void Fill(MixedNumber[] numbers) {
         if(!mPool) {
             mPool = M8.PoolController.CreatePool(cardPoolGroup);
             mPool.AddType(cardTemplate, cardPoolCapacity, cardPoolCapacity);
@@ -62,6 +62,9 @@ public class CardDeckWidget : CardDropWidgetBase {
     }
 
     public void Clear() {
+        if(cards == null)
+            return;
+
         for(int i = 0; i < count; i++) {
             if(cards[i]) {
                 if(cards[i].poolData)

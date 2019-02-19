@@ -42,25 +42,75 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         }
     }
 
+    public bool isBusy { get { return mRout != null; } }
+
     private M8.PoolController mPool;
 
     private MixedNumberOps mOperation;
 
     private M8.GenericParams mCardParms = new M8.GenericParams();
+
+    private Coroutine mRout;
+
+    /// <summary>
+    /// This will clear out all operand slots and reset input
+    /// </summary>
+    public void ClearOperands() {
+        operandSlots.Init();
+
+        for(int i = 0; i < mOperation.operands.Length; i++)
+            mOperation.operands[i].RemoveNumber();
+
+        RefreshAnswerInput();
+    }
+
+    /// <summary>
+    /// Note: this will clear out the slots, then create a card for given slot index
+    /// </summary>
+    public void MoveAnswerToOperand(int opIndex) {
+        //clear out operands
+        operandSlots.Init();
+
+        for(int i = 0; i < mOperation.operands.Length; i++)
+            mOperation.operands[i].RemoveNumber();
+        //
+
+        var answerNumber = answerInput.number;
+                
+        mOperation.operands[opIndex].ApplyNumber(answerNumber);
+
+        mCardParms[CardWidget.parmNumber] = answerNumber;
+        mCardParms[CardWidget.parmCanDragInside] = true;
+        mCardParms[CardWidget.parmCanDragOutside] = false;
+        mCardParms[CardWidget.parmFractionVisual] = true;
+        mCardParms[CardWidget.parmCardDrop] = operandSlots;
+        mCardParms[CardWidget.parmCardDropIndex] = opIndex;
+
+        var newCard = mPool.Spawn<CardWidget>(cardTemplate.name, "", null, mCardParms);
+
+        //allow card to slide from answer to its proper slot
+        newCard.transform.position = answerInput.transform.position;
+        newCard.MoveDragAnchorToOrigin();
+
+        operandSlots.SetCard(opIndex, newCard);
+
+        RefreshAnswerInput();
+    }
     
     public void Show() {
-        StopAllCoroutines();
+        ClearRoutine();
 
-        StartCoroutine(DoShow());
+        mRout = StartCoroutine(DoShow());
     }
 
     public void Hide() {
-        StopAllCoroutines();
+        ClearRoutine();
 
-        StartCoroutine(DoHide());
+        mRout = StartCoroutine(DoHide());
     }
-
+        
     void OnDisable() {
+        ClearRoutine();
         Clear();
     }
 
@@ -85,7 +135,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
     void OnInputSubmit() {
         //fail-safe, shouldn't be able to submit
-        if(mOperation == null || mOperation.isAnyOperandEmpty)
+        if(mOperation == null || mOperation.isAnyOperandEmpty || isBusy)
             return;
                 
         var opAnswer = mOperation.Evaluate();
@@ -111,7 +161,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         var prevAnyEmpty = mOperation.isAnyOperandEmpty;
 
         //update operands
-        for(int i = 0; i < operandSlots.slots.Length; i++) {
+        int opCount = Mathf.Min(operandSlots.slots.Length, mOperation.operands.Length);
+        for(int i = 0; i < opCount; i++) {
             var op = mOperation.operands[i];
 
             if(operandSlots.slots[i].card)
@@ -134,6 +185,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
         if(animator && !string.IsNullOrEmpty(takeEnter))
             yield return animator.PlayWait(takeEnter);
+
+        mRout = null;
     }
 
     IEnumerator DoHide() {
@@ -143,6 +196,15 @@ public class MixedNumberOpsWidget : MonoBehaviour {
             yield return animator.PlayWait(takeExit);
 
         if(activeGO) activeGO.SetActive(false);
+
+        mRout = null;
+    }
+
+    private void ClearRoutine() {
+        if(mRout != null) {
+            StopCoroutine(mRout);
+            mRout = null;
+        }
     }
 
     private void Clear() {
