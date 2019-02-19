@@ -8,8 +8,9 @@ TextureImporter:
     21300006: blank4x4_bottomLeft
     21300008: blank4x4_border
     21300010: blank4x4_top
+    21300012: blank4x4_left
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 9
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -238,6 +239,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: b97ac997e7806634daaa3a0cf946cc14
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blank4x4_left
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 4
+        height: 4
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c58d3bc38d1ab84f84c9263d0d5f485
       vertices: []
       indices: 
       edges: []
