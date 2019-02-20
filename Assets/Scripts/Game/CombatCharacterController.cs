@@ -11,13 +11,10 @@ public class CombatCharacterController : MonoBehaviour {
         Attack,
         Defend,
         Hurt,
-        Death,
-        Revive,
-        Victory
+        Death,        
+        Victory,
+        Revive
     }
-
-    [Header("Data")]
-    public float hpMax;
 
     [Header("Displays")]
     public HPWidget hpWidget;
@@ -54,6 +51,8 @@ public class CombatCharacterController : MonoBehaviour {
         set {
             if(mHPCurrent != value) {
                 mHPCurrent = value;
+                if(mHPCurrent < 0f)
+                    mHPCurrent = 0f;
 
                 hpWidget.UpdateValue(mHPCurrent);
             }
@@ -62,13 +61,60 @@ public class CombatCharacterController : MonoBehaviour {
 
     public bool isBusy { get { return mCurRout != null; } }
 
+    public float hpMax { get; private set; }
+
     public Action action {
         get { return mAction; }
         set {
             if(mAction != value) {
+                Stop();
+
                 var prevAction = mAction;
                 mAction = value;
 
+                switch(prevAction) {
+                    case Action.Defend:
+                        if(defendActiveGO) defendActiveGO.SetActive(false);
+                        break;
+                }
+
+                switch(mAction) {
+                    case Action.Enter:
+                        mCurRout = StartCoroutine(DoEnter());
+                        break;
+                    case Action.Idle:
+                        if(prevAction == Action.Attack)
+                            mCurRout = StartCoroutine(DoAttackToIdle());
+                        else {
+                            if(animator && !string.IsNullOrEmpty(takeIdle))
+                                animator.Play(takeIdle);
+                        }
+                        break;
+                    case Action.Attack:
+                        mCurRout = StartCoroutine(DoAttack());
+                        break;
+                    case Action.Defend:
+                        if(animator && !string.IsNullOrEmpty(takeDefend))
+                            animator.Play(takeDefend);
+
+                        if(defendActiveGO) defendActiveGO.SetActive(true);
+                        break;
+                    case Action.Hurt:
+                        if(animator && !string.IsNullOrEmpty(takeHurt))
+                            animator.Play(takeHurt);
+                        break;
+                    case Action.Death:
+                        if(animator && !string.IsNullOrEmpty(takeDeath))
+                            animator.Play(takeDeath);
+                        break;
+                    case Action.Victory:
+                        if(animator && !string.IsNullOrEmpty(takeVictory))
+                            animator.Play(takeVictory);
+                        break;
+                    case Action.Revive:
+                        mCurRout = StartCoroutine(DoRevive());
+                        break;                    
+                }
             }
         }
     }
@@ -79,12 +125,16 @@ public class CombatCharacterController : MonoBehaviour {
 
     private Action mAction;
 
-    public void Init() {
-        mHPCurrent = hpMax;
+    public void Init(float aHPMax) {
+        hpMax = aHPMax;
+        mHPCurrent = aHPMax;
 
         hpWidget.Init(hpMax);
 
         mAction = Action.None;
+
+        if(animatorMove && !string.IsNullOrEmpty(takeMoveEnter))
+            animatorMove.ResetTake(takeMoveEnter);
     }
 
     public void Stop() {
@@ -92,5 +142,43 @@ public class CombatCharacterController : MonoBehaviour {
             StopCoroutine(mCurRout);
             mCurRout = null;
         }
+    }
+
+    IEnumerator DoEnter() {
+        if(animatorMove && !string.IsNullOrEmpty(takeMoveEnter))
+            yield return animatorMove.PlayWait(takeMoveEnter);
+
+        mCurRout = null;
+    }
+
+    IEnumerator DoAttackToIdle() {
+        if(animatorMove && !string.IsNullOrEmpty(takeMoveAttackExit))
+            yield return animatorMove.PlayWait(takeMoveAttackExit);
+
+        if(animator && !string.IsNullOrEmpty(takeIdle))
+            animator.Play(takeIdle);
+
+        mCurRout = null;
+    }
+
+    IEnumerator DoAttack() {
+        if(animatorMove && !string.IsNullOrEmpty(takeMoveAttackEnter))
+            yield return animatorMove.PlayWait(takeMoveAttackEnter);
+
+        if(animator && !string.IsNullOrEmpty(takeAttack))
+            yield return animator.PlayWait(takeAttack);
+
+        mCurRout = null;
+    }
+
+    IEnumerator DoRevive() {
+        if(animator && !string.IsNullOrEmpty(takeRevive))
+            yield return animator.PlayWait(takeRevive);
+
+        mCurRout = null;
+
+        hpCurrent = hpMax;
+
+        action = Action.Idle;
     }
 }

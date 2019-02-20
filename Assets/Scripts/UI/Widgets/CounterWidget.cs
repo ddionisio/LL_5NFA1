@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CounterWidget : MonoBehaviour {
-    
+    public GameObject rootGO;
+
     public CounterItemWidget[] items;
 
     [Header("Animation")]
@@ -15,6 +16,9 @@ public class CounterWidget : MonoBehaviour {
 
     public int curCount { get; private set; }
     public int maxCount { get; private set; }
+    public bool isBusy { get { return mRout != null; } }
+
+    private Coroutine mRout;
 
     public void Init(int count) {
         int activeCount = Mathf.Min(count, items.Length);
@@ -32,8 +36,7 @@ public class CounterWidget : MonoBehaviour {
         curCount = 0;
         maxCount = count;
 
-        if(animator && !string.IsNullOrEmpty(takeShow))
-            animator.ResetTake(takeShow);
+        if(rootGO) rootGO.SetActive(false);
     }
 
     public void FillIncrement() {
@@ -46,17 +49,45 @@ public class CounterWidget : MonoBehaviour {
     }
 
     public void Show() {
-        if(animator && !string.IsNullOrEmpty(takeShow))
-            animator.Play(takeShow);
+        Stop();
+        mRout = StartCoroutine(DoShow());
     }
 
     public void Hide() {
-        if(animator && !string.IsNullOrEmpty(takeHide))
-            animator.Play(takeHide);
+        Stop();
+        mRout = StartCoroutine(DoHide());
+    }
+
+    void OnDisable() {
+        mRout = null;
     }
 
     void Awake() {
+        if(rootGO) rootGO.SetActive(false);
+    }
+
+    IEnumerator DoShow() {
+        if(rootGO) rootGO.SetActive(true);
+
         if(animator && !string.IsNullOrEmpty(takeShow))
-            animator.ResetTake(takeShow);
+            yield return animator.PlayWait(takeShow);
+
+        mRout = null;
+    }
+
+    IEnumerator DoHide() {
+        if(animator && !string.IsNullOrEmpty(takeHide))
+            yield return animator.PlayWait(takeHide);
+
+        if(rootGO) rootGO.SetActive(false);
+
+        mRout = null;
+    }
+
+    private void Stop() {
+        if(mRout != null) {
+            StopCoroutine(mRout);
+            mRout = null;
+        }
     }
 }

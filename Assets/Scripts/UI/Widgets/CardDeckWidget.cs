@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CardDeckWidget : CardDropWidgetBase {
-    [Header("Main")]
-    public GameObject activeGO; //when operation is active
+    public GameObject rootGO;
 
     [Header("Card")]
     public string cardPoolGroup = "cardPool";
@@ -14,14 +13,38 @@ public class CardDeckWidget : CardDropWidgetBase {
     [Header("Slots")]
     public RectTransform[] slotAnchors;
 
+    [Header("Animation")]
+    public M8.Animator.Animate animator;
+    [M8.Animator.TakeSelector(animatorField = "animator")]
+    public string takeShow;
+    [M8.Animator.TakeSelector(animatorField = "animator")]
+    public string takeHide;
+
     public CardWidget[] cards { get; private set; }
 
     public int count { get; private set; }
 
+    public bool isBusy { get { return mRout != null; } }
+
     private M8.PoolController mPool;
 
     private M8.GenericParams mCardParms = new M8.GenericParams();
-        
+
+    private Coroutine mRout;
+
+    public void Show() {
+        Stop();
+
+        if(rootGO) rootGO.SetActive(true);
+
+        mRout = StartCoroutine(DoShow());
+    }
+
+    public void Hide() {
+        Stop();
+        mRout = StartCoroutine(DoHide());
+    }
+
     public void Fill(MixedNumber[] numbers) {
         if(!mPool) {
             mPool = M8.PoolController.CreatePool(cardPoolGroup);
@@ -76,7 +99,38 @@ public class CardDeckWidget : CardDropWidgetBase {
 
         count = 0;
     }
-    
+
+    void OnDisable() {
+        mRout = null;
+    }
+
+    void Awake() {
+        if(rootGO) rootGO.SetActive(false);
+    }
+
+    IEnumerator DoShow() {
+        if(animator && !string.IsNullOrEmpty(takeShow))
+            yield return animator.PlayWait(takeShow);
+
+        mRout = null;
+    }
+
+    IEnumerator DoHide() {
+        if(animator && !string.IsNullOrEmpty(takeHide))
+            yield return animator.PlayWait(takeHide);
+
+        if(rootGO) rootGO.SetActive(false);
+
+        mRout = null;
+    }
+
+    private void Stop() {
+        if(mRout != null) {
+            StopCoroutine(mRout);
+            mRout = null;
+        }
+    }
+
     public override int CardDropGetSlotIndex(CardWidget card) {
         int retInd = -1;
 

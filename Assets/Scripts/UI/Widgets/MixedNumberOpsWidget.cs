@@ -111,7 +111,10 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         
     void OnDisable() {
         ClearRoutine();
-        Clear();
+
+        operandSlots.Init();
+
+        if(activeGO) activeGO.SetActive(false);
     }
 
     void OnDestroy() {
@@ -128,9 +131,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
                 
         answerInput.submitCallback += OnInputSubmit;
         operandSlots.updateCallback += OnSlotUpdated;
-
-        if(animator && !string.IsNullOrEmpty(takeEnter))
-            animator.ResetTake(takeEnter);
+        
+        if(activeGO) activeGO.SetActive(false);
     }
 
     void OnInputSubmit() {
@@ -207,16 +209,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         }
     }
 
-    private void Clear() {
-        operandSlots.Init();
-
-        answerInput.isLocked = false;
-
-        if(activeGO) activeGO.SetActive(false);
-    }
-
     private void ApplyCurrentOperation() {
-        Clear();
+        operandSlots.Init();
 
         //setup operands
         var operandCount = mOperation.operands.Length;

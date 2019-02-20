@@ -19,16 +19,27 @@ public class TimerWidget : MonoBehaviour {
     float _defaultValue = 1f;
 
     [Header("Display")]
+    public GameObject rootGO;
     public Image fillImage;
+
+    [Header("Animation")]
+    public M8.Animator.Animate animator;
+    [M8.Animator.TakeSelector(animatorField = "animator")]
+    public string takeEnter;
+    [M8.Animator.TakeSelector(animatorField = "animator")]
+    public string takeExit;
 
     [Header("Signal")]
     public M8.Signal signalFinished;
 
     public float delay { get { return _delay; } set { _delay = value; } }
     public float value { get { return mCurTime / _delay; } }
+    public bool isBusy { get { return mRout != null; } }
 
     private bool mIsActive = false;
     private float mCurTime;
+
+    private Coroutine mRout;
 
     public void ResetValue() {
         mCurTime = _defaultValue * _delay;
@@ -37,6 +48,28 @@ public class TimerWidget : MonoBehaviour {
 
     public void SetActive(bool aActive) {
         mIsActive = aActive;
+    }
+
+    public void Show() {
+        Stop();
+        mRout = StartCoroutine(DoShow());
+    }
+
+    public void Hide() {
+        Stop();
+        mRout = StartCoroutine(DoHide());
+    }
+        
+    void OnDisable() {
+        mRout = null;
+    }
+
+    void Awake() {
+        if(animator && !string.IsNullOrEmpty(takeEnter))
+            animator.ResetTake(takeEnter);
+
+        if(rootGO)
+            rootGO.SetActive(false);
     }
 
     void Update() {
@@ -75,7 +108,34 @@ public class TimerWidget : MonoBehaviour {
         }
     }
 
-    void RefreshDisplay() {
+    IEnumerator DoShow() {
+        if(rootGO)
+            rootGO.SetActive(true);
+
+        if(animator && !string.IsNullOrEmpty(takeEnter))
+            yield return animator.PlayWait(takeEnter);
+
+        mRout = null;
+    }
+
+    IEnumerator DoHide() {
+        if(animator && !string.IsNullOrEmpty(takeExit))
+            yield return animator.PlayWait(takeExit);
+
+        if(rootGO)
+            rootGO.SetActive(false);
+
+        mRout = null;
+    }
+
+    private void RefreshDisplay() {
         fillImage.fillAmount = value;
+    }
+
+    private void Stop() {
+        if(mRout != null) {
+            StopCoroutine(mRout);
+            mRout = null;
+        }
     }
 }
