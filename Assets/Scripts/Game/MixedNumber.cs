@@ -236,3 +236,8 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
         return a.fValue < b.fValue;
     }
 }
+
+[System.Serializable]
+public class MixedNumberGroup {
+    public MixedNumber[] numbers;
+}

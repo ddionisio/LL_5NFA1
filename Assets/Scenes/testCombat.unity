@@ -3172,6 +3172,7 @@ GameObject:
   - component: {fileID: 769312319}
   - component: {fileID: 769312321}
   - component: {fileID: 769312320}
+  - component: {fileID: 769312322}
   m_Layer: 0
   m_Name: testControl
   m_TagString: Untagged
@@ -3250,11 +3251,56 @@ MonoBehaviour:
   mode: {fileID: 0}
   signalModeChanged: {fileID: 11400000, guid: 4f9dce914f15a6c4b8c0af0d08028ac5, type: 2}
   playerHP: 1
-  enemyHP: 1
+  enemyHP: 5
   attackControl: {fileID: 769312320}
-  defenseControl: {fileID: 0}
+  defenseControl: {fileID: 769312322}
   playerControl: {fileID: 480215512}
   enemyControl: {fileID: 468083855}
+--- !u!114 &769312322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769312318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2de5df41088614b982f04d0353608e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opCount: 2
+  timerDelay: 90
+  postDefenseDelay: 2
+  attackNumberGroups:
+  - numbers:
+    - _negative: 0
+      _whole: 0
+      _numerator: 7
+      _denominator: 8
+  numberGroups:
+  - numbers:
+    - _negative: 0
+      _whole: 0
+      _numerator: 1
+      _denominator: 4
+    - _negative: 0
+      _whole: 0
+      _numerator: 3
+      _denominator: 4
+    - _negative: 0
+      _whole: 0
+      _numerator: 5
+      _denominator: 7
+    - _negative: 0
+      _whole: 0
+      _numerator: 1
+      _denominator: 6
+  timerWidget: {fileID: 65690231}
+  opsWidget: {fileID: 1192954257}
+  deckWidget: {fileID: 1843061180}
+  animator: {fileID: 0}
+  takeReady: 
+  signalAnswer: {fileID: 11400000, guid: af7eadcdb8f7a654ca68735a72f9f180, type: 2}
 --- !u!1 &779170516
 GameObject:
   m_ObjectHideFlags: 0

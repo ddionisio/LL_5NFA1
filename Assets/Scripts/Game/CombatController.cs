@@ -69,7 +69,40 @@ public class CombatController : GameModeController<CombatController> {
             /////////////////////////////////////
             //defend state
             if(defenseControl) {
+                defenseControl.Init(enemyControl, playerControl);
+                defenseControl.Play();
 
+                yield return null;
+
+                while(defenseControl.isPlaying)
+                    yield return null;
+
+                mDefenseAmount += defenseControl.defenseTotalNumber;
+
+                //check if player is dead
+                if(playerControl.hpCurrent <= 0f) {
+                    //revive
+                    mReviveCount++;
+
+                    playerControl.action = CombatCharacterController.Action.Revive;
+                    while(playerControl.isBusy)
+                        yield return null;
+
+                    //animation of hp going back up
+                    playerControl.hpWidget.Show();
+                    while(playerControl.hpWidget.isBusy)
+                        yield return null;
+
+                    playerControl.hpCurrent = playerControl.hpMax;
+
+                    yield return new WaitForSeconds(0.5f);
+
+                    playerControl.hpWidget.Hide();
+                    while(playerControl.hpWidget.isBusy)
+                        yield return null;
+
+                    playerControl.action = CombatCharacterController.Action.Idle;
+                }
             }
             /////////////////////////////////////
 

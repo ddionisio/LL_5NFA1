@@ -126,7 +126,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         //
 
         var answerNumber = answerInput.number;
-                
+        answerNumber.isNegative = answerInput.numberIsNegative;            
+
         mOperation.operands[opIndex].ApplyNumber(answerNumber);
 
         mCardParms[CardWidget.parmNumber] = answerNumber;

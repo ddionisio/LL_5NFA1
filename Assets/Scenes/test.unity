@@ -2819,13 +2819,17 @@ MonoBehaviour:
   signalModeChanged: {fileID: 11400000, guid: 4f9dce914f15a6c4b8c0af0d08028ac5, type: 2}
   testOps:
     operands:
-    - numbers: []
+    - numbers:
+      - _negative: 0
+        _whole: 0
+        _numerator: 1
+        _denominator: 3
     - numbers:
       - _negative: 0
         _whole: 0
         _numerator: 1
         _denominator: 2
-    operators: 00000000
+    operators: 01000000
   testDeck:
   - _negative: 0
     _whole: 0

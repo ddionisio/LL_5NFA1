@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class MixedNumberGroup {
-    public MixedNumber[] numbers;
-}
-
 public class CombatAttackController : MonoBehaviour {
     [Header("Data")]
     public int attackCount = 1;
@@ -47,7 +42,6 @@ public class CombatAttackController : MonoBehaviour {
 
     private bool mIsAnswerSubmitted;
     private bool mIsAnswerCorrect;
-
     private MixedNumber mAnswerNumber;
 
     public void Init(CombatCharacterController attacker, CombatCharacterController defender) {
@@ -101,15 +95,7 @@ public class CombatAttackController : MonoBehaviour {
         mAttacker = attacker;
         mDefender = defender;
     }
-
-    public void FillSlots() {
-        if(deckWidget) deckWidget.Fill(numberGroups[mCurNumbersIndex].numbers);
-
-        mCurNumbersIndex++;
-        if(mCurNumbersIndex == numberGroups.Length)
-            mCurNumbersIndex = 0;
-    }
-
+        
     public void Play() {
         mRout = StartCoroutine(DoPlay());
     }
@@ -157,7 +143,7 @@ public class CombatAttackController : MonoBehaviour {
 
         //loop
         for(int attackIndex = 0; attackIndex < attackCount; attackIndex++) {
-            //fill deck
+            //show and fill deck
             if(deckWidget) {
                 deckWidget.Show();
                 while(deckWidget.isBusy)
@@ -278,6 +264,14 @@ public class CombatAttackController : MonoBehaviour {
             mIsAnswerCorrect = correct;
             mIsAnswerSubmitted = true;
         }
+    }
+
+    private void FillSlots() {
+        if(deckWidget) deckWidget.Fill(numberGroups[mCurNumbersIndex].numbers);
+
+        mCurNumbersIndex++;
+        if(mCurNumbersIndex == numberGroups.Length)
+            mCurNumbersIndex = 0;
     }
 
     private void RefreshOperands() {

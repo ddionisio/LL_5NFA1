@@ -55,10 +55,10 @@ public class MixedNumberInputWidget : MonoBehaviour {
     }
 
     public MixedNumber number { get; private set; }
+    public bool numberIsNegative { get; private set; }
 
     private SelectType mCurSelect;
     private bool mIsWholeEnabled;
-    private bool mIsNegative;
 
     private M8.GenericParams mNumpadParms = new M8.GenericParams();
 
@@ -107,7 +107,7 @@ public class MixedNumberInputWidget : MonoBehaviour {
         mCurSelect = SelectType.None;
 
         mIsWholeEnabled = isWholeEnabled;
-        mIsNegative = isNegative;
+        numberIsNegative = isNegative;
 
         if(mIsWholeEnabled) {
             if(wholeRootGO) wholeRootGO.SetActive(mIsWholeEnabled);
@@ -115,11 +115,11 @@ public class MixedNumberInputWidget : MonoBehaviour {
         }
         else {
             if(wholeRootGO) wholeRootGO.SetActive(false);
-            if(negativeSignGO) negativeSignGO.SetActive(mIsNegative);
+            if(negativeSignGO) negativeSignGO.SetActive(numberIsNegative);
         }
         
         if(wholeActiveGO) wholeActiveGO.SetActive(false);
-        if(wholeText) wholeText.text = mIsWholeEnabled && mIsNegative ? "-" : "";
+        if(wholeText) wholeText.text = mIsWholeEnabled && numberIsNegative ? "-" : "";
 
         if(numeratorActiveGO) numeratorActiveGO.SetActive(false);
         if(numeratorText) numeratorText.text = "";
@@ -187,7 +187,7 @@ public class MixedNumberInputWidget : MonoBehaviour {
         switch(mCurSelect) {
             case SelectType.Whole:
                 _num.whole = iVal;
-                if(mIsNegative) {
+                if(numberIsNegative) {
                     if(iVal > 0)
                         wholeText.text = (-iVal).ToString();
                     else
