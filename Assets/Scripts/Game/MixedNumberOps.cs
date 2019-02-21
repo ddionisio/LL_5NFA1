@@ -45,8 +45,11 @@ public class MixedNumberOps {
 
         public Operand Clone() {
             var ret = new Operand();
-            ret.numbers = new MixedNumber[numbers.Length];
-            System.Array.Copy(numbers, ret.numbers, numbers.Length);
+
+            if(numbers != null) {
+                ret.numbers = new MixedNumber[numbers.Length];
+                System.Array.Copy(numbers, ret.numbers, numbers.Length);
+            }
 
             ret.mNumber = mNumber;
             ret.mNumberIndex = mNumberIndex;

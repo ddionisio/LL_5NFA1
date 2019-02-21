@@ -52,6 +52,56 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
     private Coroutine mRout;
 
+    public void ApplyCurrentOperation() {
+        operandSlots.Init();
+
+        //setup operands
+        var operandCount = mOperation.operands.Length;
+
+        for(int i = 0; i < operandCount; i++) {
+            var operand = mOperation.operands[i];
+
+            CardWidget newCard;
+
+            if(operand.isEmpty)
+                newCard = null;
+            else {
+                mCardParms[CardWidget.parmNumber] = operand.number;
+                mCardParms[CardWidget.parmCanDragInside] = true;
+                mCardParms[CardWidget.parmCanDragOutside] = false;
+                mCardParms[CardWidget.parmFractionVisual] = true;
+                mCardParms[CardWidget.parmCardDrop] = operandSlots;
+                mCardParms[CardWidget.parmCardDropIndex] = i;
+
+                newCard = mPool.Spawn<CardWidget>(cardTemplate.name, "", null, mCardParms);
+            }
+
+            operandSlots.SetCard(i, newCard);
+        }
+
+        for(int i = operandCount; i < operandSlots.slots.Length; i++) //hide other operands
+            operandSlots.SetActive(i, false);
+        //
+
+        //setup operators
+        int operatorCount = mOperation.operators.Length;
+
+        for(int i = 0; i < operatorCount; i++) {
+            var op = mOperation.operators[i];
+            var opSlot = operatorSlots[i];
+
+            opSlot.SetOperator(op);
+            opSlot.gameObject.SetActive(true);
+        }
+
+        for(int i = operatorCount; i < operatorSlots.Length; i++) //hide other operands
+            operatorSlots[i].gameObject.SetActive(false);
+        //
+
+        //setup answer input
+        RefreshAnswerInput();
+    }
+
     /// <summary>
     /// This will clear out all operand slots and reset input
     /// </summary>
@@ -208,57 +258,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
             mRout = null;
         }
     }
-
-    private void ApplyCurrentOperation() {
-        operandSlots.Init();
-
-        //setup operands
-        var operandCount = mOperation.operands.Length;
-
-        for(int i = 0; i < operandCount; i++) {
-            var operand = mOperation.operands[i];
-
-            CardWidget newCard;
-
-            if(operand.isEmpty)
-                newCard = null;
-            else {
-                mCardParms[CardWidget.parmNumber] = operand.number;
-                mCardParms[CardWidget.parmCanDragInside] = true;
-                mCardParms[CardWidget.parmCanDragOutside] = false;
-                mCardParms[CardWidget.parmFractionVisual] = true;
-                mCardParms[CardWidget.parmCardDrop] = operandSlots;
-                mCardParms[CardWidget.parmCardDropIndex] = i;
-
-                newCard = mPool.Spawn<CardWidget>(cardTemplate.name, "", null, mCardParms);
-            }
-
-            operandSlots.SetCard(i, newCard);
-        }
-
-        for(int i = operandCount; i < operandSlots.slots.Length; i++) //hide other operands
-            operandSlots.SetActive(i, false);
-        //
-
-        //setup operators
-        int operatorCount = mOperation.operators.Length;
-
-        for(int i = 0; i < operatorCount; i++) {
-            var op = mOperation.operators[i];
-            var opSlot = operatorSlots[i];
-
-            opSlot.SetOperator(op);
-            opSlot.gameObject.SetActive(true);
-        }
-
-        for(int i = operatorCount; i < operatorSlots.Length; i++) //hide other operands
-            operatorSlots[i].gameObject.SetActive(false);
-        //
-
-        //setup answer input
-        RefreshAnswerInput();
-    }
-
+    
     private void RefreshAnswerInput() {
         bool isValid = !mOperation.isAnyOperandEmpty;
 

@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class MixedNumberGroup {
+    public MixedNumber[] numbers;
+}
+
 public class CombatAttackController : MonoBehaviour {
     [Header("Data")]
     public int attackCount = 1;
     public int opCount = 2;
     public float timerDelay = 10f;
-    public MixedNumber[][] numbers;
+    public float postAttackDelay = 2f; //delay after attack is finished
+    public MixedNumberGroup[] fixedGroups; //fill operands with these numbers
+    public MixedNumberGroup[] numberGroups;    
 
     [Header("UI")]
     public TimerWidget timerWidget;
@@ -25,13 +32,16 @@ public class CombatAttackController : MonoBehaviour {
 
     public bool isPlaying { get { return mRout != null; } }
 
+    public MixedNumber attackTotalNumber { get; private set; }
+
     private CombatCharacterController mAttacker;
     private CombatCharacterController mDefender;
 
-    private M8.CacheList<MixedNumber> mAttackNumbers;
+    private M8.CacheList<MixedNumber> mAttackNumbers;    
     private MixedNumberOps mOperations;
 
     private int mCurNumbersIndex = 0;
+    private int mCurFixedNumbersIndex = 0;
 
     private Coroutine mRout;
 
@@ -59,26 +69,44 @@ public class CombatAttackController : MonoBehaviour {
                 mOperations.operators[i] = OperatorType.Add;
         }
 
+        //apply fixed numbers
+        if(fixedGroups.Length > 0) {
+            var fixedNumbers = fixedGroups[mCurFixedNumbersIndex].numbers;
+            M8.ArrayUtil.Shuffle(fixedNumbers);
+            mCurFixedNumbersIndex++;
+            if(mCurFixedNumbersIndex == fixedGroups.Length)
+                mCurFixedNumbersIndex = 0;
+
+            var count = Mathf.Min(fixedNumbers.Length, mOperations.operands.Length);
+            for(int i = 0; i < count; i++)
+                mOperations.operands[i].ApplyNumber(fixedNumbers[i]);
+            for(int i = count; i < mOperations.operands.Length; i++)
+                mOperations.operands[i].RemoveNumber();
+        }
+        //
+
         //this will reset the operation
         opsWidget.operation = mOperations;
-                
-        timerWidget.SetActive(false);
-        timerWidget.delay = timerDelay;
-        timerWidget.ResetValue();
 
-        counterWidget.Init(attackCount);
+        if(timerWidget) {
+            timerWidget.SetActive(false);
+            timerWidget.delay = timerDelay;
+            timerWidget.ResetValue();
+        }
 
-        deckWidget.Clear();
+        if(counterWidget) counterWidget.Init(attackCount);
+
+        if(deckWidget) deckWidget.Clear();
 
         mAttacker = attacker;
         mDefender = defender;
     }
 
     public void FillSlots() {
-        deckWidget.Fill(numbers[mCurNumbersIndex]);
+        if(deckWidget) deckWidget.Fill(numberGroups[mCurNumbersIndex].numbers);
 
         mCurNumbersIndex++;
-        if(mCurNumbersIndex == numbers.Length)
+        if(mCurNumbersIndex == numberGroups.Length)
             mCurNumbersIndex = 0;
     }
 
@@ -117,25 +145,29 @@ public class CombatAttackController : MonoBehaviour {
         while(opsWidget.isBusy)
             yield return null;
 
-        timerWidget.Show();
-        counterWidget.Show();
+        if(timerWidget) timerWidget.Show();
+        if(counterWidget) counterWidget.Show();
         //
 
         //timerWidget.ResetValue();
+
+        attackTotalNumber = new MixedNumber();
 
         var waitBrief = new WaitForSeconds(0.3f);
 
         //loop
         for(int attackIndex = 0; attackIndex < attackCount; attackIndex++) {
             //fill deck
-            deckWidget.Show();
-            while(deckWidget.isBusy)
-                yield return null;
+            if(deckWidget) {
+                deckWidget.Show();
+                while(deckWidget.isBusy)
+                    yield return null;
+            }
 
             FillSlots();
             yield return waitBrief;
 
-            timerWidget.SetActive(true);
+            if(timerWidget) timerWidget.SetActive(true);
             //
 
             //listen for answer
@@ -152,48 +184,53 @@ public class CombatAttackController : MonoBehaviour {
                 }
 
                 //ignore timer expire if we are at first attack
-                if(attackIndex > 0 && timerWidget.value <= 0f)
+                if(attackIndex > 0 && IsTimerExpired())
                     break;
 
                 yield return null;
             }
 
             //ready for next
-            timerWidget.SetActive(false);
+            if(timerWidget) timerWidget.SetActive(false);
 
             signalAnswer.callback -= OnAnswerSubmit;
 
-            opsWidget.ClearOperands();
+            RefreshOperands();
 
-            deckWidget.Hide();
-            while(deckWidget.isBusy)
-                yield return null;
+            if(deckWidget) {
+                deckWidget.Hide();
+                while(deckWidget.isBusy)
+                    yield return null;
 
-            deckWidget.Clear();
+                deckWidget.Clear();
+            }
             //
 
             //add answer if submitted and correct
             if(mIsAnswerSubmitted && mIsAnswerCorrect) {
                 mAttackNumbers.Add(mAnswerNumber);
+                attackTotalNumber += mAnswerNumber;
 
-                counterWidget.FillIncrement();
+                if(counterWidget) counterWidget.FillIncrement();
             }
 
             //check if time expired, exception for attackIndex = 0
-            if(attackIndex > 0 && timerWidget.value <= 0f) {
-
+            if(attackIndex > 0 && IsTimerExpired()) {
                 break;
             }
         }
 
         //hide interfaces
-        timerWidget.Hide();
-        counterWidget.Hide();
+        if(timerWidget) timerWidget.Hide();
+        if(counterWidget) counterWidget.Hide();
 
         opsWidget.Hide();
         while(opsWidget.isBusy)
             yield return null;
         //
+
+        //show defender's hp
+        mDefender.hpWidget.Show();
 
         //do attack routine
         mAttacker.action = CombatCharacterController.Action.Attack;
@@ -226,6 +263,12 @@ public class CombatAttackController : MonoBehaviour {
             yield return null;
         //
 
+        if(postAttackDelay > 0f)
+            yield return new WaitForSeconds(postAttackDelay);
+
+        //hide defender's hp
+        mDefender.hpWidget.Hide();
+
         mRout = null;
     }
 
@@ -235,5 +278,33 @@ public class CombatAttackController : MonoBehaviour {
             mIsAnswerCorrect = correct;
             mIsAnswerSubmitted = true;
         }
+    }
+
+    private void RefreshOperands() {
+        if(fixedGroups.Length > 0) {
+            var fixedNumbers = fixedGroups[mCurFixedNumbersIndex].numbers;
+            M8.ArrayUtil.Shuffle(fixedNumbers);
+            mCurFixedNumbersIndex++;
+            if(mCurFixedNumbersIndex == fixedGroups.Length)
+                mCurFixedNumbersIndex = 0;
+
+            if(fixedNumbers.Length > 0) {
+                var count = Mathf.Min(fixedNumbers.Length, opsWidget.operation.operands.Length);
+                for(int i = 0; i < count; i++)
+                    opsWidget.operation.operands[i].ApplyNumber(fixedNumbers[i]);
+                for(int i = count; i < mOperations.operands.Length; i++)
+                    opsWidget.operation.operands[i].RemoveNumber();
+
+                opsWidget.ApplyCurrentOperation();
+            }
+            else
+                opsWidget.ClearOperands();
+        }
+        else
+            opsWidget.ClearOperands();
+    }
+
+    private bool IsTimerExpired() {
+        return timerWidget && timerWidget.value <= 0f;
     }
 }
