@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c6db87246867e478b8f764a7c7c166, type: 3}
+  m_Name: gameData
+  m_EditorClassIdentifier: 
+  levels:
+  - scene:
+      name: level1
+      path: Assets/Scenes/level1.unity
+  sceneLevelProgress:
+    name: levelProgress
+    path: Assets/Scenes/levelProgress.unity
+  sceneEnd:
+    name: end
+    path: Assets/Scenes/end.unity
+  victoryScore: 1000
+  attackMultiplier: 100
+  defenseMultiplier: 100
+  revivePenality: 100
+  roundPar: 5
+  roundBonus: 100
+  victoryModal: victory

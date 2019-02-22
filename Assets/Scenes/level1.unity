@@ -3862,7 +3862,8 @@ MonoBehaviour:
   signalModeChanged: {fileID: 11400000, guid: 4f9dce914f15a6c4b8c0af0d08028ac5, type: 2}
   playerHP: 1
   enemyHP: 5
-  flags: 0
+  victoryRoundsEnabled: 1
+  victoryReviveEnabled: 1
   attackControl: {fileID: 769312320}
   defenseControl: {fileID: 769312322}
   playerControl: {fileID: 480215512}

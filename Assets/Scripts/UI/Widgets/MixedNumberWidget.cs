@@ -9,6 +9,7 @@ public class MixedNumberWidget : MonoBehaviour {
     public GameObject wholeRootGO;
     public TMPro.TMP_Text wholeText;
 
+    public GameObject fractionRootGO;
     public TMPro.TMP_Text numeratorText;
     public TMPro.TMP_Text denominatorText;
 
@@ -52,10 +53,14 @@ public class MixedNumberWidget : MonoBehaviour {
         }
 
         if(mNumber.denominator > 0) {
+            if(fractionRootGO) fractionRootGO.SetActive(true);
+
             numeratorText.text = mNumber.numerator.ToString();
             denominatorText.text = mNumber.denominator.ToString();
         }
         else {
+            if(fractionRootGO) fractionRootGO.SetActive(false);
+
             numeratorText.text = "-";
             denominatorText.text = "-";
         }

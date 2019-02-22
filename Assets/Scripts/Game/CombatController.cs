@@ -7,6 +7,10 @@ public class CombatController : GameModeController<CombatController> {
     public float playerHP;
     public float enemyHP;
 
+    [Header("Victory Flags")]
+    public bool victoryRoundsEnabled = true;
+    public bool victoryReviveEnabled = true;
+
     [Header("Controls")]
     public CombatAttackController attackControl;
     public CombatDefenseController defenseControl;
@@ -111,7 +115,29 @@ public class CombatController : GameModeController<CombatController> {
 
         //player victory
         playerControl.action = CombatCharacterController.Action.Victory;
+        
+        var victoryInfo = new VictoryInfo();
 
-        //open victory modal
+        if(attackControl) {
+            victoryInfo.attackValue = attackControl.attackTotalNumber;
+            victoryInfo.flags |= VictoryStatFlags.Attack;
+        }
+
+        if(defenseControl) {
+            victoryInfo.defenseValue = defenseControl.defenseTotalNumber;
+            victoryInfo.flags |= VictoryStatFlags.Defense;
+        }
+
+        if(victoryRoundsEnabled) {
+            victoryInfo.roundsCount = mRoundCount;
+            victoryInfo.flags |= VictoryStatFlags.Rounds;
+        }
+
+        if(victoryReviveEnabled) {
+            victoryInfo.reviveCount = mReviveCount;
+            victoryInfo.flags |= VictoryStatFlags.Revive;
+        }
+
+        GameData.instance.OpenVictory(victoryInfo);
     }
 }
