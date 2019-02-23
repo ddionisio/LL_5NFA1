@@ -18,6 +18,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     public OperatorWidget[] operatorSlots;
 
     [Header("Answer")]
+    public bool answerWholeEnabled = true;
     public MixedNumberInputWidget answerInput;
         
     [Header("Animation")]
@@ -270,7 +271,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
             bool isWholeEnabled = Mathf.Abs(opAnswer.fValue) >= 1.0f;
 
-            answerInput.Init(isWholeEnabled, opAnswer.isNegative);
+            answerInput.Init(answerWholeEnabled && isWholeEnabled, opAnswer.isNegative);
         }
         else
             answerInput.Init(false, false);

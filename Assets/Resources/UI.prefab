@@ -7854,7 +7854,7 @@ MonoBehaviour:
   roundsText: {fileID: 6211483810501620744}
   roundsFormat: '{0}/{1}'
   roundsScoreText: {fileID: 4267852377879166678}
-  finishScoreText: {fileID: 8428305813619744334}
+  finishScoreText: {fileID: 5951026310438541762}
   reviveRootGO: {fileID: 379144546271723214}
   reviveCountText: {fileID: 8438296351125533030}
   reviveScoreText: {fileID: 8428305813619744334}
@@ -9232,7 +9232,7 @@ GameObject:
   - component: {fileID: 2336648505742957222}
   - component: {fileID: 4923918625315810506}
   m_Layer: 5
-  m_Name: finishScore
+  m_Name: totalScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

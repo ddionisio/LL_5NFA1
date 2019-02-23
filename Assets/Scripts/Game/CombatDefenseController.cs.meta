@@ -3,7 +3,12 @@ guid: 2c2de5df41088614b982f04d0353608e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - timerWidget: {instanceID: 0}
+  - opsWidget: {instanceID: 0}
+  - deckWidget: {instanceID: 0}
+  - animator: {instanceID: 0}
+  - signalAnswer: {fileID: 11400000, guid: af7eadcdb8f7a654ca68735a72f9f180, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -52,17 +52,24 @@ public class MixedNumberWidget : MonoBehaviour {
             }
         }
 
-        if(mNumber.denominator > 0) {
-            if(fractionRootGO) fractionRootGO.SetActive(true);
-
-            numeratorText.text = mNumber.numerator.ToString();
-            denominatorText.text = mNumber.denominator.ToString();
+        if(fractionRootGO) {
+            if(mNumber.numerator > 0 && mNumber.denominator > 0) {
+                fractionRootGO.SetActive(true);
+                numeratorText.text = mNumber.numerator.ToString();
+                denominatorText.text = mNumber.denominator.ToString();
+            }
+            else
+                fractionRootGO.SetActive(false);
         }
         else {
-            if(fractionRootGO) fractionRootGO.SetActive(false);
-
-            numeratorText.text = "-";
-            denominatorText.text = "-";
+            if(mNumber.denominator > 0) {
+                numeratorText.text = mNumber.numerator.ToString();
+                denominatorText.text = mNumber.denominator.ToString();
+            }
+            else {
+                numeratorText.text = "-";
+                denominatorText.text = "-";
+            }
         }
     }
 }

@@ -118,13 +118,13 @@ public class CombatController : GameModeController<CombatController> {
         
         var victoryInfo = new VictoryInfo();
 
-        if(attackControl) {
-            victoryInfo.attackValue = attackControl.attackTotalNumber;
+        if(attackControl && mAttackDamage.fValue > 0f) {
+            victoryInfo.attackValue = mAttackDamage;
             victoryInfo.flags |= VictoryStatFlags.Attack;
         }
 
-        if(defenseControl) {
-            victoryInfo.defenseValue = defenseControl.defenseTotalNumber;
+        if(defenseControl && mDefenseAmount.fValue > 0f) {
+            victoryInfo.defenseValue = mDefenseAmount;
             victoryInfo.flags |= VictoryStatFlags.Defense;
         }
 
@@ -133,7 +133,7 @@ public class CombatController : GameModeController<CombatController> {
             victoryInfo.flags |= VictoryStatFlags.Rounds;
         }
 
-        if(victoryReviveEnabled) {
+        if(victoryReviveEnabled && mReviveCount > 0) {
             victoryInfo.reviveCount = mReviveCount;
             victoryInfo.flags |= VictoryStatFlags.Revive;
         }

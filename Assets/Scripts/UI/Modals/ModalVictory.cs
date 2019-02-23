@@ -75,7 +75,7 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop {
         if((inf.flags & VictoryStatFlags.Attack) != VictoryStatFlags.None) {
             if(attackRootGO) attackRootGO.SetActive(true);
 
-            if(attackValueDisplay) attackValueDisplay.number = inf.attackValue;
+            if(attackValueDisplay) attackValueDisplay.number = inf.attackValue.simplified;
             if(attackScoreText) attackScoreText.text = "+" + attackScore.ToString();
         }
         else {
@@ -86,7 +86,7 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop {
         if((inf.flags & VictoryStatFlags.Defense) != VictoryStatFlags.None) {
             if(defenseRootGO) defenseRootGO.SetActive(true);
 
-            if(defenseValueDisplay) defenseValueDisplay.number = inf.defenseValue;
+            if(defenseValueDisplay) defenseValueDisplay.number = inf.defenseValue.simplified;
             if(defenseScoreText) defenseScoreText.text = "+" + defenseScore.ToString();
         }
         else {

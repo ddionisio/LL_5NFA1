@@ -819,8 +819,8 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
-        - FINISHED
         - 
+        - FINISHED
         byteData: 
         arrayParamSizes: 
         arrayParamTypes: []
