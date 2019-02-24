@@ -9,6 +9,7 @@ public class CombatDefenseController : MonoBehaviour {
     public float postDefenseDelay = 2f; //delay after defense is finished
     public MixedNumberGroup[] attackNumberGroups; //pick one per round
     public MixedNumberGroup[] numberGroups;
+    public bool attackAlignChoices; //if true, the attack index is used as index for number group
 
     [Header("UI")]
     public TimerWidget timerWidget;
@@ -41,6 +42,8 @@ public class CombatDefenseController : MonoBehaviour {
     private bool mIsAnswerSubmitted;
     private bool mIsAnswerCorrect;
     private MixedNumber mAnswerNumber;
+
+    private int mLastNumberIndex;
 
     public void Init(CombatCharacterController attacker, CombatCharacterController defender) {
         //create empty subtract operation
@@ -239,7 +242,9 @@ public class CombatDefenseController : MonoBehaviour {
     }
 
     private void FillSlots() {
-        if(deckWidget) deckWidget.Fill(numberGroups[mCurNumbersIndex].numbers);
+        int ind = attackAlignChoices ? mLastNumberIndex : mCurNumbersIndex;
+
+        if(deckWidget) deckWidget.Fill(numberGroups[ind].numbers);
 
         mCurNumbersIndex++;
         if(mCurNumbersIndex == numberGroups.Length)
@@ -252,7 +257,9 @@ public class CombatDefenseController : MonoBehaviour {
 
         var nums = attackNumberGroups[mCurAttackNumbersIndex].numbers;
 
-        var num = nums[Random.Range(0, nums.Length)];
+        mLastNumberIndex = Random.Range(0, nums.Length);
+
+        var num = nums[mLastNumberIndex];
 
         mCurAttackNumbersIndex++;
         if(mCurAttackNumbersIndex == attackNumberGroups.Length)

@@ -51,7 +51,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     public bool canDragOutside { get; set; }
 
     public bool canDragInside {
-        get { return mCanDragInside && Mathf.Abs(number.fValue) >= 1.0f; }
+        get { return mCanDragInside && numberWidget.isWholeEnabled && Mathf.Abs(number.fValue) >= 1.0f; }
         set { mCanDragInside = value; }
     }
 

@@ -6,15 +6,18 @@ public class CombatController : GameModeController<CombatController> {
     [Header("Data")]
     public float playerHP;
     public float enemyHP;
+    public float reviveEndDelay = 0.5f;
 
     [Header("Victory Flags")]
     public bool victoryRoundsEnabled = true;
     public bool victoryReviveEnabled = true;
 
-    [Header("Controls")]
+    [Header("Attack")]
     public CombatAttackController attackControl;
-    public CombatDefenseController defenseControl;
 
+    [Header("Defense")]
+    public CombatDefenseController defenseControl;
+    
     [Header("Characters")]
     public CombatCharacterController playerControl;
     public CombatCharacterController enemyControl;
@@ -45,6 +48,8 @@ public class CombatController : GameModeController<CombatController> {
         //show vs. animation
 
         //some dialog/tutorial depending on level
+
+        var waitReviveEndDelay = new WaitForSeconds(reviveEndDelay);
 
         //combat loop
         while(true) {
@@ -99,7 +104,7 @@ public class CombatController : GameModeController<CombatController> {
 
                     playerControl.hpCurrent = playerControl.hpMax;
 
-                    yield return new WaitForSeconds(0.5f);
+                    yield return waitReviveEndDelay;
 
                     playerControl.hpWidget.Hide();
                     while(playerControl.hpWidget.isBusy)
@@ -107,6 +112,9 @@ public class CombatController : GameModeController<CombatController> {
 
                     playerControl.action = CombatCharacterController.Action.Idle;
                 }
+
+                if(!attackControl) //only one round if no attack control
+                    break;
             }
             /////////////////////////////////////
 

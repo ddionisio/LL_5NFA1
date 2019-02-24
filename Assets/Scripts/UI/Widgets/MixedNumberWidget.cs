@@ -6,12 +6,14 @@ using UnityEngine.EventSystems;
 
 public class MixedNumberWidget : MonoBehaviour {
     [Header("Display")]
-    public GameObject wholeRootGO;
+    public GameObject wholeRootGO; //if this is null, whole number is disabled
     public TMPro.TMP_Text wholeText;
 
     public GameObject fractionRootGO;
     public TMPro.TMP_Text numeratorText;
     public TMPro.TMP_Text denominatorText;
+
+    public bool isWholeEnabled { get { return wholeRootGO; } }
 
     public MixedNumber number {
         get { return mNumber; }
@@ -32,39 +34,46 @@ public class MixedNumberWidget : MonoBehaviour {
     private MixedNumber mNumber;
 
     public void RefreshDisplay() {
-        if(Mathf.Abs(mNumber.fValue) >= 1.0f) {
-            if(mNumber.whole > 0) {
-                var wholeVal = mNumber.isNegative ? -mNumber.whole : mNumber.whole;
-                wholeText.text = wholeVal.ToString();
-            }
-            else
-                wholeText.text = mNumber.isNegative ? "-" : "";
+        var num = this.mNumber;
 
-            if(wholeRootGO) wholeRootGO.SetActive(true);
-        }
-        else {
-            if(mNumber.isNegative) {
-                if(wholeRootGO) wholeRootGO.SetActive(true);
-                wholeText.text = "-";
+        if(wholeRootGO) {
+            if(Mathf.Abs(num.fValue) >= 1.0f) {
+                if(num.whole > 0) {
+                    var wholeVal = num.isNegative ? -num.whole : num.whole;
+                    wholeText.text = wholeVal.ToString();
+                }
+                else
+                    wholeText.text = num.isNegative ? "-" : "";
+
+                wholeRootGO.SetActive(true);
             }
             else {
-                if(wholeRootGO) wholeRootGO.SetActive(false);
+                if(num.isNegative) {
+                    if(wholeRootGO) wholeRootGO.SetActive(true);
+                    wholeText.text = "-";
+                }
+                else {
+                    wholeRootGO.SetActive(false);
+                }
             }
+        }
+        else {
+            num.WholeToFraction();
         }
 
         if(fractionRootGO) {
-            if(mNumber.numerator > 0 && mNumber.denominator > 0) {
+            if(num.numerator > 0 && num.denominator > 0) {
                 fractionRootGO.SetActive(true);
-                numeratorText.text = mNumber.numerator.ToString();
-                denominatorText.text = mNumber.denominator.ToString();
+                numeratorText.text = num.numerator.ToString();
+                denominatorText.text = num.denominator.ToString();
             }
             else
                 fractionRootGO.SetActive(false);
         }
         else {
-            if(mNumber.denominator > 0) {
-                numeratorText.text = mNumber.numerator.ToString();
-                denominatorText.text = mNumber.denominator.ToString();
+            if(num.denominator > 0) {
+                numeratorText.text = num.numerator.ToString();
+                denominatorText.text = num.denominator.ToString();
             }
             else {
                 numeratorText.text = "-";
