@@ -8,6 +8,13 @@
     "welcome": "Welcome!",
     "test": "Test 123 123",
     "title": "Mr. Pengu and the Unlikely Denominators",
+    "options": "OPTIONS",
+    "sound": "SOUND",
+    "music": "MUSIC",
+    "speech": "SPEECH",
+    "on": "ON",
+    "off": "OFF",
+    "close": "CLOSE",
     "victory": "VICTORY"
   }
 }

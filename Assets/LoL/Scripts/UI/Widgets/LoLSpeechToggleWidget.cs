@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class LoLSpeechToggleWidget : MonoBehaviour, M8.IModalActive {
     [Header("Display")]
-    public Text toggleLabel;
-    [M8.Localize]
-    public string onStringRef;
-    [M8.Localize]
-    public string offStringRef;
+    public GameObject onActiveGO;
+    public GameObject offActiveGO;
 
     public void ToggleSound() {
         bool isOn = LoLManager.instance.isSpeechMute;
@@ -31,9 +28,9 @@ public class LoLSpeechToggleWidget : MonoBehaviour, M8.IModalActive {
     }
 
     private void UpdateToggleStates() {
-        if(toggleLabel) {
-            string txt = LoLManager.instance.isSpeechMute ? M8.Localize.Get(offStringRef) : M8.Localize.Get(onStringRef);
-            toggleLabel.text = txt;
-        }
+        bool isMute = LoLManager.instance.isSpeechMute;
+        
+        if(onActiveGO) onActiveGO.SetActive(!isMute);
+        if(offActiveGO) offActiveGO.SetActive(isMute);
     }
 }

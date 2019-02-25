@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class LoLSoundToggleWidget : MonoBehaviour, M8.IModalActive {
     [Header("Display")]
-    public Text toggleLabel;
-    [M8.Localize]
-    public string onStringRef;
-    [M8.Localize]
-    public string offStringRef;
+    public GameObject onActiveGO;
+    public GameObject offActiveGO;
 
     private float mLastSoundVolume;
 
@@ -40,9 +37,9 @@ public class LoLSoundToggleWidget : MonoBehaviour, M8.IModalActive {
     }
 
     private void UpdateToggleStates() {
-        if(toggleLabel) {
-            string txt = LoLManager.instance.soundVolume > 0f ? M8.Localize.Get(onStringRef) : M8.Localize.Get(offStringRef);
-            toggleLabel.text = txt;
-        }
+        bool isSoundOn = LoLManager.instance.soundVolume > 0f;
+        
+        if(onActiveGO) onActiveGO.SetActive(isSoundOn);
+        if(offActiveGO) offActiveGO.SetActive(!isSoundOn);
     }
 }

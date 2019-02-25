@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class LoLMusicToggleWidget : MonoBehaviour, M8.IModalActive {
     [Header("Display")]
-    public Text toggleLabel;
-    [M8.Localize]
-    public string onStringRef;
-    [M8.Localize]
-    public string offStringRef;
+    public GameObject onActiveGO;
+    public GameObject offActiveGO;
 
     [Header("Config")]
     public bool toggleRefreshMusic = true; //turn off music and save path, replay on turn on
@@ -70,9 +67,9 @@ public class LoLMusicToggleWidget : MonoBehaviour, M8.IModalActive {
     }
     
     private void UpdateToggleStates() {
-        if(toggleLabel) {
-            string txt = LoLManager.instance.musicVolume > 0f ? M8.Localize.Get(onStringRef) : M8.Localize.Get(offStringRef);
-            toggleLabel.text = txt;
-        }
+        bool isMusicOn = LoLManager.instance.musicVolume > 0f;
+        
+        if(onActiveGO) onActiveGO.SetActive(isMusicOn);
+        if(offActiveGO) offActiveGO.SetActive(!isMusicOn);
     }
 }
