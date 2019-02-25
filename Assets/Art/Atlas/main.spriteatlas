@@ -43,7 +43,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: bcffc04fabd33264b8a9a31d33ce55fe, type: 3}
     - {fileID: 102900000, guid: d9e319108df120f4b8bcfc707677397f, type: 3}
-    totalSpriteSurfaceArea: 5954
+    totalSpriteSurfaceArea: 22854
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -52,6 +52,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: cfce0ce1b6c72e54f9981e474f39ca7c, type: 3}
   - {fileID: 21300002, guid: bf8c0222be72dfd48a68e5cf2a7ed5c1, type: 3}
   - {fileID: 21300000, guid: bf8c0222be72dfd48a68e5cf2a7ed5c1, type: 3}
+  - {fileID: 21300000, guid: 8a3c2b046cb7b1744a3c827fa7c3dd1a, type: 3}
   - {fileID: 21300000, guid: 833257f6cb1a9d241b3fc454fef9d45a, type: 3}
   - {fileID: 21300000, guid: 326ab6c73d9e81346bb6774298a0d825, type: 3}
   - {fileID: 21300010, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
@@ -72,6 +73,7 @@ SpriteAtlas:
   - edge_shade_left_8x1
   - shadeWhite_bottomLeft
   - shadeWhite
+  - portraitRobot_2
   - circle16x16
   - circle32x32
   - blank4x4_top
