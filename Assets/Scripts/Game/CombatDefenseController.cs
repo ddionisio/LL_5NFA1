@@ -128,6 +128,8 @@ public class CombatDefenseController : MonoBehaviour {
 
         //timerWidget.ResetValue();
 
+        mAnswerNumber = new MixedNumber();
+
         defenseTotalNumber = new MixedNumber();
 
         var waitBrief = new WaitForSeconds(0.3f);
@@ -181,7 +183,7 @@ public class CombatDefenseController : MonoBehaviour {
                 for(int i = 1; i < opsWidget.operation.operands.Length; i++)
                     defenseTotalNumber += opsWidget.operation.operands[i].number;
 
-                if(mAnswerNumber.fValue < 0f) //no longer need to accumulate
+                if(mAnswerNumber.fValue <= 0f) //no longer need to accumulate
                     break;
 
                 opsWidget.MoveAnswerToOperand(0);
@@ -189,6 +191,9 @@ public class CombatDefenseController : MonoBehaviour {
 
             yield return waitBrief;
         }
+
+        if(mAnswerNumber.fValue == 0f)
+            mAnswerNumber = mOperations.operands[0].number;
 
         //hide interfaces
         if(timerWidget) timerWidget.Hide();

@@ -25,6 +25,18 @@ MonoBehaviour:
   - scene:
       name: level4
       path: Assets/Scenes/level4.unity
+  - scene:
+      name: level5
+      path: Assets/Scenes/level5.unity
+  - scene:
+      name: level6
+      path: Assets/Scenes/level6.unity
+  - scene:
+      name: level7
+      path: Assets/Scenes/level7.unity
+  - scene:
+      name: level8
+      path: Assets/Scenes/level8.unity
   sceneLevelProgress:
     name: levelProgress
     path: Assets/Scenes/levelProgress.unity

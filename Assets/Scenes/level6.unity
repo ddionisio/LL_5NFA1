@@ -461,78 +461,78 @@ MonoBehaviour:
   numberGroups:
   - numbers:
     - _negative: 0
-      _whole: 0
-      _numerator: 2
-      _denominator: 3
-    - _negative: 0
-      _whole: 0
-      _numerator: 1
-      _denominator: 4
-    - _negative: 0
-      _whole: 0
-      _numerator: 4
-      _denominator: 5
-    - _negative: 0
-      _whole: 0
-      _numerator: 5
-      _denominator: 6
-    - _negative: 0
-      _whole: 0
-      _numerator: 1
-      _denominator: 7
-    - _negative: 0
-      _whole: 0
-      _numerator: 3
-      _denominator: 8
-  - numbers:
-    - _negative: 0
-      _whole: 0
-      _numerator: 1
-      _denominator: 3
-    - _negative: 0
-      _whole: 0
-      _numerator: 2
-      _denominator: 4
-    - _negative: 0
-      _whole: 0
-      _numerator: 1
-      _denominator: 5
-    - _negative: 0
-      _whole: 0
-      _numerator: 4
-      _denominator: 6
-    - _negative: 0
-      _whole: 0
-      _numerator: 3
-      _denominator: 7
-    - _negative: 0
-      _whole: 0
-      _numerator: 5
-      _denominator: 8
-  - numbers:
-    - _negative: 0
-      _whole: 0
+      _whole: 1
       _numerator: 1
       _denominator: 2
     - _negative: 0
       _whole: 0
+      _numerator: 5
+      _denominator: 3
+    - _negative: 0
+      _whole: 1
+      _numerator: 1
+      _denominator: 4
+    - _negative: 0
+      _whole: 0
+      _numerator: 7
+      _denominator: 6
+    - _negative: 0
+      _whole: 1
+      _numerator: 3
+      _denominator: 7
+    - _negative: 0
+      _whole: 0
+      _numerator: 9
+      _denominator: 8
+  - numbers:
+    - _negative: 0
+      _whole: 1
       _numerator: 1
       _denominator: 3
     - _negative: 0
       _whole: 0
-      _numerator: 3
+      _numerator: 7
       _denominator: 4
     - _negative: 0
-      _whole: 0
+      _whole: 1
       _numerator: 3
       _denominator: 5
     - _negative: 0
       _whole: 0
+      _numerator: 8
+      _denominator: 6
+    - _negative: 0
+      _whole: 1
       _numerator: 4
+      _denominator: 7
+    - _negative: 0
+      _whole: 0
+      _numerator: 9
+      _denominator: 8
+  - numbers:
+    - _negative: 0
+      _whole: 1
+      _numerator: 1
+      _denominator: 2
+    - _negative: 0
+      _whole: 0
+      _numerator: 5
+      _denominator: 3
+    - _negative: 0
+      _whole: 1
+      _numerator: 3
+      _denominator: 4
+    - _negative: 0
+      _whole: 0
+      _numerator: 7
+      _denominator: 5
+    - _negative: 0
+      _whole: 1
+      _numerator: 1
       _denominator: 6
     - _negative: 0
       _whole: 0
-      _numerator: 2
+      _numerator: 8
       _denominator: 7
   timerWidget: {fileID: 319038445}
   counterWidget: {fileID: 1080159378}
@@ -555,8 +555,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: {fileID: 0}
   signalModeChanged: {fileID: 11400000, guid: 4f9dce914f15a6c4b8c0af0d08028ac5, type: 2}
-  playerHP: 4
-  enemyHP: 4
+  playerHP: 6
+  enemyHP: 8
   reviveEndDelay: 0.5
   victoryRoundsEnabled: 1
   victoryReviveEnabled: 1
@@ -582,8 +582,60 @@ MonoBehaviour:
   attackNumberGroups:
   - numbers:
     - _negative: 0
+      _whole: 2
+      _numerator: 1
+      _denominator: 2
+    - _negative: 0
+      _whole: 2
+      _numerator: 2
+      _denominator: 3
+    - _negative: 0
+      _whole: 2
+      _numerator: 3
+      _denominator: 4
+    - _negative: 0
+      _whole: 2
+      _numerator: 4
+      _denominator: 5
+  numberGroups:
+  - numbers:
+    - _negative: 0
       _whole: 0
       _numerator: 4
+      _denominator: 3
+    - _negative: 0
+      _whole: 0
+      _numerator: 5
+      _denominator: 4
+    - _negative: 0
+      _whole: 0
+      _numerator: 6
+      _denominator: 5
+    - _negative: 0
+      _whole: 0
+      _numerator: 7
+      _denominator: 6
+  - numbers:
+    - _negative: 0
+      _whole: 0
+      _numerator: 3
+      _denominator: 2
+    - _negative: 0
+      _whole: 0
+      _numerator: 5
+      _denominator: 4
+    - _negative: 0
+      _whole: 0
+      _numerator: 7
+      _denominator: 5
+    - _negative: 0
+      _whole: 0
+      _numerator: 7
+      _denominator: 6
+  - numbers:
+    - _negative: 0
+      _whole: 0
+      _numerator: 3
       _denominator: 2
     - _negative: 0
       _whole: 0
@@ -591,80 +643,28 @@ MonoBehaviour:
       _denominator: 3
     - _negative: 0
       _whole: 0
-      _numerator: 6
-      _denominator: 4
+      _numerator: 7
+      _denominator: 5
     - _negative: 0
       _whole: 0
       _numerator: 7
-      _denominator: 5
-  numberGroups:
-  - numbers:
-    - _negative: 0
-      _whole: 0
-      _numerator: 2
-      _denominator: 3
-    - _negative: 0
-      _whole: 0
-      _numerator: 2
-      _denominator: 4
-    - _negative: 0
-      _whole: 0
-      _numerator: 3
-      _denominator: 5
-    - _negative: 0
-      _whole: 0
-      _numerator: 1
       _denominator: 6
   - numbers:
     - _negative: 0
       _whole: 0
-      _numerator: 1
-      _denominator: 2
-    - _negative: 0
-      _whole: 0
       _numerator: 3
-      _denominator: 4
-    - _negative: 0
-      _whole: 0
-      _numerator: 2
-      _denominator: 5
+      _denominator: 2
     - _negative: 0
       _whole: 0
       _numerator: 4
-      _denominator: 6
-  - numbers:
-    - _negative: 0
-      _whole: 0
-      _numerator: 1
-      _denominator: 2
-    - _negative: 0
-      _whole: 0
-      _numerator: 2
       _denominator: 3
     - _negative: 0
       _whole: 0
-      _numerator: 3
-      _denominator: 5
-    - _negative: 0
-      _whole: 0
-      _numerator: 2
-      _denominator: 6
-  - numbers:
-    - _negative: 0
-      _whole: 0
-      _numerator: 1
-      _denominator: 2
-    - _negative: 0
-      _whole: 0
-      _numerator: 2
-      _denominator: 3
-    - _negative: 0
-      _whole: 0
-      _numerator: 3
+      _numerator: 7
       _denominator: 6
     - _negative: 0
       _whole: 0
-      _numerator: 2
+      _numerator: 8
       _denominator: 7
   attackAlignChoices: 1
   timerWidget: {fileID: 319038445}
@@ -1114,7 +1114,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cardTemplate
       value: 
-      objectReference: {fileID: 4427489912234164758, guid: 51926b64d84f7a44b9ea32c7b9e455a4,
+      objectReference: {fileID: 4427489912234164758, guid: 321d573d4dcd22f4bb8ea9ce9101b5ea,
         type: 3}
     - target: {fileID: 1338013579418626905, guid: 814d860071245c244a4c4c15d6872dcb,
         type: 3}
@@ -1465,13 +1465,13 @@ PrefabInstance:
     - target: {fileID: 2498994886082257262, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
       propertyPath: answerWholeEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2498994886082257262, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
       propertyPath: cardTemplate
       value: 
-      objectReference: {fileID: 4427489912234164758, guid: 51926b64d84f7a44b9ea32c7b9e455a4,
+      objectReference: {fileID: 4427489912234164758, guid: 321d573d4dcd22f4bb8ea9ce9101b5ea,
         type: 3}
     - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}

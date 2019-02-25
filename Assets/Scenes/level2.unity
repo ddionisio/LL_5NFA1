@@ -454,7 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCount: 2
   opCount: 2
-  timerDelay: 120
+  timerDelay: 75
   postAttackDelay: 2
   fixedGroups: []
   numberGroups:
@@ -556,6 +556,7 @@ MonoBehaviour:
   signalModeChanged: {fileID: 11400000, guid: 4f9dce914f15a6c4b8c0af0d08028ac5, type: 2}
   playerHP: 100
   enemyHP: 3
+  reviveEndDelay: 0.5
   victoryRoundsEnabled: 1
   victoryReviveEnabled: 0
   attackControl: {fileID: 769312320}
@@ -1345,6 +1346,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: mixedNumberOps
       objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257262, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: answerWholeEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1449,11 +1455,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257262, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: answerWholeEnabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2498994885553647031, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}

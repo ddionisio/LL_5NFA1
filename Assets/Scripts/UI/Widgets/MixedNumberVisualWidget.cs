@@ -59,7 +59,8 @@ public class MixedNumberVisualWidget : MonoBehaviour {
             mMultCount = 1;
 
         //whole
-        var wholeCount = mixedNumberWidget.number.whole + mixedNumberWidget.number.GetWholeFromFraction();
+        var wholeFromFraction = mixedNumberWidget.number.GetWholeFromFraction();
+        var wholeCount = mixedNumberWidget.number.whole + wholeFromFraction;
         if(wholeCount > 0) {
             wholeGO.SetActive(true);
             wholeAmountText.text = wholeCount.ToString();
@@ -75,14 +76,22 @@ public class MixedNumberVisualWidget : MonoBehaviour {
         mNumerator = mixedNumberWidget.number.numerator / mMultCount;
         mDenominator = mixedNumberWidget.number.denominator / mMultCount;
 
-        var fVal = mDenominator > 0 && mNumerator < mDenominator ? (float)mNumerator / mDenominator : 0f;
+        float fNumerator;
+        float fDenominator = mDenominator;
+
+        if(mNumerator > mDenominator)
+            fNumerator = mNumerator - wholeFromFraction * mDenominator;
+        else
+            fNumerator = mNumerator;
+
+        var fVal = fDenominator > 0f && fNumerator != fDenominator ? fNumerator / fDenominator : 0f;
 
         fractionFill.fillAmount = fVal;
         
         UpdateFractionLines();
 
-        multButtonLeft.interactable = mMultCount > 1 && mDenominator > 0;
-        multButtonRight.interactable = mMultCount < fractionMaxMult && mDenominator > 0;
+        multButtonLeft.interactable = mMultCount > 1 && fDenominator > 0;
+        multButtonRight.interactable = mMultCount < fractionMaxMult && fDenominator > 0;
     }
 
     void OnMultPrevClick() {
@@ -118,13 +127,19 @@ public class MixedNumberVisualWidget : MonoBehaviour {
             mPool.AddType(lineTemplate, linePoolStartCapacity, linePoolMaxCapacity);
         }
 
-        int count = mNumerator > 0 && mNumerator < mDenominator ? mDenominator * mMultCount - 1 : 0;
+        int numerator = mNumerator;
+        int denominator = mDenominator;
+
+        if(numerator > denominator)
+            numerator -= Mathf.FloorToInt((float)numerator / denominator) * denominator;
+
+        int count = numerator > 0 && numerator != denominator ? denominator * mMultCount - 1 : 0;
 
         if(mLines.Count != count) {
             ClearLines();
 
             if(count > 0) {
-                var scale = 1.0f / (mDenominator * mMultCount);
+                var scale = 1.0f / (denominator * mMultCount);
 
                 ClearLines();
 

@@ -131,7 +131,7 @@ public class CombatController : GameModeController<CombatController> {
             victoryInfo.flags |= VictoryStatFlags.Attack;
         }
 
-        if(defenseControl && mDefenseAmount.fValue > 0f) {
+        if(defenseControl) {
             victoryInfo.defenseValue = mDefenseAmount;
             victoryInfo.flags |= VictoryStatFlags.Defense;
         }
