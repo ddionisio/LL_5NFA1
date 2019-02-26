@@ -31,7 +31,8 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     public RectTransform dragRoot;
     public float dragReturnDelay = 0.3f;
     public DG.Tweening.Ease dragReturnEase = DG.Tweening.Ease.OutSine;
-    public GameObject dragInsideGO; //when dragging inside
+    public GameObject dragInsideWholeGO; //when dragging inside
+    public GameObject dragInsideFractionGO; //when dragging inside
     public GameObject dragWholeToFractionGO;
     public GameObject dragFractionToWholeGO;
 
@@ -193,9 +194,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
             case DragAreaType.Whole:
                 if(canDragInside) {
                     if(mDragAreaBeginType == DragAreaType.Fraction) {
-                        var num = numberWidget.number;
-                        num.FractionToWhole();
-                        numberWidget.number = num;
+                        numberWidget.FractionToWhole();
                     }
                 }
 
@@ -205,9 +204,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
             case DragAreaType.Fraction:
                 if(canDragInside) {
                     if(mDragAreaBeginType == DragAreaType.Whole) {
-                        var num = numberWidget.number;
-                        num.WholeToFraction();
-                        numberWidget.number = num;
+                        numberWidget.WholeToFraction();
                     }
                 }
 
@@ -332,7 +329,15 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
             }
         }
 
-        if(dragInsideGO) dragInsideGO.SetActive(_dragInside);
+        if(_dragInside) {
+            if(dragInsideWholeGO) dragInsideWholeGO.SetActive(mDragAreaBeginType == DragAreaType.Whole);
+            if(dragInsideFractionGO) dragInsideFractionGO.SetActive(mDragAreaBeginType == DragAreaType.Fraction);
+        }
+        else {
+            if(dragInsideWholeGO) dragInsideWholeGO.SetActive(false);
+            if(dragInsideFractionGO) dragInsideFractionGO.SetActive(false);
+        }
+
         if(dragWholeToFractionGO) dragWholeToFractionGO.SetActive(_dragWholeToFraction);
         if(dragFractionToWholeGO) dragFractionToWholeGO.SetActive(_dragFractionToWhole);
     }
@@ -349,7 +354,8 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
             dragRoot.localPosition = mDragRootDefaultLocalPos;
         }
 
-        if(dragInsideGO) dragInsideGO.SetActive(false);
+        if(dragInsideWholeGO) dragInsideWholeGO.SetActive(false);
+        if(dragInsideFractionGO) dragInsideFractionGO.SetActive(false);
         if(dragWholeToFractionGO) dragWholeToFractionGO.SetActive(false);
         if(dragFractionToWholeGO) dragFractionToWholeGO.SetActive(false);
     }

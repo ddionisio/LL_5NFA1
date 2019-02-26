@@ -8869,7 +8869,7 @@ MonoBehaviour:
     _shapeType: 1
     _startAngle: 0
     _triangleOffset: 0.5
-    _usePolygonMap: 0
+    _usePolygonMap: 1
   wasConverted: 0
   preConvertedScale: {x: 0, y: 0, z: 0}
 --- !u!222 &4327504660138713339
@@ -13623,7 +13623,7 @@ MonoBehaviour:
     _shapeType: 1
     _startAngle: 0
     _triangleOffset: 0.5
-    _usePolygonMap: 0
+    _usePolygonMap: 1
   wasConverted: 0
   preConvertedScale: {x: 0, y: 0, z: 0}
 --- !u!222 &4732489016470100401
