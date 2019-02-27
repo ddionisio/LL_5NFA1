@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FractionVisualToggle : MonoBehaviour {
     public const string stateVar = "fractionVisual";
+    public const bool isFixedVisual = true;
 
     [Header("Display")]
     public GameObject visibleActiveGO;
@@ -13,7 +14,7 @@ public class FractionVisualToggle : MonoBehaviour {
     public M8.Signal signalVisibleUpdate;
 
     public static bool isVisible {
-        get { return M8.SceneState.instance.local.GetValue(stateVar) != 0; }
+        get { return isFixedVisual || M8.SceneState.instance.local.GetValue(stateVar) != 0; }
         set { M8.SceneState.instance.local.SetValue(stateVar, value ? 1 : 0, false); }
     }
 
