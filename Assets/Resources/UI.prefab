@@ -7682,8 +7682,17 @@ MonoBehaviour:
   wholeRootGO: {fileID: 7116679450353684890}
   wholeText: {fileID: 8263544214352993729}
   fractionRootGO: {fileID: 278936554828791653}
+  fractionHideIfZero: 1
   numeratorText: {fileID: 394586281051013762}
   denominatorText: {fileID: 53310629885283886}
+  fractionFXGO: {fileID: 0}
+  fractionFXNumeratorText: {fileID: 0}
+  fractionFXDenominatorText: {fileID: 0}
+  pulseDelay: 0.3
+  pulseScale: 1
+  animator: {fileID: 0}
+  takeWholeToFraction: 
+  takeFractionToWhole: 
 --- !u!1 &2738480341549082187
 GameObject:
   m_ObjectHideFlags: 0
@@ -11029,8 +11038,17 @@ MonoBehaviour:
   wholeRootGO: {fileID: 6151740743906065009}
   wholeText: {fileID: 843931692976291439}
   fractionRootGO: {fileID: 2738480341549082187}
+  fractionHideIfZero: 1
   numeratorText: {fileID: 740287077351433408}
   denominatorText: {fileID: 4357746240297653115}
+  fractionFXGO: {fileID: 0}
+  fractionFXNumeratorText: {fileID: 0}
+  fractionFXDenominatorText: {fileID: 0}
+  pulseDelay: 0.3
+  pulseScale: 1
+  animator: {fileID: 0}
+  takeWholeToFraction: 
+  takeFractionToWhole: 
 --- !u!1 &5606157144839242025
 GameObject:
   m_ObjectHideFlags: 0

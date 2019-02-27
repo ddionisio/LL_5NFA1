@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class MixedNumberVisualWidget : MonoBehaviour {
-    public const int linePoolStartCapacity = 32;
-    public const int linePoolMaxCapacity = 256;
-    public const int fractionMaxMult = 32;
+    public const int fractionMaxMult = 64;
+    public const int fractionMaxRow = 25;
 
     [Header("Line")]
-    public GameObject lineTemplate;
-    public string linePoolGroup;
-        
+    public UIGridRenderer gridRenderer;
+
     [Header("Whole")]
     public GameObject wholeGO;
     public TMPro.TMP_Text wholeAmountText;
@@ -27,19 +26,13 @@ public class MixedNumberVisualWidget : MonoBehaviour {
     public Button multButtonRight;
 
     private int mMultCount;
-
-    private M8.PoolController mPool;
-
-    private List<RectTransform> mLines = new List<RectTransform>();
-
+    
     private int mNumerator;
     private int mDenominator;
 
     void OnDisable() {
         if(mixedNumberWidget)
             mixedNumberWidget.numberUpdateCallback -= OnNumberUpdate;
-
-        ClearLines();
     }
 
     void OnEnable() {
@@ -122,48 +115,17 @@ public class MixedNumberVisualWidget : MonoBehaviour {
     }
     
     private void UpdateFractionLines() {
-        if(!mPool) {
-            mPool = M8.PoolController.CreatePool(linePoolGroup);
-            mPool.AddType(lineTemplate, linePoolStartCapacity, linePoolMaxCapacity);
-        }
-
         int numerator = mNumerator;
         int denominator = mDenominator;
 
         if(numerator > denominator)
             numerator -= Mathf.FloorToInt((float)numerator / denominator) * denominator;
-
-        int count = numerator > 0 && numerator != denominator ? denominator * mMultCount - 1 : 0;
-
-        if(mLines.Count != count) {
-            ClearLines();
-
-            if(count > 0) {
-                var scale = 1.0f / (denominator * mMultCount);
-
-                ClearLines();
-
-                for(int i = 0; i < count; i++) {
-                    var newLine = mPool.Spawn<RectTransform>(lineTemplate.name, i.ToString(), fractionRoot, null);
-
-                    newLine.anchorMin = Vector2.zero;
-                    newLine.anchorMax = new Vector2(1f, 0f);
-                    newLine.pivot = new Vector2(0, 0.5f);
-                    newLine.anchoredPosition = new Vector2(0f, fractionRoot.rect.height * scale * (i + 1));
-                    newLine.sizeDelta = new Vector2(0f, newLine.sizeDelta.y);
-
-                    mLines.Add(newLine);
-                }
-            }
+        
+        if(numerator > 0 && denominator > 0 && numerator != denominator) {
+            gridRenderer.GridRows = denominator * mMultCount;
         }
-    }
-
-    private void ClearLines() {
-        if(mPool) {
-            for(int i = 0; i < mLines.Count; i++)
-                mPool.Release(mLines[i]);
+        else {
+            gridRenderer.GridRows = 1;
         }
-
-        mLines.Clear();
     }
 }
