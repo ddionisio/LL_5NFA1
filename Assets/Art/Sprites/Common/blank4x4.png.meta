@@ -9,6 +9,7 @@ TextureImporter:
     21300008: blank4x4_border
     21300010: blank4x4_top
     21300012: blank4x4_left
+    21300014: blank4x4_border2x
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -259,6 +260,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 0c58d3bc38d1ab84f84c9263d0d5f485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blank4x4_border2x
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda09fde72223a741bb943b2cc92cf53
       vertices: []
       indices: 
       edges: []

@@ -217,6 +217,8 @@ public class CombatAttackController : MonoBehaviour {
 
         //show defender's hp
         mDefender.hpWidget.Show();
+        while(mDefender.hpWidget.isBusy)
+            yield return null;
 
         //do attack routine
         mAttacker.action = CombatCharacterController.Action.Attack;

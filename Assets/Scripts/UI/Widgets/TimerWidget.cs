@@ -17,6 +17,8 @@ public class TimerWidget : MonoBehaviour {
     [Range(0, 1f)]
     [SerializeField]
     float _defaultValue = 1f;
+    [SerializeField]
+    public bool fillInvert = true;
 
     [Header("Display")]
     public GameObject rootGO;
@@ -129,7 +131,7 @@ public class TimerWidget : MonoBehaviour {
     }
 
     private void RefreshDisplay() {
-        fillImage.fillAmount = value;
+        fillImage.fillAmount = fillInvert ? 1f - value : value;
     }
 
     private void Stop() {

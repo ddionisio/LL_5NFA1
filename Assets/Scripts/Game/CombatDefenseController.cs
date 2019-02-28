@@ -205,6 +205,8 @@ public class CombatDefenseController : MonoBehaviour {
 
         //show defender's hp
         mDefender.hpWidget.Show();
+        while(mDefender.hpWidget.isBusy)
+            yield return null;
 
         //hurt defender based on final answer
         var fval = mAnswerNumber.fValue;

@@ -40,9 +40,9 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop {
 
         //update LoL info
         int curProgress = LoLManager.instance.curProgress;
-        int curScore = mTotalScore;
+        int curScore = LoLManager.instance.curScore;
 
-        LoLManager.instance.ApplyProgress(curProgress + 1, curScore);
+        LoLManager.instance.ApplyProgress(curProgress + 1, curScore + mTotalScore);
         //
 
         if(GameData.instance.IsCurrentSceneLast())
@@ -70,6 +70,8 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop {
         int revivePenalty = Mathf.RoundToInt(inf.reviveCount * GameData.instance.revivePenality);
 
         mTotalScore = (attackScore + defenseScore + roundsScore + finishScore) - revivePenalty;
+        if(mTotalScore < 0)
+            mTotalScore = 0;
 
         //attack
         if((inf.flags & VictoryStatFlags.Attack) != VictoryStatFlags.None) {

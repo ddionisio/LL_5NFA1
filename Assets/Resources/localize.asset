@@ -15,7 +15,7 @@ MonoBehaviour:
   editorExcelPath: D:/Lab/Legends of Learning/LL_5NFA1/Language/language.xlsx
   editorLanguageCode: en
   editorLanguageRef: language.json
-  editorLanguagePathExtra: D:/Lab/Legends of Learning/LL_5NFA1/_Mockup/language.json
+  editorLanguagePathExtra: D:/Lab/Legends of Learning/LL_5NFA1/Assets/_Mockup/language.json
   languageExtraInfos:
   - key: welcome
     voiceDuration: 1.5

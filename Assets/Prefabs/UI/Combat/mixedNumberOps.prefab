@@ -136,12 +136,12 @@ MonoBehaviour:
     _pathThickness: 0.1
     _polygonPreset: 0
     _polyVertices:
-    - {x: -0.18510196, y: 0.48276561}
-    - {x: -0.48261538, y: 0.41876101}
-    - {x: -0.48261538, y: -0.40747914}
-    - {x: 0.21248412, y: -0.49475822}
-    - {x: 0.47805572, y: -0.37724063}
-    - {x: 0.48780334, y: 0.36195934}
+    - {x: -0.18510196, y: 0.48276573}
+    - {x: -0.48469034, y: 0.3701281}
+    - {x: -0.47674266, y: -0.4087432}
+    - {x: 0.21248412, y: -0.49475813}
+    - {x: 0.47805572, y: -0.3772406}
+    - {x: 0.48780334, y: 0.3619594}
     _roundness: 0
     _roundnessBottomLeft: 0
     _roundnessBottomRight: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   settings:
     _blur: 0
     _endAngle: 360
-    _fillColor: {r: 0.077, g: 0.0462, b: 0.07528889, a: 0.69803923}
+    _fillColor: {r: 0.077, g: 0.0462, b: 0.07528889, a: 1}
     _fillColor2: {r: 0.14, g: 0.085217394, b: 0.13695653, a: 1}
     _fillOffset: {x: -32.71, y: -0.44}
     _fillPathLoops: 0
@@ -3521,7 +3521,7 @@ MonoBehaviour:
   settings:
     _blur: 0
     _endAngle: 360
-    _fillColor: {r: 0.077, g: 0.0462, b: 0.07528889, a: 0.69803923}
+    _fillColor: {r: 0.077, g: 0.0462, b: 0.07528889, a: 1}
     _fillColor2: {r: 0.14, g: 0.085217394, b: 0.13695653, a: 1}
     _fillOffset: {x: -32.71, y: -0.44}
     _fillPathLoops: 0
@@ -4908,7 +4908,7 @@ MonoBehaviour:
   settings:
     _blur: 0
     _endAngle: 360
-    _fillColor: {r: 0.077, g: 0.0462, b: 0.07528889, a: 0.69803923}
+    _fillColor: {r: 0.077, g: 0.0462, b: 0.07528889, a: 1}
     _fillColor2: {r: 0.14, g: 0.085217394, b: 0.13695653, a: 1}
     _fillOffset: {x: -32.71, y: -0.44}
     _fillPathLoops: 0

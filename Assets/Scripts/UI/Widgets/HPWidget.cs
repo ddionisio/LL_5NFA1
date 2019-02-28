@@ -9,6 +9,9 @@ public class HPWidget : MonoBehaviour {
     public GameObject aliveGO;
     public GameObject deadGO;
     public Image fillImage;
+    public Image fillBackImage;
+    public float fillBackStartDelay = 0.3f;
+    public float fillBackDelay = 0.5f;
 
     [Header("Animation")]
     public M8.Animator.Animate animator;
@@ -35,6 +38,7 @@ public class HPWidget : MonoBehaviour {
         if(deadGO) deadGO.SetActive(false);
 
         fillImage.fillAmount = 1.0f;
+        fillBackImage.fillAmount = 1.0f;
 
         if(activeGO) activeGO.SetActive(false);
     }
@@ -65,6 +69,10 @@ public class HPWidget : MonoBehaviour {
         mRout = null;
     }
 
+    void OnEnable() {
+        StartCoroutine(DoFillChangeWatch());
+    }
+
     void Awake() {
         if(activeGO) activeGO.SetActive(false);
     }
@@ -85,6 +93,34 @@ public class HPWidget : MonoBehaviour {
         if(activeGO) activeGO.SetActive(false);
 
         mRout = null;
+    }
+
+    IEnumerator DoFillChangeWatch() {
+        var easeFunc = DG.Tweening.Core.Easing.EaseManager.ToEaseFunction(DG.Tweening.Ease.OutSine);
+        var waitStartDelay = new WaitForSeconds(fillBackStartDelay);
+
+        while(true) {
+            if(fillImage.fillAmount > fillBackImage.fillAmount)
+                fillImage.fillAmount = fillBackImage.fillAmount;
+            else if(fillImage.fillAmount < fillBackImage.fillAmount) {
+                var startFill = fillBackImage.fillAmount;
+
+                yield return waitStartDelay;
+
+                var curTime = 0f;
+                while(curTime < fillBackDelay) {
+                    yield return null;
+
+                    curTime += Time.deltaTime;
+
+                    var t = easeFunc(curTime, fillBackDelay, 0f, 0f);
+
+                    fillBackImage.fillAmount = Mathf.Lerp(startFill, fillImage.fillAmount, t);
+                }
+            }
+
+            yield return null;
+        }
     }
 
     private void Stop() {

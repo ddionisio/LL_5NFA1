@@ -17,6 +17,7 @@ public class MixedNumberVisualWidget : MonoBehaviour {
 
     [Header("Fraction")]
     public Image fractionFill;
+    public bool fractionFillInverted;
     public RectTransform fractionRoot;
 
     [Header("Interface")]
@@ -79,7 +80,7 @@ public class MixedNumberVisualWidget : MonoBehaviour {
 
         var fVal = fDenominator > 0f && fNumerator != fDenominator ? fNumerator / fDenominator : 0f;
 
-        fractionFill.fillAmount = fVal;
+        fractionFill.fillAmount = fractionFillInverted ? 1.0f - fVal : fVal;
         
         UpdateFractionLines();
 
