@@ -35,22 +35,34 @@ public class MixedNumberInputWidget : MonoBehaviour {
     public Selectable submitSelectable;
 
     [Header("Input")]
-    public M8.InputAction inputHorizontal;
-    public M8.InputAction inputVertical;
+    public M8.InputAction inputCycleHorizontal;
+    public M8.InputAction inputCycleVertical;
+    public M8.InputAction inputSubmit;
 
     [Header("Signal Invokes")]
     public SignalFloat signalChangeValue;
 
     [Header("Signal Listens")]
     public SignalFloat signalValueChanged; //from numpad
-        
+    public M8.Signal signalSubmit;
+    public M8.Signal signalCyclePrev;
+    public M8.Signal signalCycleNext;
+
     public event System.Action submitCallback;
 
     public bool isLocked {
-        get { return lockGO.activeSelf; }
+        get { return mIsLocked; }
         set {
-            lockGO.SetActive(value);
-            submitSelectable.interactable = !value;
+            if(mIsLocked != value) {
+                mIsLocked = value;
+
+                ApplyLocked();
+
+                if(mIsLocked) {
+                    SetSelect(SelectType.None);
+                    CloseNumpad();
+                }
+            }
         }
     }
 
@@ -61,6 +73,8 @@ public class MixedNumberInputWidget : MonoBehaviour {
     private bool mIsWholeEnabled;
 
     private M8.GenericParams mNumpadParms = new M8.GenericParams();
+
+    private bool mIsLocked;
 
     public void CloseNumpad() {
         if(M8.ModalManager.main && M8.ModalManager.main.IsInStack(modalNumpad))
@@ -76,6 +90,10 @@ public class MixedNumberInputWidget : MonoBehaviour {
             OnSignalValueChanged(number.whole);
             ActivateInputValue();
         }
+        else { //close
+            SetSelect(SelectType.None);
+            CloseNumpad();
+        }
     }
 
     public void ClickNumerator() {
@@ -84,6 +102,10 @@ public class MixedNumberInputWidget : MonoBehaviour {
             OnSignalValueChanged(number.numerator);
             ActivateInputValue();
         }
+        else { //close
+            SetSelect(SelectType.None);
+            CloseNumpad();
+        }
     }
 
     public void ClickDenominator() {
@@ -91,6 +113,10 @@ public class MixedNumberInputWidget : MonoBehaviour {
             SetSelect(SelectType.Denominator);
             OnSignalValueChanged(number.denominator);
             ActivateInputValue();
+        }
+        else { //close
+            SetSelect(SelectType.None);
+            CloseNumpad();
         }
     }
 
@@ -108,6 +134,9 @@ public class MixedNumberInputWidget : MonoBehaviour {
 
         mIsWholeEnabled = isWholeEnabled;
         numberIsNegative = isNegative;
+
+        mIsLocked = false;
+        ApplyLocked();
 
         if(mIsWholeEnabled) {
             if(wholeRootGO) wholeRootGO.SetActive(mIsWholeEnabled);
@@ -135,11 +164,25 @@ public class MixedNumberInputWidget : MonoBehaviour {
     void OnDestroy() {
         if(signalValueChanged)
             signalValueChanged.callback -= OnSignalValueChanged;
+
+        if(signalSubmit)
+            signalSubmit.callback -= OnSignalSubmit;
+        if(signalCyclePrev)
+            signalCyclePrev.callback -= OnSignalCyclePrev;
+        if(signalCycleNext)
+            signalCycleNext.callback -= OnSignalCycleNext;
     }
 
     void Awake() {
         if(signalValueChanged)
             signalValueChanged.callback += OnSignalValueChanged;
+
+        if(signalSubmit)
+            signalSubmit.callback += OnSignalSubmit;
+        if(signalCyclePrev)
+            signalCyclePrev.callback += OnSignalCyclePrev;
+        if(signalCycleNext)
+            signalCycleNext.callback += OnSignalCycleNext;
     }
 
     void Update() {
@@ -149,33 +192,27 @@ public class MixedNumberInputWidget : MonoBehaviour {
                 SetSelect(SelectType.None);
         }
 
+        if(mIsLocked)
+            return;
+
         //input
-        switch(mCurSelect) {
-            case SelectType.Whole:
-                if(inputHorizontal.IsPressed())
-                    ClickNumerator();
-                break;
-            case SelectType.Numerator:
-                if(inputHorizontal.IsPressed()) {
-                    if(mIsWholeEnabled)
-                        ClickWhole();
-                    else
-                        ClickDenominator();
-                }
-                else if(inputVertical.IsPressed())
-                    ClickDenominator();
-                break;
-            case SelectType.Denominator:
-                if(inputHorizontal.IsPressed()) {
-                    if(mIsWholeEnabled)
-                        ClickWhole();
-                    else
-                        ClickNumerator();
-                }
-                else if(inputVertical.IsPressed())
-                    ClickNumerator();
-                break;
+        if(inputCycleHorizontal.IsPressed()) {
+            var axis = inputCycleHorizontal.GetAxis();
+            if(axis > 0f)
+                OnSignalCycleNext();
+            else if(axis < 0f)
+                OnSignalCyclePrev();
         }
+        else if(inputCycleVertical.IsPressed()) {
+            var axis = inputCycleVertical.GetAxis();
+            if(axis > 0f)
+                OnSignalCycleNext();
+            else if(axis < 0f)
+                OnSignalCyclePrev();
+        }
+
+        if(inputSubmit.IsPressed())
+            OnSignalSubmit();
     }
 
     void OnSignalValueChanged(float val) {
@@ -207,6 +244,67 @@ public class MixedNumberInputWidget : MonoBehaviour {
         }
 
         number = _num;
+    }
+
+    void OnSignalSubmit() {
+        if(mIsLocked)
+            return;
+
+        if(mCurSelect == SelectType.None) {
+            if(mIsWholeEnabled)
+                ClickWhole();
+            else
+                ClickNumerator();
+        }
+        else
+            ClickSubmit();
+    }
+
+    void OnSignalCycleNext() {
+        if(mIsLocked)
+            return;
+
+        switch(mCurSelect) {
+            case SelectType.Whole:
+                ClickNumerator();
+                break;
+            case SelectType.Numerator:
+                ClickDenominator();
+                break;
+            case SelectType.Denominator:
+            case SelectType.None:
+                if(mIsWholeEnabled)
+                    ClickWhole();
+                else
+                    ClickNumerator();
+                break;
+        }
+    }
+
+    void OnSignalCyclePrev() {
+        if(mIsLocked)
+            return;
+
+        switch(mCurSelect) {
+            case SelectType.Whole:
+                ClickDenominator();
+                break;
+            case SelectType.Denominator:
+                ClickNumerator();
+                break;
+            case SelectType.Numerator:
+            case SelectType.None:
+                if(mIsWholeEnabled)
+                    ClickWhole();
+                else
+                    ClickDenominator();
+                break;
+        }
+    }
+
+    private void ApplyLocked() {
+        if(lockGO) lockGO.SetActive(mIsLocked);
+        if(submitSelectable) submitSelectable.interactable = !mIsLocked;
     }
 
     private void SetSelect(SelectType select) {

@@ -235,15 +235,11 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     }
 
     IEnumerator DoShow() {
-        answerInput.isLocked = true;
-
         if(activeGO) activeGO.SetActive(true);
 
         if(animator && !string.IsNullOrEmpty(takeEnter))
             yield return animator.PlayWait(takeEnter);
-
-        answerInput.isLocked = false;
-
+        
         mRout = null;
     }
 

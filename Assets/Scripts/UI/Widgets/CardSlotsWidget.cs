@@ -6,7 +6,6 @@ public class CardSlotsWidget : CardDropWidgetBase {
     [System.Serializable]
     public class OperandData {
         public RectTransform anchor;
-        public GameObject emptyGO;
         public GameObject highlightGO;
 
         public bool isFixed { get { return card != null && !card.canDragOutside; } }
@@ -32,22 +31,18 @@ public class CardSlotsWidget : CardDropWidgetBase {
 
                 if(highlightGO) highlightGO.SetActive(false);
             }
-
-            if(emptyGO) emptyGO.SetActive(card == null);
         }
 
         public void Init() {
             SetCard(null, true);
-
-            if(emptyGO)
-                emptyGO.SetActive(false);
-
+            
             if(highlightGO)
                 highlightGO.SetActive(false);
         }
     }
 
     public OperandData[] slots;
+    public Vector2 slotPadding = new Vector2(2f, 2f);
 
     public event System.Action updateCallback;
 
@@ -93,7 +88,11 @@ public class CardSlotsWidget : CardDropWidgetBase {
             var cardLocalRect = cardRect;
             cardLocalRect.position = anchor.InverseTransformPoint(cardRect.position);
 
-            if(anchor.rect.Overlaps(cardLocalRect)) {
+            var rect = anchor.rect;
+            rect.min -= slotPadding;
+            rect.max += slotPadding;
+
+            if(rect.Overlaps(cardLocalRect)) {
                 retInd = i;
                 break;
             }
@@ -103,7 +102,7 @@ public class CardSlotsWidget : CardDropWidgetBase {
     }
     
     public override CardWidget CardDropSet(int index, CardWidget card) {
-        ClearHighlight();
+        CardDropHighlightClear();
 
         var prevCard = slots[index].card;
         slots[index].SetCard(card, false);
@@ -113,15 +112,12 @@ public class CardSlotsWidget : CardDropWidgetBase {
 
         return prevCard;
     }
+    
+    public override void CardDropHighlight(int index) {
+        if(mHighlightIndex != index) {
+            CardDropHighlightClear();
 
-    public override void CardDropPositionUpdate(CardWidget card) {
-        //check which slot to highlight
-        int highlightInd = CardDropGetSlotIndex(card);
-
-        if(mHighlightIndex != highlightInd) {
-            ClearHighlight();
-
-            mHighlightIndex = highlightInd;
+            mHighlightIndex = index;
 
             if(mHighlightIndex != -1) {
                 if(slots[mHighlightIndex].highlightGO)
@@ -129,8 +125,8 @@ public class CardSlotsWidget : CardDropWidgetBase {
             }
         }
     }
-    
-    private void ClearHighlight() {
+
+    public override void CardDropHighlightClear() {
         if(mHighlightIndex != -1) {
             if(slots[mHighlightIndex].highlightGO)
                 slots[mHighlightIndex].highlightGO.SetActive(false);

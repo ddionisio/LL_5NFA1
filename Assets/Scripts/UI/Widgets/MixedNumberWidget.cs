@@ -207,7 +207,8 @@ public class MixedNumberWidget : MonoBehaviour {
     }
 
     IEnumerator DoWholeToFractionAnimation() {
-        animator.Stop();
+        while(animator.isPlaying)
+            yield return null;
 
         bool canPulse = CanPulse();
 
@@ -237,7 +238,8 @@ public class MixedNumberWidget : MonoBehaviour {
     }
 
     IEnumerator DoFractionToWholeAnimation() {
-        animator.Stop();
+        while(animator.isPlaying)
+            yield return null;
 
         bool canPulse = CanPulse();
 

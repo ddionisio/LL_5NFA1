@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TestUIController : GameModeController<TestUIController> {
     public MixedNumberOps testOps;
+    public MixedNumber[] testDeck;
     public MixedNumberOpsWidget opsWidget;
+    public CardDeckWidget deckWidget;
 
     protected override void OnInstanceInit() {
         base.OnInstanceInit();
@@ -16,5 +18,14 @@ public class TestUIController : GameModeController<TestUIController> {
         opsWidget.operation = testOps;
 
         opsWidget.Show();
+
+        if(deckWidget) {            
+            deckWidget.Show();
+
+            while(deckWidget.isBusy)
+                yield return null;
+
+            deckWidget.Fill(testDeck);
+        }
     }
 }

@@ -169,6 +169,9 @@ MonoBehaviour:
   cardPoolCapacity: 4
   cardTemplate: {fileID: 4427489912234164758, guid: 321d573d4dcd22f4bb8ea9ce9101b5ea,
     type: 3}
+  highlightTarget: {fileID: 2104621985944887721}
+  highlightAmplify: 0.3
+  highlightDelay: 1
   slotAnchors:
   - {fileID: 1338013579418626905}
   - {fileID: 1338013578885432141}
@@ -573,12 +576,12 @@ MonoBehaviour:
     _pathThickness: 0.1
     _polygonPreset: 0
     _polyVertices:
-    - {x: -0.49083763, y: 0.38068318}
-    - {x: -0.5, y: -0.08332491}
-    - {x: -0.46188316, y: -0.5}
-    - {x: 0.44251817, y: -0.4764428}
+    - {x: -0.5, y: 0.40219074}
+    - {x: -0.4867574, y: -0.33254576}
+    - {x: -0.2554332, y: -0.5}
+    - {x: 0.42928737, y: -0.46951795}
     - {x: 0.49531752, y: -0.14777043}
-    - {x: 0.46465975, y: 0.45801783}
+    - {x: 0.45866, y: 0.43170875}
     - {x: -0.42611593, y: 0.5}
     _roundness: 0
     _roundnessBottomLeft: 0
@@ -682,7 +685,7 @@ MonoBehaviour:
   settings:
     _blur: 0
     _endAngle: 360
-    _fillColor: {r: 0.098000005, g: 0.059652176, b: 0.09586958, a: 1}
+    _fillColor: {r: 0.497, g: 0.497, b: 0.497, a: 1}
     _fillColor2: {r: 0, g: 0, b: 0, a: 1}
     _fillOffset: {x: 0, y: 0}
     _fillPathLoops: 0
@@ -698,7 +701,7 @@ MonoBehaviour:
     _invertArc: 0
     _lineSize: 0.05
     _obsoleteNumSides: -1
-    _outlineColor: {r: 0.2627451, g: 0.16862746, b: 0.24313727, a: 1}
+    _outlineColor: {r: 1, g: 1, b: 1, a: 1}
     _outlineSize: 4
     _pathSegments:
     - p0: {x: -0.3, y: 0, z: 0}
@@ -747,7 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2627451, g: 0.16862746, b: 0.24313727, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:

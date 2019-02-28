@@ -92,6 +92,8 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     private bool mIsDragging;
     private Coroutine mRout;
 
+    private CardDropWidgetBase mCurCardDropWidget;
+
     public void MoveDragAnchorToOrigin() {
         StopRoutine();
         mRout = StartCoroutine(DoMoveDragAnchorToOrigin());
@@ -166,7 +168,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
         mDragAreaBeginType = GetDragType(eventData.position);
         mDragAreaCurType = mDragAreaBeginType;
 
-        RefreshDragDisplay(eventData.position);
+        RefreshDragDisplay(eventData);
 
         if(mDragAreaBeginType != DragAreaType.None) {
             mIsDragging = true;
@@ -180,7 +182,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
 
         mDragAreaCurType = GetDragType(eventData.position);
 
-        RefreshDragDisplay(eventData.position);
+        RefreshDragDisplay(eventData);
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData) {
@@ -233,6 +235,14 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
                     ResetDrag(false);
                     MoveDragAnchorToOrigin();
                 }
+                else {
+                    ResetDrag(true);
+                    UpdateFractionVisualShow();
+                }
+                break;
+            default:
+                ResetDrag(true);
+                UpdateFractionVisualShow();
                 break;
         }
     }
@@ -297,7 +307,9 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
         }
     }
 
-    private void RefreshDragDisplay(Vector2 pos) {
+    private void RefreshDragDisplay(PointerEventData eventData) {
+        Vector2 pos = eventData.position;
+
         var _dragInside = false;
         var _dragWholeToFraction = false;
         var _dragFractionToWhole = false;
@@ -318,6 +330,25 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
                     dragRoot.SetParent(dragAreaRoot, false);
 
                 dragRoot.position = pos;
+
+                CardDropWidgetBase dropWidget = null;
+                int index = -1;
+
+                if(eventData.pointerCurrentRaycast.isValid && eventData.pointerCurrentRaycast.gameObject) {
+                    dropWidget = eventData.pointerCurrentRaycast.gameObject.GetComponent<CardDropWidgetBase>();
+                    if(dropWidget)
+                        index = dropWidget.CardDropGetSlotIndex(this);
+                }
+
+                if(mCurCardDropWidget != dropWidget) {
+                    if(mCurCardDropWidget)
+                        mCurCardDropWidget.CardDropHighlightClear();
+
+                    mCurCardDropWidget = dropWidget;
+                }
+
+                if(mCurCardDropWidget)
+                    mCurCardDropWidget.CardDropHighlight(index);
                 break;
         }
 
@@ -358,6 +389,11 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
         if(dragInsideFractionGO) dragInsideFractionGO.SetActive(false);
         if(dragWholeToFractionGO) dragWholeToFractionGO.SetActive(false);
         if(dragFractionToWholeGO) dragFractionToWholeGO.SetActive(false);
+
+        if(mCurCardDropWidget) {
+            mCurCardDropWidget.CardDropHighlightClear();
+            mCurCardDropWidget = null;
+        }
     }
 
     private void StopRoutine() {

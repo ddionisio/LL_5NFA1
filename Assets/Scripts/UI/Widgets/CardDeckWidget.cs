@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardDeckWidget : CardDropWidgetBase {
     public GameObject rootGO;
@@ -9,6 +10,11 @@ public class CardDeckWidget : CardDropWidgetBase {
     public string cardPoolGroup = "cardPool";
     public int cardPoolCapacity = 4;
     public GameObject cardTemplate; //operand display
+
+    [Header("Highlight")]
+    public Graphic highlightTarget;
+    public float highlightAmplify = 0.3f;
+    public float highlightDelay = 0.5f;
 
     [Header("Slots")]
     public RectTransform[] slotAnchors;
@@ -19,7 +25,7 @@ public class CardDeckWidget : CardDropWidgetBase {
     public string takeShow;
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeHide;
-
+        
     public CardWidget[] cards { get; private set; }
 
     public int count { get; private set; }
@@ -31,6 +37,10 @@ public class CardDeckWidget : CardDropWidgetBase {
     private M8.GenericParams mCardParms = new M8.GenericParams();
 
     private Coroutine mRout;
+
+    private Color mHighlightDefaultColor;
+    private Color mHighlightColor;
+    private bool mIsHighlighted;
 
     public void Show() {
         Stop();
@@ -101,13 +111,23 @@ public class CardDeckWidget : CardDropWidgetBase {
     }
 
     void OnDisable() {
-        mRout = null;
+        Stop();
     }
 
     void Awake() {
         if(rootGO) rootGO.SetActive(false);
-    }
 
+        if(highlightTarget) {
+            mHighlightDefaultColor = highlightTarget.color;
+
+            mHighlightColor = new Color(
+                Mathf.Clamp01(mHighlightDefaultColor.r + mHighlightDefaultColor.r * highlightAmplify),
+                Mathf.Clamp01(mHighlightDefaultColor.g + mHighlightDefaultColor.g * highlightAmplify),
+                Mathf.Clamp01(mHighlightDefaultColor.b + mHighlightDefaultColor.b * highlightAmplify),
+                mHighlightDefaultColor.a);
+        }
+    }
+    
     IEnumerator DoShow() {
         if(animator && !string.IsNullOrEmpty(takeShow))
             yield return animator.PlayWait(takeShow);
@@ -124,10 +144,51 @@ public class CardDeckWidget : CardDropWidgetBase {
         mRout = null;
     }
 
+    IEnumerator DoHighlight() {
+        mIsHighlighted = true;
+
+        float curTime;
+        var delay = highlightDelay * 0.5f;
+
+        var easeIn = DG.Tweening.Core.Easing.EaseManager.ToEaseFunction(DG.Tweening.Ease.InSine);
+        var easeOut = DG.Tweening.Core.Easing.EaseManager.ToEaseFunction(DG.Tweening.Ease.OutSine);
+
+        while(true) {
+            curTime = 0f;
+            while(curTime < delay) {
+                yield return null;
+
+                curTime += Time.deltaTime;
+
+                var t = easeIn(curTime, delay, 0f, 0f);
+
+                highlightTarget.color = Color.Lerp(mHighlightDefaultColor, mHighlightColor, t);
+            }
+
+            curTime = 0f;
+            while(curTime < delay) {
+                yield return null;
+
+                curTime += Time.deltaTime;
+
+                var t = easeOut(curTime, delay, 0f, 0f);
+
+                highlightTarget.color = Color.Lerp(mHighlightColor, mHighlightDefaultColor, t);
+            }
+        }
+    }
+
     private void Stop() {
         if(mRout != null) {
             StopCoroutine(mRout);
             mRout = null;
+        }
+
+        if(mIsHighlighted) {
+            if(highlightTarget)
+                highlightTarget.color = mHighlightDefaultColor;
+
+            mIsHighlighted = false;
         }
     }
 
@@ -177,7 +238,18 @@ public class CardDeckWidget : CardDropWidgetBase {
         return prevCard;
     }
 
-    public override void CardDropPositionUpdate(CardWidget card) {
+    public override void CardDropHighlight(int index) {
+        if(index != -1) {
+            if(!mIsHighlighted) {
+                Stop();
+                mRout = StartCoroutine(DoHighlight());
+            }
+        }
+        else
+            Stop();
+    }
 
+    public override void CardDropHighlightClear() {
+        Stop();
     }
 }
