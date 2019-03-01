@@ -12,6 +12,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     public string cardPoolGroup = "cardPool";
     public int cardPoolCapacity = 4;
     public GameObject cardTemplate; //operand display
+    public bool cardWholeEnabled = true;
     
     [Header("Operation")]
     public CardSlotsWidget operandSlots;
@@ -67,6 +68,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
             if(operand.isEmpty)
                 newCard = null;
             else {
+                mCardParms[CardWidget.parmWholeEnabled] = cardWholeEnabled;
                 mCardParms[CardWidget.parmNumber] = operand.number;
                 mCardParms[CardWidget.parmCanDragInside] = true;
                 mCardParms[CardWidget.parmCanDragOutside] = false;

@@ -30,7 +30,16 @@ public class MixedNumberWidget : MonoBehaviour {
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeFractionToWhole;
     
-    public bool isWholeEnabled { get { return wholeRootGO; } }
+    public bool isWholeEnabled {
+        get { return wholeRootGO && mIsWholeEnabled; }
+        set {
+            if(mIsWholeEnabled != value) {
+                mIsWholeEnabled = value;
+                if(wholeRootGO) wholeRootGO.SetActive(mIsWholeEnabled);
+                RefreshDisplay();
+            }
+        }
+    }
 
     public MixedNumber number {
         get { return mNumber; }
@@ -42,7 +51,7 @@ public class MixedNumberWidget : MonoBehaviour {
                 RefreshDisplay();
 
                 if(CanPulse()) {
-                    if(mNumber.whole != mNumberPrev.whole && wholeRootGO)
+                    if(mIsWholeEnabled && wholeRootGO && mNumber.whole != mNumberPrev.whole)
                         StartCoroutine(DoPulse(wholeRootGO.transform));
 
                     if((mNumber.numerator != mNumberPrev.numerator || mNumber.denominator != mNumberPrev.denominator) && fractionRootGO)
@@ -61,6 +70,7 @@ public class MixedNumberWidget : MonoBehaviour {
     private MixedNumber mNumberPrev;
 
     private Coroutine mSwapRout;
+    private bool mIsWholeEnabled = true;
 
     /// <summary>
     /// Animate and convert whole of number to fraction
@@ -114,7 +124,7 @@ public class MixedNumberWidget : MonoBehaviour {
     void ApplyWholeDisplay() {
         var num = this.mNumber;
 
-        if(wholeRootGO) {
+        if(mIsWholeEnabled && wholeRootGO) {
             if(Mathf.Abs(num.fValue) >= 1.0f) {
                 if(num.whole > 0) {
                     var wholeVal = num.isNegative ? -num.whole : num.whole;
@@ -140,7 +150,7 @@ public class MixedNumberWidget : MonoBehaviour {
     void ApplyFractionDisplay() {
         var num = this.mNumber;
 
-        if(!wholeRootGO)
+        if(!wholeRootGO || !mIsWholeEnabled)
             num.WholeToFraction();
 
         if(num.denominator > 0) {

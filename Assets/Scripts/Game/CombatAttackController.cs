@@ -20,7 +20,10 @@ public class CombatAttackController : MonoBehaviour {
     [Header("Animation")]
     public M8.Animator.Animate animator;
     [M8.Animator.TakeSelector(animatorField = "animator")]
-    public string takeReady;
+    public string takeEnter = "enter";
+    [M8.Animator.TakeSelector(animatorField = "animator")]
+    public string takeExit = "exit";
+    public float readyDelay = 1.5f;
 
     [Header("Signal")]
     public SignalBoolean signalAnswer;
@@ -117,14 +120,25 @@ public class CombatAttackController : MonoBehaviour {
     }
 
     void Awake() {
-        if(animator && !string.IsNullOrEmpty(takeReady))
-            animator.ResetTake(takeReady);
+        if(animator)
+            animator.gameObject.SetActive(false);
     }
 
     IEnumerator DoPlay() {
-        //ready animation countdown thing
-        if(animator && !string.IsNullOrEmpty(takeReady))
-            yield return animator.PlayWait(takeReady);
+        if(animator) {
+            animator.gameObject.SetActive(true);
+
+            //ready animation countdown thing
+            if(!string.IsNullOrEmpty(takeEnter))
+                yield return animator.PlayWait(takeEnter);
+
+            yield return new WaitForSeconds(readyDelay);
+
+            if(!string.IsNullOrEmpty(takeExit))
+                yield return animator.PlayWait(takeExit);
+
+            animator.gameObject.SetActive(false);
+        }
 
         //show interfaces
         opsWidget.Show();

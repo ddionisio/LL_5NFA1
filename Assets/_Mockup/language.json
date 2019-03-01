@@ -7,7 +7,7 @@
   "en": {
     "welcome": "Welcome!",
     "test": "Test 123 123",
-    "title": "Mr. Pengu and the Unlikely Denominators",
+    "title": "Pengu and the Unlikely Encounters",
     "options": "OPTIONS",
     "sound": "SOUND",
     "music": "MUSIC",
@@ -16,6 +16,8 @@
     "off": "OFF",
     "close": "CLOSE",
     "submit": "SUBMIT",
-    "victory": "VICTORY"
+    "victory": "VICTORY",
+    "attack": "ATTACK",
+    "defend": "DEFEND"
   }
 }

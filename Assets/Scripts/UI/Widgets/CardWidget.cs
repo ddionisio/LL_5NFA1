@@ -12,6 +12,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
         Outside
     }
 
+    public const string parmWholeEnabled = "isWholeEnabled";
     public const string parmNumber = "mixedNumber";
     public const string parmCanDragOutside = "dragOutside";
     public const string parmCanDragInside = "dragInside";
@@ -134,7 +135,12 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
 
         mIsFractionVisual = false;
 
+        bool wholeEnabled = true;
+
         if(parms != null) {
+            if(parms.ContainsKey(parmWholeEnabled))
+                wholeEnabled = parms.GetValue<bool>(parmWholeEnabled);
+
             if(parms.ContainsKey(parmNumber))
                 number = parms.GetValue<MixedNumber>(parmNumber);
 
@@ -154,6 +160,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
                 currentCardDropIndex = parms.GetValue<int>(parmCardDropIndex);
         }
 
+        numberWidget.isWholeEnabled = wholeEnabled;
         numberWidget.number = number;
         
         ResetDrag(true);

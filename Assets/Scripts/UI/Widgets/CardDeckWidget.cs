@@ -10,6 +10,7 @@ public class CardDeckWidget : CardDropWidgetBase {
     public string cardPoolGroup = "cardPool";
     public int cardPoolCapacity = 4;
     public GameObject cardTemplate; //operand display
+    public bool cardWholeEnabled = true;
 
     [Header("Highlight")]
     public Graphic highlightTarget;
@@ -73,6 +74,7 @@ public class CardDeckWidget : CardDropWidgetBase {
             count = slotAnchors.Length;
                 
         for(int i = 0; i < count; i++) {
+            mCardParms[CardWidget.parmWholeEnabled] = cardWholeEnabled;
             mCardParms[CardWidget.parmNumber] = numbers[i];
             mCardParms[CardWidget.parmCanDragInside] = false;
             mCardParms[CardWidget.parmCanDragOutside] = true;
