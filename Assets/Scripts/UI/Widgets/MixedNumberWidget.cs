@@ -7,17 +7,17 @@ using UnityEngine.EventSystems;
 public class MixedNumberWidget : MonoBehaviour {
     [Header("Display")]
     public GameObject wholeRootGO; //if this is null, whole number is disabled
-    public TMPro.TMP_Text wholeText;
+    public Text wholeText;
 
     public GameObject fractionRootGO;
     public bool fractionHideIfZero = true; //only if fractionRootGO is valid
-    public TMPro.TMP_Text numeratorText;
-    public TMPro.TMP_Text denominatorText;
+    public Text numeratorText;
+    public Text denominatorText;
 
     [Header("Fraction FX")]
     public GameObject fractionFXGO; //root for fraction fx
-    public TMPro.TMP_Text fractionFXNumeratorText;
-    public TMPro.TMP_Text fractionFXDenominatorText;
+    public Text fractionFXNumeratorText;
+    public Text fractionFXDenominatorText;
 
     [Header("Number Pulse")]
     public float pulseDelay = 0.3f;

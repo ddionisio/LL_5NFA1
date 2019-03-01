@@ -21,15 +21,15 @@ public class MixedNumberInputWidget : MonoBehaviour {
     public GameObject negativeSignGO;
     public GameObject wholeRootGO;
     public GameObject wholeActiveGO;
-    public TMPro.TMP_Text wholeText;
+    public Text wholeText;
 
     [Header("Numerator")]
     public GameObject numeratorActiveGO;
-    public TMPro.TMP_Text numeratorText;
+    public Text numeratorText;
 
     [Header("Denominator")]
     public GameObject denominatorActiveGO;
-    public TMPro.TMP_Text denominatorText;
+    public Text denominatorText;
 
     [Header("Submit")]
     public Selectable submitSelectable;

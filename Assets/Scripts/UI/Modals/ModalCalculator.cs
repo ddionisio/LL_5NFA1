@@ -65,8 +65,8 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, 
     InputKeyboardFlag _inputKeyboardFlags = InputKeyboardFlag.Numeric | InputKeyboardFlag.Proceed | InputKeyboardFlag.Erase;
 
     [Header("Display")]
-    public TMPro.TMP_Text inputLabel;
-    public TMPro.TMP_Text numericLabel;
+    public Text inputLabel;
+    public Text numericLabel;
 
     [Header("Signal Listens")]
     public SignalFloat signalValueChanged;

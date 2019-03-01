@@ -15,9 +15,9 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
     public Image portraitImage;
     public bool portraitResize;
 
-    public TMPro.TMP_Text nameLabel;
+    public Text nameLabel;
 
-    public TMPro.TMP_Text textLabel;
+    public Text textLabel;
     public float textCharPerSecond = 0.3f;
 
     public GameObject textProcessFinishGO;

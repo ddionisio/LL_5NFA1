@@ -9,29 +9,29 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop {
     [Header("Attack Stats")]
     public GameObject attackRootGO;
     public MixedNumberWidget attackValueDisplay;
-    public TMPro.TMP_Text attackScoreText;
+    public Text attackScoreText;
 
     [Header("Defense Stats")]
     public GameObject defenseRootGO;
     public MixedNumberWidget defenseValueDisplay;
-    public TMPro.TMP_Text defenseScoreText;
+    public Text defenseScoreText;
 
     [Header("Rounds Stats")]
     public GameObject roundsRootGO;
-    public TMPro.TMP_Text roundsText;
+    public Text roundsText;
     public string roundsFormat = "{0}/{1}";
-    public TMPro.TMP_Text roundsScoreText;
+    public Text roundsScoreText;
 
     [Header("Finish Stats")]
-    public TMPro.TMP_Text finishScoreText;
+    public Text finishScoreText;
 
     [Header("Revive Stats")]
     public GameObject reviveRootGO;
-    public TMPro.TMP_Text reviveCountText;
-    public TMPro.TMP_Text reviveScoreText;
+    public Text reviveCountText;
+    public Text reviveScoreText;
 
     [Header("Total XP")]
-    public TMPro.TMP_Text totalScoreText;
+    public Text totalScoreText;
 
     private int mTotalScore;
 

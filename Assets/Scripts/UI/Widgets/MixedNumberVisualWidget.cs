@@ -13,7 +13,7 @@ public class MixedNumberVisualWidget : MonoBehaviour {
 
     [Header("Whole")]
     public GameObject wholeGO;
-    public TMPro.TMP_Text wholeAmountText;
+    public Text wholeAmountText;
 
     [Header("Fraction")]
     public Image fractionFill;
@@ -22,7 +22,7 @@ public class MixedNumberVisualWidget : MonoBehaviour {
 
     [Header("Interface")]
     public MixedNumberWidget mixedNumberWidget;
-    public TMPro.TMP_Text multText;
+    public Text multText;
     public Button multButtonLeft;
     public Button multButtonRight;
 

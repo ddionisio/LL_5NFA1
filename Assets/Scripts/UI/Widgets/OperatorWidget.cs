@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OperatorWidget : MonoBehaviour {
     [Header("Display")]
-    public TMPro.TMP_Text label;
+    public Text label;
 
     public void SetOperator(OperatorType operatorType) {
         switch(operatorType) {
