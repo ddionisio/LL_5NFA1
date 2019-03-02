@@ -8,10 +8,6 @@ using MiniJSON;
 using LoLSDK;
 
 public class LoLManager : M8.SingletonBehaviour<LoLManager> {
-    public const float musicVolumeDefault = 0.4f;
-    public const float soundVolumeDefault = 0.6f;
-    public const float fadeVolumeDefault = 0.2f;
-
     public class QuestionAnswered {
         public int questionIndex;
         public int alternativeIndex;
@@ -47,10 +43,7 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
     }
         
     public const string userDataSettingsKey = "settings";
-
-    public const string settingsMusicVolumeKey = "mv";
-    public const string settingsSoundVolumeKey = "sv";
-    public const string settingsFadeVolumeKey = "fv";
+    
     public const string settingsSpeechMuteKey = "sp";
 
     private const string questionsJSONFilePath = "questions.json";
@@ -66,10 +59,6 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
     int _progressMax;
     [SerializeField]
     M8.UserData userSettings = null;
-    [SerializeField]
-    bool _useFadeMusicScale = false;
-    [SerializeField]
-    float _fadeMusicScale = 1.0f;
     [SerializeField]
     float _speakQueueStartDelay = 0.3f;
 
@@ -91,11 +80,7 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
 
     public int curProgress { get { return mCurProgress; } }
     public int curScore { get { return mCurScore; } set { mCurScore = value; } }
-
-    public float musicVolume { get { return mMusicVolume; } }
-    public float soundVolume { get { return mSoundVolume; } }
-    public float fadeVolume { get { return mFadeVolume; } }
-
+    
     public bool isQuestionsReceived { get { return mIsQuestionsReceived; } }
 
     public bool isQuestionsAllAnswered {
@@ -134,19 +119,7 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
             return mCurQuestionIndex;
         }
     }
-
-    public string lastSoundBackgroundPath {
-        get {
-            return mLastSoundBackgroundPath;
-        }
-    }
-
-    public bool lastSoundBackgroundIsLoop {
-        get {
-            return mLastSoundBackgroundIsLoop;
-        }
-    }
-
+    
     public bool isSpeechMute {
         get {
             return mIsSpeechMute;
@@ -156,10 +129,7 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
     public event OnCallback progressCallback;
     public event OnCallback completeCallback;
     public event OnSpeakCallback speakCallback;
-
-    protected float mMusicVolume;
-    protected float mSoundVolume;
-    protected float mFadeVolume;
+    
     protected bool mIsSpeechMute;
 
     protected bool mIsQuestionsReceived;
@@ -167,10 +137,7 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
     protected List<QuestionAnswered> mQuestionsAnsweredList;
 
     protected int mCurQuestionIndex;
-
-    protected string mLastSoundBackgroundPath;
-    protected bool mLastSoundBackgroundIsLoop;
-
+    
     protected bool mIsReady;
 
     //loading data, wait for true, then parse the jsons
@@ -184,34 +151,6 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
     private string mSpeakQueueGroup;
     private LinkedList<SpeakQueueData> mSpeakQueues = new LinkedList<SpeakQueueData>();
     
-    public virtual void PlaySound(string path, bool background, bool loop) {
-        if(background && !string.IsNullOrEmpty(mLastSoundBackgroundPath)) {
-            if(loop && mLastSoundBackgroundIsLoop && mLastSoundBackgroundPath == path) //already playing the looped music path?
-                return;
-
-            LOLSDK.Instance.StopSound(mLastSoundBackgroundPath);
-
-            //Debug.Log("Stop Background: " + mLastSoundBackgroundPath);
-        }
-
-        if(background ? mMusicVolume > 0f : mSoundVolume > 0f)
-            LOLSDK.Instance.PlaySound(path, background, loop);
-
-        if(background) {
-            //Debug.Log("Played Background: " + path);
-
-            mLastSoundBackgroundPath = path;
-            mLastSoundBackgroundIsLoop = loop;
-        }
-    }
-
-    public virtual void StopSound(string path) {
-        LOLSDK.Instance.StopSound(path);
-
-        if(mLastSoundBackgroundPath == path)
-            mLastSoundBackgroundPath = null;
-    }
-
     protected virtual void _SpeakText(string key) {
         //Debug.Log("Speaking: " + key);
         if(!mIsSpeechMute)
@@ -263,14 +202,7 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
         if(mSpeakQueueRout == null)
             mSpeakQueueRout = StartCoroutine(DoSpeakQueue());
     }
-
-    public virtual void StopCurrentBackgroundSound() {
-        if(!string.IsNullOrEmpty(mLastSoundBackgroundPath)) {
-            LOLSDK.Instance.StopSound(mLastSoundBackgroundPath);
-            mLastSoundBackgroundPath = null;
-        }
-    }
-
+    
     public MultipleChoiceQuestion GetQuestion(int index) {
         if(mQuestionsList == null)
             return null;
@@ -360,42 +292,11 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
 
         ProgressCallback();
     }
+    
+    public void ApplySpeechMute(bool isMute) {
+        if(mIsSpeechMute != isMute) {
+            mIsSpeechMute = isMute;
 
-    protected virtual void ApplyVolumes(float sound, float music, float fade) {
-        LOLSDK.Instance.ConfigureSound(mSoundVolume, mMusicVolume, mFadeVolume);
-    }
-
-    public void ApplyCurrentVolumes() {
-        ApplyVolumes(mSoundVolume, mMusicVolume, mFadeVolume);
-    }
-
-    public void ApplyVolumes(float sound, float music, bool save) {
-        if(_useFadeMusicScale)
-            ApplyVolumes(sound, music, music * _fadeMusicScale, save);
-        else
-            ApplyVolumes(sound, music, mFadeVolume, save);
-    }
-
-    public void ApplyVolumes(float sound, float music, float fade, bool save) {
-        ApplyVolumes(sound, music, fade);
-
-        if(save) {
-            mSoundVolume = sound;
-            mMusicVolume = music;
-            mFadeVolume = fade;
-
-            if(userSettings) {
-                userSettings.SetFloat(settingsSoundVolumeKey, mSoundVolume);
-                userSettings.SetFloat(settingsMusicVolumeKey, mMusicVolume);
-                userSettings.SetFloat(settingsFadeVolumeKey, mFadeVolume);
-            }
-        }
-    }
-
-    public void ApplySpeechMute(bool isMute, bool save) {
-        mIsSpeechMute = isMute;
-
-        if(save) {
             if(userSettings)
                 userSettings.SetInt(settingsSpeechMuteKey, mIsSpeechMute ? 1 : 0);
         }
@@ -440,7 +341,6 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
         // Register event handlers
 #if !UNITY_EDITOR
         LOLSDK.Instance.StartGameReceived += new StartGameReceivedHandler(this.HandleStartGame);
-        //LOLSDK.Instance.GameStateChanged += new GameStateChangedHandler(this.HandleGameStateChange); //disabled until further notice
         LOLSDK.Instance.QuestionsReceived += new QuestionListReceivedHandler(this.HandleQuestions);
         LOLSDK.Instance.LanguageDefsReceived += new LanguageDefsReceivedHandler(this.HandleLanguageDefs);
 #endif
@@ -473,7 +373,7 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
 
         yield return new WaitForSeconds(0.5f);
 
-        SetupVolumes();
+        ApplySettings();
 
         yield return new WaitForSeconds(0.5f);
 
@@ -508,20 +408,10 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
         ((LoLLocalize)M8.Localize.instance).Load(mLangCode, json);
     }
 
-    protected void SetupVolumes() {
+    protected void ApplySettings() {
         if(userSettings) {
-            mMusicVolume = userSettings.GetFloat(settingsMusicVolumeKey, musicVolumeDefault);
-            mSoundVolume = userSettings.GetFloat(settingsSoundVolumeKey, soundVolumeDefault);
-            mFadeVolume = userSettings.GetFloat(settingsFadeVolumeKey, _useFadeMusicScale ? musicVolumeDefault * _fadeMusicScale : fadeVolumeDefault);
             mIsSpeechMute = userSettings.GetInt(settingsSpeechMuteKey) != 0;
         }
-        else {
-            mMusicVolume = musicVolumeDefault;
-            mSoundVolume = soundVolumeDefault;
-            mFadeVolume = _useFadeMusicScale ? musicVolumeDefault * _fadeMusicScale : fadeVolumeDefault;
-        }
-
-        ApplyCurrentVolumes();
     }
 
     // Start the game here
@@ -531,19 +421,7 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
             mIsGameStartHandled = true;
         }
     }
-
-    // Handle pause / resume
-    protected void HandleGameStateChange(GameState gameState) {
-        // Either GameState.Paused or GameState.Resumed
-        switch(gameState) {
-            case GameState.Paused:
-                break;
-
-            case GameState.Resumed:
-                break;
-        }
-    }
-
+    
     // Store the questions and show them in order based on your game flow.
     protected void HandleQuestions(MultipleChoiceQuestionList questionList) {
         mIsQuestionsReceived = true;

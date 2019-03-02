@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoLSpeechToggleWidget : MonoBehaviour, M8.IModalActive {
+public class LoLSpeechToggleWidget : MonoBehaviour {
     [Header("Display")]
     public GameObject onActiveGO;
     public GameObject offActiveGO;
@@ -12,19 +12,17 @@ public class LoLSpeechToggleWidget : MonoBehaviour, M8.IModalActive {
         bool isOn = LoLManager.instance.isSpeechMute;
 
         if(isOn) { //turn off
-            LoLManager.instance.ApplySpeechMute(false, true);
+            LoLManager.instance.ApplySpeechMute(false);
         }
         else { //turn on
-            LoLManager.instance.ApplySpeechMute(true, true);
+            LoLManager.instance.ApplySpeechMute(true);
         }
 
         UpdateToggleStates();
     }
 
-    void M8.IModalActive.SetActive(bool aActive) {
-        if(aActive) {
-            UpdateToggleStates();
-        }
+    void OnEnable() {
+        UpdateToggleStates();
     }
 
     private void UpdateToggleStates() {

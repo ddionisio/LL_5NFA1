@@ -15,8 +15,6 @@ public class GameStart : GameModeController<GameStart> {
     [M8.Localize]
     public string titleStringRef;
 
-    public string musicPath;
-
     protected override void OnInstanceInit() {
         base.OnInstanceInit();
 
@@ -42,11 +40,7 @@ public class GameStart : GameModeController<GameStart> {
 
         if(loadingGO) loadingGO.SetActive(false);
         if(readyGO) readyGO.SetActive(true);
-
-        //play music
-        if(!string.IsNullOrEmpty(musicPath))
-            LoLManager.instance.PlaySound(musicPath, true, true);
-
+        
         isStarted = true;
     }
 }

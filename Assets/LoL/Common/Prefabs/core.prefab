@@ -122,6 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userData: {fileID: 11400000, guid: 9ab6acfbc605b1b45aa1c7a95ea3ebb6, type: 2}
   _loadOnInstance: 1
+  masterVolumeDefault: 1
+  soundVolumeDefault: 0.6
+  musicVolumeDefault: 0.4
 --- !u!81 &81823375801939880
 AudioListener:
   m_ObjectHideFlags: 0
