@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3543428393574232239}
   - component: {fileID: 114031210100311188}
   - component: {fileID: 114961774454783636}
-  - component: {fileID: 114317656518231910}
+  - component: {fileID: 384516767552431867}
   - component: {fileID: 81823375801939880}
   - component: {fileID: 114228811859594110}
   m_Layer: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   _speakQueueStartDelay: 0.3
   signalProgressUpdate: {fileID: 11400000, guid: 639e3a00c6e5d6a468b0762512980c7b,
     type: 2}
---- !u!114 &114317656518231910
+--- !u!114 &384516767552431867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,11 +117,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1457141622917436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50bba549c63247e4c8497436df4fe3d6, type: 3}
+  m_Script: {fileID: 11500000, guid: d9fea65cecb960d4395a4abcbbeb8691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMusicPath: 
-  items: []
+  userData: {fileID: 11400000, guid: 9ab6acfbc605b1b45aa1c7a95ea3ebb6, type: 2}
+  _loadOnInstance: 1
 --- !u!81 &81823375801939880
 AudioListener:
   m_ObjectHideFlags: 0

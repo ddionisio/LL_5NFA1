@@ -8,6 +8,9 @@ public class TestUIController : GameModeController<TestUIController> {
     public MixedNumberOpsWidget opsWidget;
     public CardDeckWidget deckWidget;
 
+    [M8.MusicPlaylist]
+    public string music;
+
     protected override void OnInstanceInit() {
         base.OnInstanceInit();
     }

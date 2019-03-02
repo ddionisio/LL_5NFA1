@@ -701,13 +701,13 @@ MonoBehaviour:
       transitions: []
       actionData:
         actionNames:
-        - HutongGames.PlayMaker.Actions.LoL.LoLPlayMusic
+        - HutongGames.PlayMaker.Actions.M8.MusicPlay
         customNames:
         - 
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 787cae04
+        actionHashCodes: 2e72a203
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -718,12 +718,12 @@ MonoBehaviour:
         fsmPropertyParams: []
         layoutOptionParams: []
         fsmStringParams:
-        - useVariable: 1
-          name: musicPath
+        - useVariable: 0
+          name: 
           tooltip: 
-          showInInspector: 1
+          showInInspector: 0
           networkSync: 0
-          value: 
+          value: intro
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -737,23 +737,33 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 
+        byteData: 00000000
         arrayParamSizes: 
         arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 1200000011000000
+        customTypeSizes: 02000000
+        customTypeNames:
+        - HutongGames.PlayMaker.Actions.M8.FsmMusicPlaylistName
+        paramDataType: 2800000007000000120000001100000011000000
         paramName:
-        - path
-        - isLoop
-        paramDataPos: 0000000000000000
-        paramByteDataSize: 0000000000000000
+        - music
+        - from
+        - stringRef
+        - loop
+        - immediate
+        paramDataPos: 0000000000000000000000000000000001000000
+        paramByteDataSize: 0000000004000000000000000000000000000000
     - name: Loading Scene
       description: 
       colorIndex: 0
@@ -845,12 +855,6 @@ MonoBehaviour:
       boolVariables: []
       stringVariables:
       - useVariable: 1
-        name: musicPath
-        tooltip: 
-        showInInspector: 1
-        networkSync: 0
-        value: 
-      - useVariable: 1
         name: titleString
         tooltip: 
         showInInspector: 0
@@ -893,7 +897,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 000000000000000000000000000000000000000000000000
+      variableCategoryIDs: 0000000000000000000000000000000000000000
     description: 
     docUrl: 
     showStateLabel: 0
