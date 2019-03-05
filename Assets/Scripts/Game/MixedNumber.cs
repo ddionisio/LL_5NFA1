@@ -239,5 +239,14 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
 
 [System.Serializable]
 public class MixedNumberGroup {
-    public MixedNumber[] numbers;
+    [SerializeField]
+    MixedNumber[] numbers;
+    [SerializeField]
+    bool isShuffle = false;
+
+    public MixedNumber[] GetNumbers() {
+        if(isShuffle)
+            M8.ArrayUtil.Shuffle(numbers);
+        return numbers;
+    }
 }

@@ -265,7 +265,7 @@ public class CombatDefenseController : MonoBehaviour {
     private void FillSlots() {
         int ind = attackAlignChoices ? mLastNumberIndex : mCurNumbersIndex;
 
-        if(deckWidget) deckWidget.Fill(numberGroups[ind].numbers);
+        if(deckWidget) deckWidget.Fill(numberGroups[ind].GetNumbers());
 
         mCurNumbersIndex++;
         if(mCurNumbersIndex == numberGroups.Length)
@@ -276,7 +276,7 @@ public class CombatDefenseController : MonoBehaviour {
         if(attackNumberGroups.Length == 0)
             return new MixedNumber();
 
-        var nums = attackNumberGroups[mCurAttackNumbersIndex].numbers;
+        var nums = attackNumberGroups[mCurAttackNumbersIndex].GetNumbers();
 
         mLastNumberIndex = Random.Range(0, nums.Length);
 

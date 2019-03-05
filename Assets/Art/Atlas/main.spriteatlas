@@ -44,7 +44,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: bcffc04fabd33264b8a9a31d33ce55fe, type: 3}
     - {fileID: 102900000, guid: d9e319108df120f4b8bcfc707677397f, type: 3}
     - {fileID: 102900000, guid: 8a2068735b45d0a46aeae72863618717, type: 3}
-    totalSpriteSurfaceArea: 43053
+    totalSpriteSurfaceArea: 46237
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -65,6 +65,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: bf01b0b7199ec26448b016fd2de647e5, type: 3}
   - {fileID: 21300000, guid: 326ab6c73d9e81346bb6774298a0d825, type: 3}
   - {fileID: 21300000, guid: c76e42180b40b0f45b6d8c0e9c16161d, type: 3}
+  - {fileID: 21300000, guid: b5f1f248fc842084cb79fa132167e30b, type: 3}
   - {fileID: 21300014, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
   - {fileID: 21300010, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
   - {fileID: 21300006, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
@@ -80,6 +81,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a703a17dd665cbc47b8e3ec98bb3bcab, type: 3}
   - {fileID: 21300000, guid: 525dd05e79030fc428c3e0f3b5bf2815, type: 3}
   - {fileID: 21300000, guid: c5a54a7e88b59e547a8905c1ad93d892, type: 3}
+  - {fileID: 21300000, guid: d100bf3fba8e48343b4f69fe5447d682, type: 3}
   - {fileID: 21300000, guid: 5e660daf84d52a04bae3e06dd631bb2b, type: 3}
   m_PackedSpriteNamesToIndex:
   - tutorialArrow2_bottom
@@ -99,6 +101,7 @@ SpriteAtlas:
   - explodePixel1
   - circle32x32
   - stopwatchBase
+  - tutorialHandPointDown
   - blank4x4_border2x
   - blank4x4_top
   - blank4x4_bottomLeft
@@ -114,6 +117,7 @@ SpriteAtlas:
   - triangleFancy
   - triangle
   - edge_shade
+  - tutorialHandPoint
   - shield
   m_Tag: main
   m_IsVariant: 0

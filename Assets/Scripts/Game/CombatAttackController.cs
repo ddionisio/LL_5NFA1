@@ -68,8 +68,7 @@ public class CombatAttackController : MonoBehaviour {
 
         //apply fixed numbers
         if(fixedGroups.Length > 0) {
-            var fixedNumbers = fixedGroups[mCurFixedNumbersIndex].numbers;
-            M8.ArrayUtil.Shuffle(fixedNumbers);
+            var fixedNumbers = fixedGroups[mCurFixedNumbersIndex].GetNumbers();
             mCurFixedNumbersIndex++;
             if(mCurFixedNumbersIndex == fixedGroups.Length)
                 mCurFixedNumbersIndex = 0;
@@ -283,7 +282,7 @@ public class CombatAttackController : MonoBehaviour {
     }
 
     private void FillSlots() {
-        if(deckWidget) deckWidget.Fill(numberGroups[mCurNumbersIndex].numbers);
+        if(deckWidget) deckWidget.Fill(numberGroups[mCurNumbersIndex].GetNumbers());
 
         mCurNumbersIndex++;
         if(mCurNumbersIndex == numberGroups.Length)
@@ -292,8 +291,7 @@ public class CombatAttackController : MonoBehaviour {
 
     private void RefreshOperands() {
         if(fixedGroups.Length > 0) {
-            var fixedNumbers = fixedGroups[mCurFixedNumbersIndex].numbers;
-            M8.ArrayUtil.Shuffle(fixedNumbers);
+            var fixedNumbers = fixedGroups[mCurFixedNumbersIndex].GetNumbers();
             mCurFixedNumbersIndex++;
             if(mCurFixedNumbersIndex == fixedGroups.Length)
                 mCurFixedNumbersIndex = 0;
