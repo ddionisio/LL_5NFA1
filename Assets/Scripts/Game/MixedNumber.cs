@@ -240,7 +240,7 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
 [System.Serializable]
 public class MixedNumberGroup {
     [SerializeField]
-    MixedNumber[] numbers;
+    MixedNumber[] numbers = null;
     [SerializeField]
     bool isShuffle = false;
 
