@@ -69,6 +69,7 @@ public class CombatDefenseController : MonoBehaviour {
         }
 
         //this will reset the operation
+        opsWidget.gameObject.SetActive(false);
         opsWidget.operation = mOperations;
 
         if(timerWidget) {
@@ -76,8 +77,11 @@ public class CombatDefenseController : MonoBehaviour {
             timerWidget.delay = timerDelay;
             timerWidget.ResetValue();
         }
-        
-        if(deckWidget) deckWidget.Clear();
+
+        if(deckWidget) {
+            deckWidget.gameObject.SetActive(false);
+            deckWidget.Clear();
+        }
 
         mAttacker = attacker;
         mDefender = defender;
@@ -133,6 +137,7 @@ public class CombatDefenseController : MonoBehaviour {
         }
 
         //show interfaces
+        opsWidget.gameObject.SetActive(true);
         opsWidget.Show();
         while(opsWidget.isBusy)
             yield return null;
@@ -151,6 +156,7 @@ public class CombatDefenseController : MonoBehaviour {
         while(!IsTimerExpired()) {
             //show and fill deck
             if(deckWidget) {
+                deckWidget.gameObject.SetActive(true);
                 deckWidget.Show();
                 while(deckWidget.isBusy)
                     yield return null;
@@ -189,6 +195,7 @@ public class CombatDefenseController : MonoBehaviour {
                     yield return null;
 
                 deckWidget.Clear();
+                deckWidget.gameObject.SetActive(false);
             }
             //
 
@@ -215,6 +222,8 @@ public class CombatDefenseController : MonoBehaviour {
         opsWidget.Hide();
         while(opsWidget.isBusy)
             yield return null;
+
+        opsWidget.gameObject.SetActive(false);
         //
 
         //show defender's hp

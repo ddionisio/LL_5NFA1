@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Geometry
+    uniqueID: 585395705
+    locked: 0
   - name: Entity
     uniqueID: 784151679
     locked: 0

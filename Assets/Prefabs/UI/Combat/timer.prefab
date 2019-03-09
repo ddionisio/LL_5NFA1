@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2392157, g: 0.16078432, b: 0.21960786, a: 1}
+  m_Color: {r: 0.3803922, g: 0.2627451, b: 0.34117648, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -257,6 +257,7 @@ MonoBehaviour:
   _mode: 1
   _delay: 1
   _defaultValue: 1
+  fillInvert: 1
   rootGO: {fileID: 3304170547368222996}
   fillImage: {fileID: 3304170546482016352}
   animator: {fileID: 2021767240480084732}
@@ -806,7 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18039216, g: 0.10980393, b: 0.1764706, a: 1}
+  m_Color: {r: 0.3803922, g: 0.2627451, b: 0.34117648, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:

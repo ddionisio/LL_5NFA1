@@ -20,17 +20,14 @@ public class CombatCharacterController : MonoBehaviour {
     public HPWidget hpWidget;
     public GameObject defendActiveGO;
 
-    [Header("Animation Move")]
-    public M8.Animator.Animate animatorMove;
-    [M8.Animator.TakeSelector(animatorField = "animatorMove")]
-    public string takeMoveEnter;
-    [M8.Animator.TakeSelector(animatorField = "animatorMove")]
-    public string takeMoveAttackEnter;
-    [M8.Animator.TakeSelector(animatorField = "animatorMove")]
-    public string takeMoveAttackExit;
-
     [Header("Animation")]
-    public M8.Animator.Animate animator;    
+    public M8.Animator.Animate animator;
+    [M8.Animator.TakeSelector(animatorField = "animator")]
+    public string takeEnter;
+    [M8.Animator.TakeSelector(animatorField = "animator")]
+    public string takeAttackEnter;
+    [M8.Animator.TakeSelector(animatorField = "animator")]
+    public string takeAttackExit;
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeIdle;    
     [M8.Animator.TakeSelector(animatorField = "animator")]
@@ -133,8 +130,8 @@ public class CombatCharacterController : MonoBehaviour {
 
         mAction = Action.None;
 
-        if(animatorMove && !string.IsNullOrEmpty(takeMoveEnter))
-            animatorMove.ResetTake(takeMoveEnter);
+        if(animator && !string.IsNullOrEmpty(takeEnter))
+            animator.ResetTake(takeEnter);
     }
 
     public void Stop() {
@@ -145,15 +142,19 @@ public class CombatCharacterController : MonoBehaviour {
     }
 
     IEnumerator DoEnter() {
-        if(animatorMove && !string.IsNullOrEmpty(takeMoveEnter))
-            yield return animatorMove.PlayWait(takeMoveEnter);
+        if(animator && !string.IsNullOrEmpty(takeEnter))
+            yield return animator.PlayWait(takeEnter);
+        else
+            yield return null;
 
         mCurRout = null;
+
+        action = Action.Idle;
     }
 
     IEnumerator DoAttackToIdle() {
-        if(animatorMove && !string.IsNullOrEmpty(takeMoveAttackExit))
-            yield return animatorMove.PlayWait(takeMoveAttackExit);
+        if(animator && !string.IsNullOrEmpty(takeAttackExit))
+            yield return animator.PlayWait(takeAttackExit);
 
         if(animator && !string.IsNullOrEmpty(takeIdle))
             animator.Play(takeIdle);
@@ -162,8 +163,8 @@ public class CombatCharacterController : MonoBehaviour {
     }
 
     IEnumerator DoAttack() {
-        if(animatorMove && !string.IsNullOrEmpty(takeMoveAttackEnter))
-            yield return animatorMove.PlayWait(takeMoveAttackEnter);
+        if(animator && !string.IsNullOrEmpty(takeAttackEnter))
+            yield return animator.PlayWait(takeAttackEnter);
 
         if(animator && !string.IsNullOrEmpty(takeAttack))
             yield return animator.PlayWait(takeAttack);
