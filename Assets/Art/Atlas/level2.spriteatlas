@@ -42,14 +42,16 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 8814865248469bf4cb455045439fb510, type: 3}
-    totalSpriteSurfaceArea: 112396
+    totalSpriteSurfaceArea: 113320
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 10d174409848ab442a1218264de576ee, type: 3}
   - {fileID: 21300000, guid: 0c5d24435e64c414ab970dfaa80fdd6d, type: 3}
+  - {fileID: 21300000, guid: cc4e4543800888a4da9e20844723002d, type: 3}
   m_PackedSpriteNamesToIndex:
   - elephantSeal_sleep_over
   - elephantSeal_sleep
+  - z
   m_Tag: level2
   m_IsVariant: 0

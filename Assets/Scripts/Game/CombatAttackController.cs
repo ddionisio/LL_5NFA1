@@ -8,6 +8,7 @@ public class CombatAttackController : MonoBehaviour {
     public int opCount = 2;
     public float timerDelay = 10f;
     public float postAttackDelay = 2f; //delay after attack is finished
+    public float hitPerDelay = 1f; //delay per hit subtracting hp
     public MixedNumberGroup[] fixedGroups; //fill operands with these numbers
     public MixedNumberGroup[] numberGroups;    
 
@@ -237,29 +238,35 @@ public class CombatAttackController : MonoBehaviour {
 
         opsWidget.gameObject.SetActive(false);
         //
+                
+        //do attack routine
+        mAttacker.action = CombatCharacterController.Action.AttackEnter;
+        mDefender.action = CombatCharacterController.Action.Defend;
+
+        while(mAttacker.isBusy)
+            yield return null;
+
+        mAttacker.action = CombatCharacterController.Action.Attack;
+        mDefender.action = CombatCharacterController.Action.Hurt;
+
+        while(mAttacker.isBusy)
+            yield return null;
 
         //show defender's hp
         mDefender.hpWidget.Show();
         while(mDefender.hpWidget.isBusy)
             yield return null;
 
-        //do attack routine
-        mAttacker.action = CombatCharacterController.Action.Attack;
-        mDefender.action = CombatCharacterController.Action.Defend;
-
-        while(mAttacker.isBusy)
-            yield return null;
-
-        mDefender.action = CombatCharacterController.Action.Hurt;
-
         //do hits
+        var waitHit = new WaitForSeconds(hitPerDelay);
+
         for(int i = 0; i < mAttackNumbers.Count; i++) {
             var attackNum = mAttackNumbers[i];
 
             mDefender.hpCurrent -= attackNum.fValue;
 
             //do fancy hit effect
-            yield return new WaitForSeconds(0.3f);
+            yield return waitHit;
         }
 
         //return to idle, death for defender if hp = 0

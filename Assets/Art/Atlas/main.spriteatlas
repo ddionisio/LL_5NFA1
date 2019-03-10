@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 8a2068735b45d0a46aeae72863618717, type: 3}
     - {fileID: 102900000, guid: 6024bbdb3d3da9545b796afa8d6ccdd1, type: 3}
     - {fileID: 102900000, guid: fe239e9ec6e213041acf0a892a06950c, type: 3}
-    totalSpriteSurfaceArea: 182120
+    totalSpriteSurfaceArea: 182408
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -62,6 +62,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a690b5523a61432468351cb1791b8cee, type: 3}
   - {fileID: 21300000, guid: b35283f29bf5ddf4db0e0e7d274932b0, type: 3}
   - {fileID: 21300000, guid: 1abaebf232c3b9d409c5c9383ee84f5d, type: 3}
+  - {fileID: 21300000, guid: c05e5e136fe7a084084e48c38b81b054, type: 3}
   - {fileID: 21300000, guid: d4ce93735a9a87a4aac63d336c10c2a9, type: 3}
   - {fileID: 21300000, guid: e5dc777390553e4499a405c82af83aef, type: 3}
   - {fileID: 21300000, guid: 8a3c2b046cb7b1744a3c827fa7c3dd1a, type: 3}
@@ -71,7 +72,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a9f07236c774e5444866653f76271f35, type: 3}
   - {fileID: 21300000, guid: 801c46b64a3867242ba3ae4436439905, type: 3}
   - {fileID: 21300000, guid: a3694ac6248fad949b3731055603d664, type: 3}
-  - {fileID: 21300000, guid: 833257f6cb1a9d241b3fc454fef9d45a, type: 3}
   - {fileID: 21300000, guid: 024d3d37b4dc5d9418f717c5bbcf071a, type: 3}
   - {fileID: 21300000, guid: bf01b0b7199ec26448b016fd2de647e5, type: 3}
   - {fileID: 21300000, guid: 326ab6c73d9e81346bb6774298a0d825, type: 3}
@@ -96,6 +96,7 @@ SpriteAtlas:
   - {fileID: 21300002, guid: 1936bac986127cb4bad904bfad92c266, type: 3}
   - {fileID: 21300000, guid: 7168da6aea1c4154bbc52d54856e6639, type: 3}
   - {fileID: 21300000, guid: 8772079a36f0a47408cc78af64000e35, type: 3}
+  - {fileID: 21300000, guid: df668d0b6eafc76449b7ef2e24a9d0e2, type: 3}
   - {fileID: 21300000, guid: 3d9fe54b51dab3b488dbf4c265cf6f39, type: 3}
   - {fileID: 21300000, guid: 1c87455b1ea7ed04389d1172b22219c3, type: 3}
   - {fileID: 21300000, guid: a2bbdc0c4d9a88d40a0f1d356d9a1ecb, type: 3}
@@ -123,6 +124,7 @@ SpriteAtlas:
   - attack
   - counterBase
   - explodePixel2
+  - roundRectGlow
   - pengu_swimIdle2
   - explodePixel4
   - portraitRobot_2
@@ -132,7 +134,6 @@ SpriteAtlas:
   - erase
   - pengu_hurt0
   - scribble1
-  - circle16x16
   - pengu_dead0
   - explodePixel1
   - circle32x32
@@ -157,6 +158,7 @@ SpriteAtlas:
   - shade_bottom
   - gradient8x8
   - scribble0
+  - circleGlowTiny
   - pengu_idle2
   - pengu_idle3
   - pengu_walk2
