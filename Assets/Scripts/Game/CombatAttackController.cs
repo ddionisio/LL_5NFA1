@@ -267,10 +267,16 @@ public class CombatAttackController : MonoBehaviour {
 
             //do fancy hit effect
             yield return waitHit;
+
+            if(mDefender.hpCurrent <= 0)
+                break;
         }
 
         //return to idle, death for defender if hp = 0
         mAttacker.action = CombatCharacterController.Action.Idle;
+
+        //hide defender's hp
+        mDefender.hpWidget.Hide();
 
         if(mDefender.hpCurrent > 0f)
             mDefender.action = CombatCharacterController.Action.Idle;        
@@ -283,10 +289,7 @@ public class CombatAttackController : MonoBehaviour {
 
         if(postAttackDelay > 0f)
             yield return new WaitForSeconds(postAttackDelay);
-
-        //hide defender's hp
-        mDefender.hpWidget.Hide();
-
+                
         mRout = null;
     }
 

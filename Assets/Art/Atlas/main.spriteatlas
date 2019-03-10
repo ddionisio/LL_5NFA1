@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 8a2068735b45d0a46aeae72863618717, type: 3}
     - {fileID: 102900000, guid: 6024bbdb3d3da9545b796afa8d6ccdd1, type: 3}
     - {fileID: 102900000, guid: fe239e9ec6e213041acf0a892a06950c, type: 3}
-    totalSpriteSurfaceArea: 182408
+    totalSpriteSurfaceArea: 186330
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -108,6 +108,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aa7c52adf7ae54e4a9c071bc0bd0c4ed, type: 3}
   - {fileID: 21300000, guid: 525dd05e79030fc428c3e0f3b5bf2815, type: 3}
   - {fileID: 21300000, guid: c5a54a7e88b59e547a8905c1ad93d892, type: 3}
+  - {fileID: 21300000, guid: 71be053f831cf7b4fbaab8a95b9b6638, type: 3}
   - {fileID: 21300000, guid: d100bf3fba8e48343b4f69fe5447d682, type: 3}
   - {fileID: 21300000, guid: 5e660daf84d52a04bae3e06dd631bb2b, type: 3}
   - {fileID: 21300000, guid: 7df5c8ef0bc054b439174751d62b2814, type: 3}
@@ -170,6 +171,7 @@ SpriteAtlas:
   - pengu_swim2
   - triangle
   - edge_shade
+  - penguSwimSilhouette
   - tutorialHandPoint
   - shield
   - pengu_swimIdle1

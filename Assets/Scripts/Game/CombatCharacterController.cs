@@ -117,8 +117,7 @@ public class CombatCharacterController : MonoBehaviour {
                             animator.Play(takeDeath);
                         break;
                     case Action.Victory:
-                        if(animator && !string.IsNullOrEmpty(takeVictory))
-                            animator.Play(takeVictory);
+                        mCurRout = StartCoroutine(DoVictory());
                         break;
                     case Action.Revive:
                         mCurRout = StartCoroutine(DoRevive());
@@ -218,5 +217,12 @@ public class CombatCharacterController : MonoBehaviour {
         hpCurrent = hpMax;
 
         action = Action.Idle;
+    }
+
+    IEnumerator DoVictory() {
+        if(animator && !string.IsNullOrEmpty(takeVictory))
+            yield return animator.PlayWait(takeVictory);
+
+        mCurRout = null;
     }
 }

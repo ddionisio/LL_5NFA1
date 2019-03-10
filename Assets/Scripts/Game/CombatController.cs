@@ -7,7 +7,6 @@ public class CombatController : GameModeController<CombatController> {
     public float playerHP;
     public float enemyHP;
     public float reviveEndDelay = 0.5f;
-    public float victoryStartDelay = 1f;
 
     [Header("Victory Flags")]
     public bool victoryRoundsEnabled = true;
@@ -125,7 +124,8 @@ public class CombatController : GameModeController<CombatController> {
         //player victory
         playerControl.action = CombatCharacterController.Action.Victory;
 
-        yield return new WaitForSeconds(victoryStartDelay);
+        while(playerControl.isBusy)
+            yield return null;
         
         var victoryInfo = new VictoryInfo();
 
