@@ -18,6 +18,10 @@ public class CombatAttackController : MonoBehaviour {
     public MixedNumberOpsWidget opsWidget;
     public CardDeckWidget deckWidget;
 
+    [Header("Damage Floater")]
+    public NumberFloaterWidget damageFloater;
+    public Transform damageFloaterAnchor;
+
     [Header("Animation")]
     public M8.Animator.Animate animator;
     [M8.Animator.TakeSelector(animatorField = "animator")]
@@ -205,11 +209,12 @@ public class CombatAttackController : MonoBehaviour {
             RefreshOperands();
 
             if(deckWidget) {
+                deckWidget.Clear();
+
                 deckWidget.Hide();
                 while(deckWidget.isBusy)
                     yield return null;
 
-                deckWidget.Clear();
                 deckWidget.gameObject.SetActive(false);
             }
             //
@@ -222,8 +227,8 @@ public class CombatAttackController : MonoBehaviour {
                 if(counterWidget) counterWidget.FillIncrement();
             }
 
-            //check if time expired, exception for attackIndex = 0
-            if(attackIndex > 0 && IsTimerExpired()) {
+            //check if time expired
+            if(IsTimerExpired()) {
                 break;
             }
         }
@@ -266,6 +271,9 @@ public class CombatAttackController : MonoBehaviour {
             mDefender.hpCurrent -= attackNum.fValue;
 
             //do fancy hit effect
+            if(damageFloater)
+                damageFloater.Play(damageFloaterAnchor.position, attackNum);
+
             yield return waitHit;
 
             if(mDefender.hpCurrent <= 0)

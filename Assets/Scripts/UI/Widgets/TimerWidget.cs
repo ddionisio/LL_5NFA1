@@ -35,7 +35,13 @@ public class TimerWidget : MonoBehaviour {
     public M8.Signal signalFinished;
 
     public float delay { get { return _delay; } set { _delay = value; } }
-    public float value { get { return mCurTime / _delay; } }
+    public float value {
+        get { return mCurTime / _delay; }
+        set {
+            var t = Mathf.Clamp01(value);
+            mCurTime = t * _delay;
+        }
+    }
     public bool isBusy { get { return mRout != null; } }
 
     private bool mIsActive = false;
