@@ -815,7 +815,7 @@
                 material.SetInt("_PreMultiplyAlpha", 1);
             }
             
-            if (IsUIComponent() && image.canvas.renderMode != RenderMode.WorldSpace)
+            if (IsUIComponent() && image && image.canvas && image.canvas.renderMode != RenderMode.WorldSpace)
                 material.SetFloat("_PixelSize", 1f / image.canvas.scaleFactor);
             else
                 material.SetFloat("_PixelSize", 0); // let the shader figure it out

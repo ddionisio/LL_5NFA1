@@ -262,6 +262,15 @@ public class CombatDefenseController : MonoBehaviour {
         mRout = null;
     }
 
+    //debug
+    public void ForceSubmit(MixedNumber number) {
+        if(!mIsAnswerSubmitted) {
+            mAnswerNumber = number;
+            mIsAnswerCorrect = true;
+            mIsAnswerSubmitted = true;
+        }
+    }
+
     void OnAnswerSubmit(bool correct) {
         if(!mIsAnswerSubmitted) {
             mAnswerNumber = opsWidget.answerInput.number;

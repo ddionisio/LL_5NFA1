@@ -165,7 +165,7 @@ public class MixedNumberWidget : MonoBehaviour {
         if(fractionRootGO) {
             if(num.numerator > 0 && num.denominator > 0)
                 fractionRootGO.SetActive(true);
-            else if(fractionHideIfZero && num.denominator > 0)
+            else if(fractionHideIfZero)
                 fractionRootGO.SetActive(false);
         }
     }

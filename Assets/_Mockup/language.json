@@ -18,6 +18,10 @@
     "submit": "SUBMIT",
     "victory": "VICTORY",
     "attack": "ATTACK",
-    "defend": "DEFEND"
+    "defend": "DEFEND",
+    "rounds": "ROUNDS",
+    "complete": "COMPLETE",
+    "revivePenalty": "REVIVE PENALTY",
+    "total": "TOTAL"
   }
 }

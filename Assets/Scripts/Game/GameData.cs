@@ -80,6 +80,8 @@ public class GameData : M8.SingletonScriptableObject<GameData> {
     }
 
     public void OpenVictory(VictoryInfo victoryInfo) {
+        M8.ModalManager.main.CloseAll();
+
         mVictoryParms[ModalVictory.parmVictoryInfo] = victoryInfo;
         M8.ModalManager.main.Open(victoryModal, mVictoryParms);
     }
