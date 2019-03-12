@@ -14,13 +14,15 @@ public class CombatCharacterController : MonoBehaviour {
         Hurt,
         Death,        
         Victory,
-        Revive
+        Revive,
+        Startle
     }
 
     [Header("Displays")]
     public HPWidget hpWidget;
     public GameObject defendActiveGO;
     public GameObject attackActiveGO;
+    public GameObject deadActiveGO;
     public float attackDelay;
 
     [Header("Animation")]
@@ -67,6 +69,9 @@ public class CombatCharacterController : MonoBehaviour {
         get { return mAction; }
         set {
             if(mAction != value) {
+                if(!Application.isPlaying)
+                    return;
+
                 Stop();
 
                 var prevAction = mAction;
@@ -78,6 +83,9 @@ public class CombatCharacterController : MonoBehaviour {
                         break;
                     case Action.Attack:
                         if(attackActiveGO) attackActiveGO.SetActive(false);
+                        break;
+                    case Action.Death:
+                        if(deadActiveGO) deadActiveGO.SetActive(false);
                         break;
                 }
 
@@ -113,6 +121,8 @@ public class CombatCharacterController : MonoBehaviour {
                             animator.Play(takeHurt);
                         break;
                     case Action.Death:
+                        if(deadActiveGO) deadActiveGO.SetActive(true);
+
                         if(animator && !string.IsNullOrEmpty(takeDeath))
                             animator.Play(takeDeath);
                         break;
@@ -121,7 +131,10 @@ public class CombatCharacterController : MonoBehaviour {
                         break;
                     case Action.Revive:
                         mCurRout = StartCoroutine(DoRevive());
-                        break;                    
+                        break;
+                    case Action.Startle:
+                        mCurRout = StartCoroutine(DoStartle());
+                        break;
                 }
             }
         }
@@ -133,9 +146,15 @@ public class CombatCharacterController : MonoBehaviour {
 
     private Action mAction;
 
+    //use for proxy
+    public void SetAction(Action toAction) {
+        action = toAction;
+    }
+
     public void Init(float aHPMax) {
         if(defendActiveGO) defendActiveGO.SetActive(false);
         if(attackActiveGO) attackActiveGO.SetActive(false);
+        if(deadActiveGO) deadActiveGO.SetActive(false);
 
         hpMax = aHPMax;
         mHPCurrent = aHPMax;
@@ -192,10 +211,7 @@ public class CombatCharacterController : MonoBehaviour {
         if(animator && !string.IsNullOrEmpty(takeAttackEnter))
             yield return animator.PlayWait(takeAttackEnter);
 
-        if(animator && !string.IsNullOrEmpty(takeAttack))
-            yield return animator.PlayWait(takeAttack);
-
-        mCurRout = null;
+        mCurRout = StartCoroutine(DoAttack());
     }
 
     IEnumerator DoAttackToIdle() {
@@ -211,6 +227,8 @@ public class CombatCharacterController : MonoBehaviour {
     IEnumerator DoRevive() {
         if(animator && !string.IsNullOrEmpty(takeRevive))
             yield return animator.PlayWait(takeRevive);
+        else
+            yield return null;
 
         mCurRout = null;
 
@@ -224,5 +242,16 @@ public class CombatCharacterController : MonoBehaviour {
             yield return animator.PlayWait(takeVictory);
 
         mCurRout = null;
+    }
+
+    IEnumerator DoStartle() {
+        if(animator && !string.IsNullOrEmpty(takeHurt))
+            yield return animator.PlayWait(takeHurt);
+        else
+            yield return null;
+
+        mCurRout = null;
+
+        action = Action.Idle;
     }
 }

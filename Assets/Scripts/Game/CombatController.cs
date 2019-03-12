@@ -104,8 +104,6 @@ public class CombatController : GameModeController<CombatController> {
 
                     playerControl.hpCurrent = playerControl.hpMax;
 
-                    playerControl.action = CombatCharacterController.Action.Idle;
-
                     yield return waitReviveEndDelay;
 
                     playerControl.hpWidget.Hide();
@@ -132,7 +130,7 @@ public class CombatController : GameModeController<CombatController> {
             victoryInfo.flags |= VictoryStatFlags.Attack;
         }
 
-        if(defenseControl) {
+        if(defenseControl && mDefenseAmount.fValue > 0f) {
             victoryInfo.defenseValue = mDefenseAmount;
             victoryInfo.flags |= VictoryStatFlags.Defense;
         }
