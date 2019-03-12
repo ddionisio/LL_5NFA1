@@ -84,16 +84,16 @@ MonoBehaviour:
   attackActiveGO: {fileID: 5288788806048408397}
   attackDelay: 1.5
   animator: {fileID: 9002140291355243914}
-  takeEnter: enter_land
-  takeAttackEnter: attack_enter_land
-  takeAttackExit: enter_land
-  takeIdle: idle_land
+  takeEnter: 
+  takeAttackEnter: 
+  takeAttackExit: 
+  takeIdle: 
   takeAttack: 
   takeDefend: 
   takeHurt: 
   takeDeath: 
   takeRevive: 
-  takeVictory: victory_level_2
+  takeVictory: 
 --- !u!114 &9002140291355243914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7177,6 +7177,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8256579765120787585, guid: 6db7106884b98714fb578212486297a1,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664312863530255820, guid: 6db7106884b98714fb578212486297a1,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db7106884b98714fb578212486297a1, type: 3}
