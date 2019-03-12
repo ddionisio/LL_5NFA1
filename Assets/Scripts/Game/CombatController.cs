@@ -104,13 +104,11 @@ public class CombatController : GameModeController<CombatController> {
 
                     playerControl.hpCurrent = playerControl.hpMax;
 
+                    playerControl.action = CombatCharacterController.Action.Idle;
+
                     yield return waitReviveEndDelay;
 
                     playerControl.hpWidget.Hide();
-                    while(playerControl.hpWidget.isBusy)
-                        yield return null;
-
-                    playerControl.action = CombatCharacterController.Action.Idle;
                 }
 
                 if(!attackControl) //only one round if no attack control
