@@ -191,11 +191,12 @@ public class CombatDefenseController : MonoBehaviour {
             signalAnswer.callback -= OnAnswerSubmit;
 
             if(deckWidget) {
+                deckWidget.Clear();
+
                 deckWidget.Hide();
                 while(deckWidget.isBusy)
                     yield return null;
 
-                deckWidget.Clear();
                 deckWidget.gameObject.SetActive(false);
             }
             //
