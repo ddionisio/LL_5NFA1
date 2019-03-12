@@ -7,6 +7,7 @@ public class CombatDefenseController : MonoBehaviour {
     public int opCount = 2;
     public float timerDelay = 90f;
     public float postDefenseDelay = 2f; //delay after defense is finished
+    public float postHurtDelay = 0.5f;
     public MixedNumberGroup[] attackNumberGroups; //pick one per round
     public MixedNumberGroup[] numberGroups;
     public bool attackAlignChoices; //if true, the attack index is used as index for number group
@@ -113,14 +114,6 @@ public class CombatDefenseController : MonoBehaviour {
     }
 
     IEnumerator DoPlay() {
-        //attack animation towards defender
-        mAttacker.action = CombatCharacterController.Action.Attack;
-        mDefender.action = CombatCharacterController.Action.Defend;
-
-        while(mAttacker.isBusy)
-            yield return null;
-        //
-
         if(animator) {
             animator.gameObject.SetActive(true);
 
@@ -135,6 +128,14 @@ public class CombatDefenseController : MonoBehaviour {
 
             animator.gameObject.SetActive(false);
         }
+
+        //attack animation towards defender
+        mAttacker.action = CombatCharacterController.Action.Attack;
+        mDefender.action = CombatCharacterController.Action.Defend;
+
+        while(mAttacker.isBusy)
+            yield return null;
+        //
 
         //show interfaces
         opsWidget.gameObject.SetActive(true);
@@ -239,10 +240,13 @@ public class CombatDefenseController : MonoBehaviour {
         if(fval > 0f) {
             mDefender.hpCurrent -= fval;
             mDefender.action = CombatCharacterController.Action.Hurt;
+
+            //fancy floaty number
+            yield return new WaitForSeconds(postHurtDelay);
         }
 
-        //fancy floaty number
-        yield return waitBrief;
+        //hide defender's hp
+        mDefender.hpWidget.Hide();
 
         mAttacker.action = CombatCharacterController.Action.Idle;
         while(mAttacker.isBusy)
@@ -255,10 +259,7 @@ public class CombatDefenseController : MonoBehaviour {
 
         if(postDefenseDelay > 0f)
             yield return new WaitForSeconds(postDefenseDelay);
-
-        //hide defender's hp
-        mDefender.hpWidget.Hide();
-
+                
         mRout = null;
     }
 
