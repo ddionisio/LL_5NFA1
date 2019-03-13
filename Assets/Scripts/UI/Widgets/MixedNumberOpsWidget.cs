@@ -44,7 +44,28 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         }
     }
 
+    public bool isShown { get { return activeGO ? activeGO.activeSelf : true; } }
+
     public bool isBusy { get { return mRout != null; } }
+
+    public bool answerLocked {
+        get { return mAnswerIsLocked || answerInput.isLocked; }
+        set {
+            if(mAnswerIsLocked != value) {
+                mAnswerIsLocked = value;
+
+                if(mAnswerIsLocked)
+                    answerInput.isLocked = true;
+                else {
+                    bool isValid = mOperation != null ? !mOperation.isAnyOperandEmpty : false;
+
+                    answerInput.isLocked = !isValid;
+                }
+            }
+        }
+    }
+
+    public event System.Action slotUpdateCallback;
 
     private M8.PoolController mPool;
 
@@ -53,6 +74,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     private M8.GenericParams mCardParms = new M8.GenericParams();
 
     private Coroutine mRout;
+    private bool mAnswerIsLocked = false;
 
     public void ApplyCurrentOperation() {
         operandSlots.Init();
@@ -234,6 +256,9 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         //reset input
         if(newResult != prevResult || newAnyEmpty != prevAnyEmpty)
             RefreshAnswerInput();
+
+        if(slotUpdateCallback != null)
+            slotUpdateCallback();
     }
 
     IEnumerator DoShow() {
@@ -278,6 +303,6 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         else
             answerInput.Init(false, false);
 
-        answerInput.isLocked = !isValid;
+        answerInput.isLocked = mAnswerIsLocked || !isValid;
     }
 }

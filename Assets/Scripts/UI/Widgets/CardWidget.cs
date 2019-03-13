@@ -50,6 +50,18 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
         }
     }
 
+    public MixedNumberVisualWidget fractionVisualWidget {
+        get {
+            if(!fractionVisualGO)
+                return null;
+
+            if(!mFractionVisualWidget)
+                mFractionVisualWidget = fractionVisualGO.GetComponent<MixedNumberVisualWidget>();
+
+            return mFractionVisualWidget;
+        }
+    }
+
     public bool canDragOutside { get; set; }
 
     public bool canDragInside {
@@ -94,6 +106,7 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     private Coroutine mRout;
 
     private CardDropWidgetBase mCurCardDropWidget;
+    private MixedNumberVisualWidget mFractionVisualWidget;
 
     public void MoveDragAnchorToOrigin() {
         StopRoutine();
