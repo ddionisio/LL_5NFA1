@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 8a2068735b45d0a46aeae72863618717, type: 3}
     - {fileID: 102900000, guid: 6024bbdb3d3da9545b796afa8d6ccdd1, type: 3}
     - {fileID: 102900000, guid: fe239e9ec6e213041acf0a892a06950c, type: 3}
-    totalSpriteSurfaceArea: 204001
+    totalSpriteSurfaceArea: 204337
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -103,6 +103,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 08a0274bcff998141b9e6ac11e380035, type: 3}
   - {fileID: 21300000, guid: 1c87455b1ea7ed04389d1172b22219c3, type: 3}
   - {fileID: 21300000, guid: a2bbdc0c4d9a88d40a0f1d356d9a1ecb, type: 3}
+  - {fileID: 21300000, guid: fcac813cfcdb8914683513a3874077ee, type: 3}
   - {fileID: 21300000, guid: 9d49a56c817d54d439ccdf584dfff4b1, type: 3}
   - {fileID: 21300000, guid: 1c63538c1e449394a84049ac965097f9, type: 3}
   - {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
@@ -170,6 +171,7 @@ SpriteAtlas:
   - bubblePengu
   - pengu_idle3
   - pengu_walk2
+  - tooth
   - pengu_idle0
   - cherub
   - pengu_swim0

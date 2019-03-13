@@ -17,6 +17,10 @@ public class CombatDefenseController : MonoBehaviour {
     public MixedNumberOpsWidget opsWidget;
     public CardDeckWidget deckWidget;
 
+    [Header("Damage Floater")]
+    public NumberFloaterWidget damageFloater;
+    public Transform damageFloaterAnchor;
+
     [Header("Animation")]
     public M8.Animator.Animate animator;
     [M8.Animator.TakeSelector(animatorField = "animator")]
@@ -241,6 +245,10 @@ public class CombatDefenseController : MonoBehaviour {
         if(fval > 0f) {
             mDefender.hpCurrent -= fval;
             mDefender.action = CombatCharacterController.Action.Hurt;
+
+            //do fancy hit effect
+            if(damageFloater)
+                damageFloater.Play(damageFloaterAnchor.position, mAnswerNumber);
 
             //fancy floaty number
             yield return new WaitForSeconds(postHurtDelay);
