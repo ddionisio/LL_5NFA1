@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116780238753553845}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07999992, y: 6.003, z: 0}
-  m_LocalScale: {x: 0, y: 1, z: 1}
+  m_LocalPosition: {x: -0.07999992, y: 5.841, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 52116691481732924}
   m_RootOrder: 0
@@ -68,12 +68,12 @@ SpriteRenderer:
   m_SortingLayerID: -1945962953
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 451d9ed8f515e4c43bc43901067b8178, type: 3}
-  m_Color: {r: 0.89019614, g: 0.50980395, b: 0.35686275, a: 0}
+  m_Sprite: {fileID: 21300000, guid: 99ac7114ec581074791736885d4ba03b, type: 3}
+  m_Color: {r: 1, g: 0.98823535, b: 0.73333335, a: 0.4}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 3.72, y: 12.197649}
+  m_Size: {x: 3.72, y: 12.521892}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -183,7 +183,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911704448006584623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 11.24, z: 0}
+  m_LocalPosition: {x: 0, y: 2.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 52116691481732924}
@@ -320,6 +320,7 @@ MonoBehaviour:
   hpWidget: {fileID: 3466645157136156008}
   defendActiveGO: {fileID: 8841602248377780505}
   attackActiveGO: {fileID: 5288788806048408397}
+  deadActiveGO: {fileID: 0}
   attackDelay: 1.5
   animator: {fileID: 9002140291355243914}
   takeEnter: 
@@ -14022,7 +14023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2018289951335718707
 Transform:
   m_ObjectHideFlags: 0

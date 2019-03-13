@@ -232,7 +232,7 @@ public class CombatCharacterController : MonoBehaviour {
 
         mCurRout = null;
 
-        hpCurrent = hpMax;
+        //hpCurrent = hpMax;
 
         action = Action.Idle;
     }
