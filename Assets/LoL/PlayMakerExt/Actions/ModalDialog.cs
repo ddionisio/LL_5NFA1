@@ -26,7 +26,7 @@ namespace HutongGames.PlayMaker.Actions.LoL {
             usePortrait = false;
             nameText = null;
             dialogTexts = null;
-            closeOnEnd = false;
+            closeOnEnd = true;
         }
 
         public override void OnEnter() {
@@ -43,6 +43,8 @@ namespace HutongGames.PlayMaker.Actions.LoL {
                 if(mCurIndex < dialogTexts.Length)
                     OpenDialog();
                 else {
+                    mIsNext = false;
+
                     if(closeOnEnd.Value) {
                         if(ModalManager.main.IsInStack(modal.Value))
                             ModalManager.main.CloseUpTo(modal.Value, true);
@@ -54,12 +56,12 @@ namespace HutongGames.PlayMaker.Actions.LoL {
         }
 
         void OpenDialog() {
-            string textRef = dialogTexts[mCurIndex].GetString();
+            string textRef = dialogTexts[mCurIndex].GetStringRef();
             if(!string.IsNullOrEmpty(textRef)) {
                 if(usePortrait.Value)
-                    ModalDialog.OpenApplyPortrait(modal.Value, portrait.Value as Sprite, nameText.GetString(), textRef, OnDialogNext);
+                    ModalDialog.OpenApplyPortrait(modal.Value, portrait.Value as Sprite, nameText.GetStringRef(), textRef, OnDialogNext);
                 else
-                    ModalDialog.Open(modal.Value, nameText.GetString(), textRef, OnDialogNext);
+                    ModalDialog.Open(modal.Value, nameText.GetStringRef(), textRef, OnDialogNext);
 
                 mIsNext = false;
             }

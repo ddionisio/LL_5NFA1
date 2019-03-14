@@ -131,6 +131,9 @@ public class ModalDialog : M8.ModalController, M8.IModalActive, M8.IModalPush, M
 
             StopTextProcess();
             textLabel.text = mTextDialog;
+
+            if(textProcessFinishGO) textProcessFinishGO.SetActive(true);
+
             return;
         }
 

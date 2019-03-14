@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 8a2068735b45d0a46aeae72863618717, type: 3}
     - {fileID: 102900000, guid: 6024bbdb3d3da9545b796afa8d6ccdd1, type: 3}
     - {fileID: 102900000, guid: fe239e9ec6e213041acf0a892a06950c, type: 3}
-    totalSpriteSurfaceArea: 197269
+    totalSpriteSurfaceArea: 219198
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -63,6 +63,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b35283f29bf5ddf4db0e0e7d274932b0, type: 3}
   - {fileID: 21300000, guid: 1abaebf232c3b9d409c5c9383ee84f5d, type: 3}
   - {fileID: 21300000, guid: c05e5e136fe7a084084e48c38b81b054, type: 3}
+  - {fileID: 21300000, guid: 18896b23a53ad474fa7f8ad8b716ffa3, type: 3}
   - {fileID: 21300000, guid: d4ce93735a9a87a4aac63d336c10c2a9, type: 3}
   - {fileID: 21300000, guid: e5dc777390553e4499a405c82af83aef, type: 3}
   - {fileID: 21300000, guid: 8a3c2b046cb7b1744a3c827fa7c3dd1a, type: 3}
@@ -71,6 +72,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d985b654a2dd4e54482f774cec3f7b9c, type: 3}
   - {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
   - {fileID: 21300000, guid: a9f07236c774e5444866653f76271f35, type: 3}
+  - {fileID: 21300000, guid: 0babfc46517c3214188b846ac6742f09, type: 3}
   - {fileID: 21300000, guid: 801c46b64a3867242ba3ae4436439905, type: 3}
   - {fileID: 21300000, guid: a3694ac6248fad949b3731055603d664, type: 3}
   - {fileID: 21300000, guid: 024d3d37b4dc5d9418f717c5bbcf071a, type: 3}
@@ -82,6 +84,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b5f1f248fc842084cb79fa132167e30b, type: 3}
   - {fileID: 21300000, guid: f664035810a66f14e8962883a079bc7c, type: 3}
   - {fileID: 21300000, guid: e1c60f78d0310374f83d5445c675e705, type: 3}
+  - {fileID: 21300000, guid: 252ec2d8a35ebf744a5c232d7f257a14, type: 3}
   - {fileID: 21300000, guid: 451d9ed8f515e4c43bc43901067b8178, type: 3}
   - {fileID: 21300014, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
   - {fileID: 21300010, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
@@ -103,6 +106,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3d9fe54b51dab3b488dbf4c265cf6f39, type: 3}
   - {fileID: 21300000, guid: 08a0274bcff998141b9e6ac11e380035, type: 3}
   - {fileID: 21300000, guid: 1c87455b1ea7ed04389d1172b22219c3, type: 3}
+  - {fileID: 21300000, guid: 84abcb5bfe0a64a49b844d13ec2f68f0, type: 3}
   - {fileID: 21300000, guid: a2bbdc0c4d9a88d40a0f1d356d9a1ecb, type: 3}
   - {fileID: 21300000, guid: fcac813cfcdb8914683513a3874077ee, type: 3}
   - {fileID: 21300000, guid: 9d49a56c817d54d439ccdf584dfff4b1, type: 3}
@@ -115,6 +119,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aa7c52adf7ae54e4a9c071bc0bd0c4ed, type: 3}
   - {fileID: 21300000, guid: 525dd05e79030fc428c3e0f3b5bf2815, type: 3}
   - {fileID: 21300000, guid: c5a54a7e88b59e547a8905c1ad93d892, type: 3}
+  - {fileID: 21300000, guid: 8fe3243f1eb853b48a14971ff4496cff, type: 3}
   - {fileID: 21300000, guid: 71be053f831cf7b4fbaab8a95b9b6638, type: 3}
   - {fileID: 21300000, guid: d100bf3fba8e48343b4f69fe5447d682, type: 3}
   - {fileID: 21300000, guid: 5e660daf84d52a04bae3e06dd631bb2b, type: 3}
@@ -133,6 +138,7 @@ SpriteAtlas:
   - counterBase
   - explodePixel2
   - roundRectGlow
+  - thinking1
   - pengu_swimIdle2
   - explodePixel4
   - portraitRobot_2
@@ -141,6 +147,7 @@ SpriteAtlas:
   - circleGlow
   - explodePixel5
   - erase
+  - thinking3
   - pengu_hurt0
   - scribble1
   - pengu_dead0
@@ -152,6 +159,7 @@ SpriteAtlas:
   - tutorialHandPointDown
   - bubbleSmall
   - pengu_walk0
+  - thinking0
   - beam
   - blank4x4_border2x
   - blank4x4_top
@@ -173,6 +181,7 @@ SpriteAtlas:
   - pengu_idle2
   - bubblePengu
   - pengu_idle3
+  - thinking2
   - pengu_walk2
   - tooth
   - pengu_idle0
@@ -185,6 +194,7 @@ SpriteAtlas:
   - pengu_swim2
   - triangle
   - edge_shade
+  - thinkingPanel
   - penguSwimSilhouette
   - tutorialHandPoint
   - shield

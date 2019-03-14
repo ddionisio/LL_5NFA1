@@ -27,8 +27,7 @@ public class OperationsIntroController : MonoBehaviour {
     }
 
     void Awake() {
-        opsWidget.operation = ops;
-        opsWidget.answerLocked = true; //unlock once denominator is equal
+        opsWidget.gameObject.SetActive(true);
         
         signalOpen.callback += OnSignalOpen;
         signalClose.callback += OnSignalClose;
@@ -44,7 +43,7 @@ public class OperationsIntroController : MonoBehaviour {
         if(!opsWidget.isShown)
             return;
 
-        if(opsWidget.operandSlots.slots.Length <= 1) //fail-safe
+        if(opsWidget.operation.operands.Length <= 1) //fail-safe
             return;
 
         if(opsWidget.operandSlots.slots[0].card == null) //fail-safe
@@ -52,7 +51,7 @@ public class OperationsIntroController : MonoBehaviour {
 
         int firstDenominator = opsWidget.operandSlots.slots[0].card.number.denominator;
 
-        for(int i = 1; i < opsWidget.operandSlots.slots.Length; i++) {
+        for(int i = 1; i < opsWidget.operation.operands.Length; i++) {
             var slot = opsWidget.operandSlots.slots[i];
             if(slot.card == null)
                 return;
@@ -63,11 +62,18 @@ public class OperationsIntroController : MonoBehaviour {
 
         mCheckDenominatorEqual = false;
 
+        opsWidget.answerLocked = false;
+
         if(signalDenominatorEqual)
             signalDenominatorEqual.Invoke();
     }
 
     void OnSignalOpen() {
+        opsWidget.operation = ops;
+        opsWidget.answerLocked = true; //unlock once denominator is equal
+
+        mCheckDenominatorEqual = true;
+
         opsWidget.Show();
     }
 
