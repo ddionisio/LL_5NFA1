@@ -22,16 +22,35 @@ public class CombatController : GameModeController<CombatController> {
     public CombatCharacterController playerControl;
     public CombatCharacterController enemyControl;
 
+    [Header("Signal Listens")]
+    public M8.Signal signalListenBegin; //if this is not null, wait for this signal before beginning fight
+
+    [Header("Signal Invokes")]
+    public M8.Signal signalReady; //called once contestants are in place
+
     private MixedNumber mAttackDamage = new MixedNumber(); //accumulation of damage
     private MixedNumber mDefenseAmount = new MixedNumber(); //accumulation of defense
     private int mRoundCount = 0;
     private int mReviveCount = 0;
+
+    private bool mIsBeginWait;
+
+    protected override void OnInstanceDeinit() {
+        if(signalListenBegin) signalListenBegin.callback -= OnSignalBegin;
+
+        base.OnInstanceDeinit();
+    }
 
     protected override void OnInstanceInit() {
         base.OnInstanceInit();
 
         playerControl.Init(playerHP);
         enemyControl.Init(enemyHP);
+
+        if(signalListenBegin) {
+            mIsBeginWait = true;
+            signalListenBegin.callback += OnSignalBegin;
+        }
     }
 
     protected override IEnumerator Start() {
@@ -43,7 +62,13 @@ public class CombatController : GameModeController<CombatController> {
 
         while(playerControl.isBusy || enemyControl.isBusy)
             yield return null;
+
+        if(signalReady) signalReady.Invoke();
         //
+
+        //wait for signal
+        while(mIsBeginWait)
+            yield return null;
 
         //show vs. animation
 
@@ -146,5 +171,9 @@ public class CombatController : GameModeController<CombatController> {
         }
 
         GameData.instance.OpenVictory(victoryInfo);
+    }
+
+    void OnSignalBegin() {
+        mIsBeginWait = false;
     }
 }

@@ -32,6 +32,8 @@
     "level_1_info_3": "Now it’s your turn! Use the multiplier to make both denominators equal.",
     "level_1_info_4": "Notice how both fractions now have the same unit sizes? They can now be added properly.",
     "level_1_info_5": "Go ahead and type in the correct answer by pressing on either slot!",
-    "success": "SUCCESS!"
+    "success": "SUCCESS!",
+    "card_drag_instruct": "Drag a card to an empty slot.",
+    "level_2_intro_1": "Hi"
   }
 }

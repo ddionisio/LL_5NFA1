@@ -34,6 +34,12 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     [Header("Signal Invokes")]
     public SignalBoolean signalAnswer; //true if correct
 
+    [Header("Drag Instruction")]
+    //drag instruct will be enabled until all slots are filled
+    public DragToGuideWidget dragInstruct; //if valid, drag instruction is enabled
+    public GameObject dragInstructDialogGO; //active druing drag instruct
+    public CardDeckWidget dragInstructCardDeckWidget; //where to find cards for drag instruct
+
     public MixedNumberOps operation {
         get { return mOperation; }
 
@@ -74,7 +80,11 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     private M8.GenericParams mCardParms = new M8.GenericParams();
 
     private Coroutine mRout;
+    private Coroutine mDragInstructRout;
     private bool mAnswerIsLocked = false;
+
+    private bool mDragInstructEnabled;
+    private bool mDragInstructSlotUpdated;
 
     public void ApplyCurrentOperation() {
         operandSlots.Init();
@@ -184,10 +194,10 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
         mRout = StartCoroutine(DoHide());
     }
-        
+    
     void OnDisable() {
         ClearRoutine();
-
+        
         operandSlots.Init();
 
         if(activeGO) activeGO.SetActive(false);
@@ -209,6 +219,12 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         operandSlots.updateCallback += OnSlotUpdated;
         
         if(activeGO) activeGO.SetActive(false);
+
+        if(dragInstruct) {
+            mDragInstructEnabled = true;
+        }
+
+        if(dragInstructDialogGO) dragInstructDialogGO.SetActive(false);
     }
 
     void OnInputSubmit() {
@@ -257,6 +273,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         if(newResult != prevResult || newAnyEmpty != prevAnyEmpty)
             RefreshAnswerInput();
 
+        mDragInstructSlotUpdated = true;
+
         if(slotUpdateCallback != null)
             slotUpdateCallback();
     }
@@ -266,6 +284,11 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
         if(animator && !string.IsNullOrEmpty(takeEnter))
             yield return animator.PlayWait(takeEnter);
+
+        //show drag instruct
+        if(mDragInstructEnabled) {
+            DragInstructStart();
+        }
         
         mRout = null;
     }
@@ -277,8 +300,70 @@ public class MixedNumberOpsWidget : MonoBehaviour {
             yield return animator.PlayWait(takeExit);
 
         if(activeGO) activeGO.SetActive(false);
+        
+        DragInstructEnd();
 
         mRout = null;
+    }
+
+    IEnumerator DoDragInstruct() {
+        while(mDragInstructEnabled) {
+            if(!dragInstructCardDeckWidget)
+                break;
+
+            if(dragInstructCardDeckWidget.cards == null) {
+                yield return null;
+                continue;
+            }
+
+            if(!dragInstruct)
+                break;
+
+            dragInstruct.Hide(); //allow for reposition
+
+            int opInd = -1;
+            int opCount = Mathf.Min(operandSlots.slots.Length, mOperation.operands.Length);
+            for(int i = 0; i < opCount; i++) {
+                var op = mOperation.operands[i];
+                if(op.isEmpty) {
+                    opInd = i;
+                    break;
+                }
+            }
+
+            if(opInd != -1) {
+                CardWidget card = null;
+                for(int i = 0; i < dragInstructCardDeckWidget.cards.Length; i++) {
+                    if(dragInstructCardDeckWidget.cards[i]) {
+                        card = dragInstructCardDeckWidget.cards[i];
+                        break;
+                    }
+                }
+
+                if(card) {
+                    Vector2 dragStart = card.transform.position;
+                    Vector2 dragEnd = operandSlots.slots[opInd].anchor.position;
+
+                    dragInstruct.Show(false, dragStart, dragEnd);
+                    if(dragInstructDialogGO) dragInstructDialogGO.SetActive(true);
+                }
+                else { //no card available
+                    if(dragInstructDialogGO) dragInstructDialogGO.SetActive(false);
+                }
+            }
+            else { //all operands filled
+                if(dragInstructDialogGO) dragInstructDialogGO.SetActive(false);
+            }
+
+            mDragInstructSlotUpdated = false;
+            while(!mDragInstructSlotUpdated)
+                yield return null;
+
+            yield return null;
+        }
+
+        mDragInstructRout = null;
+        DragInstructEnd();
     }
 
     private void ClearRoutine() {
@@ -304,5 +389,27 @@ public class MixedNumberOpsWidget : MonoBehaviour {
             answerInput.Init(false, false);
 
         answerInput.isLocked = mAnswerIsLocked || !isValid;
+    }
+
+    private void DragInstructStart() {
+        if(!mDragInstructEnabled)
+            return;
+
+        if(mDragInstructRout != null)
+            StopCoroutine(mDragInstructRout);
+
+        mDragInstructRout = StartCoroutine(DoDragInstruct());
+    }
+
+    private void DragInstructEnd() {
+        if(mDragInstructRout != null) {
+            StopCoroutine(mDragInstructRout);
+            mDragInstructRout = null;
+        }
+
+        if(dragInstruct) dragInstruct.Hide();
+        if(dragInstructDialogGO) dragInstructDialogGO.SetActive(false);
+
+        mDragInstructEnabled = false;
     }
 }
