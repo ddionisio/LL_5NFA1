@@ -24,7 +24,7 @@
     "revivePenalty": "REVIVE PENALTY",
     "total": "TOTAL",
     "level_1_intro_1": "A chasm impedes Pengu's journey.",
-    "level_1_intro_2": "Help Pengu out by determining the distance of the gap!",
+    "level_1_intro_2": "Help Pengu out by determining the distance of the gap using fractions!",
     "level_1_info_1": "In order to add these two fractions, you must make the denominators equal.",
     "level_1_info_2_a": "One way to do this is by multiplying the denominators together to make them equal.",
     "level_1_info_2_b": "Then multiply the numerators by the same amount from the denominator.",
@@ -34,6 +34,7 @@
     "level_1_info_5": "Go ahead and type in the correct answer by pressing on either slot!",
     "success": "SUCCESS!",
     "card_drag_instruct": "Drag a card to an empty slot.",
-    "level_2_intro_1": "Hi"
+    "level_2_intro_1": "Once again, an obstacle blocks Pengu's way. This time, an elephant seal!",
+    "level_2_intro_2": "Hit the seal with enough fractions to move it out of the way!"
   }
 }

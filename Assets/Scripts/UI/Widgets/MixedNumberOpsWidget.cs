@@ -244,6 +244,10 @@ public class MixedNumberOpsWidget : MonoBehaviour {
                 animator.Play(takeWrong);
         }
 
+        //end drag instruction
+        if(isCorrect)
+            DragInstructEnd();
+
         signalAnswer.Invoke(isCorrect);
     }
 
