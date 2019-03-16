@@ -30,6 +30,8 @@ public class DragToGuideWidget : MonoBehaviour {
         }
     }
 
+    public bool isActive { get { return displayRootGO ? displayRootGO.activeSelf : false; } }
+
     private Vector2 mDragStart;
     private Vector2 mDragEnd;
 
@@ -40,6 +42,8 @@ public class DragToGuideWidget : MonoBehaviour {
     /// start and end in UI space
     /// </summary>
     public void Show(bool pause, Vector2 start, Vector2 end) {
+        StopAllCoroutines();
+
         SetPause(pause);
 
         mDragStart = start;
