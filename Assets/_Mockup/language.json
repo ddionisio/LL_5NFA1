@@ -42,12 +42,14 @@
     "mixedNumber": "Mixed Number",
     "improperFraction": "Improper Fraction",
     "level_5_intro_1": "After an onerous battle, Pengu must catch a breath of fresh air.",
-    "level_5_intro_2": "Help Pengu swim towards the land by adding up the distances using fractions!",
+    "level_5_intro_2": "Help Pengu swim towards the land!",
     "level_5_info_1_a": "As you can see, there is a mixed number in this operation.",
     "level_5_info_1_b": "A mixed number is made up of a whole number, and a fraction.",
     "level_5_info_2_a": "To convert a mixed number to an improper fraction: multiply the whole number with the denominator of the fraction.",
     "level_5_info_2_b": "Afterwards, add the result to the numerator.",
-    "level_5_info_3_a": "You can drag the whole number towards the fraction, or vice-versa, to convert the number.",
-    "level_5_info_3_b": "Use this technique to help you out with tricky operations!"
+    "level_5_info_3_a": "You can drag the whole number towards the fraction, or vice-versa, to convert.",
+    "level_5_info_3_b": "Use this technique to help you out with tricky operations!",
+    "level_7_intro_1": "A boulder is blocking Pengu's path!",
+    "level_7_intro_2": "It is time to unleash the most potent of Pengu's fractional powers!"
   }
 }
