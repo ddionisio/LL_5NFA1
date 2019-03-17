@@ -19792,7 +19792,7 @@ MonoBehaviour:
   m_Spline:
     m_IsOpenEnded: 0
     m_ControlPoints:
-    - position: {x: -17.157885, y: -10.3932085, z: 0}
+    - position: {x: -17.101313, y: -10.3932085, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -19855,7 +19855,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 0
-    - position: {x: 19.099598, y: -10.518479, z: 0}
+    - position: {x: 18.873314, y: -10.518479, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -19908,10 +19908,11 @@ SpriteShapeRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Color: {r: 0.38431376, g: 0.21568629, b: 0.2392157, a: 1}
+  m_Color: {r: 0.6020826, g: 0.624246, b: 0.7735849, a: 1}
   m_MaskInteraction: 0
-  m_ShapeTexture: {fileID: 2800000, guid: d33ce2f9b2bc4c247a0c952c6061bfb0, type: 3}
+  m_ShapeTexture: {fileID: 2800000, guid: 59209136a2cb26243a19b95c65569a94, type: 3}
   m_Sprites:
+  - {fileID: 21300000, guid: 9c05a2d2ac8c1b9449b4b5cabc93ffcc, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -19921,8 +19922,8 @@ SpriteShapeRenderer:
   - {fileID: 0}
   - {fileID: 0}
   m_LocalAABB:
-    m_Center: {x: 0.93953705, y: -6.169634, z: 0}
-    m_Extent: {x: 18.16006, y: 4.3488455, z: 0}
+    m_Center: {x: 0.6365957, y: -6.159586, z: -0.0005}
+    m_Extent: {x: 18.88836, y: 4.3588934, z: 0.0005}
 --- !u!21 &1866162530
 Material:
   serializedVersion: 6

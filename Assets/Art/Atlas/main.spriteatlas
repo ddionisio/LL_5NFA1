@@ -47,7 +47,9 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 6024bbdb3d3da9545b796afa8d6ccdd1, type: 3}
     - {fileID: 102900000, guid: fe239e9ec6e213041acf0a892a06950c, type: 3}
     - {fileID: 102900000, guid: 45920816f7ad1bf4eacaea2f323d349d, type: 3}
-    totalSpriteSurfaceArea: 233026
+    - {fileID: 102900000, guid: ecfb520e4f8b05a49807420253215db2, type: 3}
+    - {fileID: 102900000, guid: 0e6518abe24588945b0cbabbef5c6c1c, type: 3}
+    totalSpriteSurfaceArea: 286764
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -62,6 +64,7 @@ SpriteAtlas:
   - {fileID: 21300002, guid: bf8c0222be72dfd48a68e5cf2a7ed5c1, type: 3}
   - {fileID: 21300000, guid: bf8c0222be72dfd48a68e5cf2a7ed5c1, type: 3}
   - {fileID: 21300000, guid: a690b5523a61432468351cb1791b8cee, type: 3}
+  - {fileID: 21300000, guid: 9c05a2d2ac8c1b9449b4b5cabc93ffcc, type: 3}
   - {fileID: 21300000, guid: b35283f29bf5ddf4db0e0e7d274932b0, type: 3}
   - {fileID: 21300000, guid: 1abaebf232c3b9d409c5c9383ee84f5d, type: 3}
   - {fileID: 21300000, guid: c05e5e136fe7a084084e48c38b81b054, type: 3}
@@ -70,6 +73,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e5dc777390553e4499a405c82af83aef, type: 3}
   - {fileID: 21300000, guid: 8a3c2b046cb7b1744a3c827fa7c3dd1a, type: 3}
   - {fileID: 21300000, guid: 99ac7114ec581074791736885d4ba03b, type: 3}
+  - {fileID: 21300000, guid: e7e16b14b5fd5a545b7ee2c8c6766278, type: 3}
   - {fileID: 21300000, guid: 44a2e43498084d140b46c5499e074241, type: 3}
   - {fileID: 21300000, guid: d985b654a2dd4e54482f774cec3f7b9c, type: 3}
   - {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
@@ -100,10 +104,12 @@ SpriteAtlas:
   - {fileID: 21300012, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
   - {fileID: 21300004, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
   - {fileID: 21300000, guid: 6d1768595c651c44aa2679d1311c4f56, type: 3}
+  - {fileID: 21300000, guid: 5e4eec59a02aabd4cb70c21a789e68ac, type: 3}
   - {fileID: 21300000, guid: 5276e969b5465db4b83e1a7c4ca5c5e1, type: 3}
   - {fileID: 21300000, guid: bb8a087995e8ab149b0f5c36c07f3d96, type: 3}
   - {fileID: 21300000, guid: 1936bac986127cb4bad904bfad92c266, type: 3}
   - {fileID: 21300002, guid: 1936bac986127cb4bad904bfad92c266, type: 3}
+  - {fileID: 21300000, guid: d8598bc920c01d14cad741af65fa744a, type: 3}
   - {fileID: 21300000, guid: 7168da6aea1c4154bbc52d54856e6639, type: 3}
   - {fileID: 21300000, guid: 8772079a36f0a47408cc78af64000e35, type: 3}
   - {fileID: 21300000, guid: c1f5fc9afb034f74aac8e0be2bdbc03e, type: 3}
@@ -121,9 +127,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: db98f34d771310247834585f1df31891, type: 3}
   - {fileID: 21300000, guid: c52e756dd31b7894b8393eced6eecbbb, type: 3}
   - {fileID: 21300000, guid: a703a17dd665cbc47b8e3ec98bb3bcab, type: 3}
+  - {fileID: 21300000, guid: c6a22e9df75601345a1798aa403e0507, type: 3}
   - {fileID: 21300000, guid: aa7c52adf7ae54e4a9c071bc0bd0c4ed, type: 3}
   - {fileID: 21300000, guid: 525dd05e79030fc428c3e0f3b5bf2815, type: 3}
   - {fileID: 21300000, guid: c5a54a7e88b59e547a8905c1ad93d892, type: 3}
+  - {fileID: 21300000, guid: 80849a7eece8a744d9d038b9bfca52a1, type: 3}
+  - {fileID: 21300000, guid: cad9aacec86ce2f4695bbbc0956b9538, type: 3}
   - {fileID: 21300000, guid: 5b5c890f6857c0046bdc0baef4257b74, type: 3}
   - {fileID: 21300000, guid: 8fe3243f1eb853b48a14971ff4496cff, type: 3}
   - {fileID: 21300000, guid: 71be053f831cf7b4fbaab8a95b9b6638, type: 3}
@@ -142,6 +151,7 @@ SpriteAtlas:
   - shadeWhite_bottomLeft
   - shadeWhite
   - attack
+  - tileArcticGround_top
   - counterBase
   - explodePixel2
   - roundRectGlow
@@ -150,6 +160,7 @@ SpriteAtlas:
   - explodePixel4
   - portraitRobot_2
   - ray
+  - tileBricksTop
   - explodePixel3
   - circleGlow
   - explodePixel5
@@ -180,10 +191,12 @@ SpriteAtlas:
   - blank4x4_left
   - blank4x4_topLeft
   - pengu_idle1
+  - treasureChestGlow
   - pengu_defend0
   - optionButton
   - shade
   - shade_bottom
+  - treasureChest_top
   - gradient8x8
   - scribble0
   - nextArrow
@@ -201,9 +214,12 @@ SpriteAtlas:
   - scribble2
   - pengu_walk1
   - triangleFancy
+  - tileGroundRockyTop
   - pengu_swim2
   - triangle
   - edge_shade
+  - treasureChest_bottom
+  - backgroundBorealMountain
   - cork
   - thinkingPanel
   - penguSwimSilhouette

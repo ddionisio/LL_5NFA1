@@ -1377,6 +1377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 463627587}
   - component: {fileID: 463627588}
+  - component: {fileID: 1513765386054636704}
   - component: {fileID: 2808530252074746542}
   - component: {fileID: 463627589}
   - component: {fileID: 8854574696170537910}
@@ -1422,6 +1423,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exclusive: 0
+--- !u!114 &1513765386054636704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463627586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a188f0ad3f8f10428be87ce486bcc82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2808530252074746542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1534,7 +1547,7 @@ MonoBehaviour:
   isGlobal: 0
   onDisableAction: 3
   updateType: 0
-  updateTimeIndependent: 0
+  updateTimeIndependent: 1
   serializeData:
     _audioTracks: []
     _audioKeys: []
