@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: clouds_2
+  m_Name: clouds_1_c
   m_Shader: {fileID: 4800000, guid: 128768bd3c1625c41a61d17c58e86538, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,8 +40,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: dc3b4c02dea29ec4f81b08e8ca7ce124, type: 3}
-        m_Scale: {x: 1.5, y: 1}
+        m_Texture: {fileID: 2800000, guid: a1b1e0e49a769e64e9e5d49b1d573fcb, type: 3}
+        m_Scale: {x: 2, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -72,9 +72,9 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - speedX: 0.035
+    - speedX: 0.065
     - speedY: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - colorMod1: {r: 0.5254902, g: 0.46274513, b: 0.5921569, a: 0.6431373}
+    - colorMod1: {r: 0.6862745, g: 0.654902, b: 0.7568628, a: 0.6431373}
