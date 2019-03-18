@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
 public class MixedNumberVisualWidget : MonoBehaviour {
-    public const int fractionMaxMult = 64;
+    public const int fractionMaxMult = 32;
     public const int fractionMaxRow = 25;
 
     [Header("Line")]

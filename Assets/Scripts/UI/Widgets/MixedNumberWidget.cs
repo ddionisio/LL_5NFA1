@@ -72,6 +72,11 @@ public class MixedNumberWidget : MonoBehaviour {
     private Coroutine mSwapRout;
     private bool mIsWholeEnabled = true;
 
+    public void ResetNumber() {
+        mNumber = new MixedNumber();
+        RefreshDisplay();
+    }
+
     /// <summary>
     /// Animate and convert whole of number to fraction
     /// </summary>

@@ -51,10 +51,11 @@ public class CombatCharacterController : MonoBehaviour {
     public float hpCurrent {
         get { return mHPCurrent; }
         set {
+            if(value < 0f)
+                value = 0f;
+
             if(mHPCurrent != value) {
                 mHPCurrent = value;
-                if(mHPCurrent < 0f)
-                    mHPCurrent = 0f;
 
                 hpWidget.UpdateValue(mHPCurrent);
             }

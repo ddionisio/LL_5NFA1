@@ -137,6 +137,8 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
 
         if(fractionVisualGO)
             fractionVisualGO.SetActive(false);
+
+        numberWidget.ResetNumber();
     }
 
     void M8.IPoolSpawn.OnSpawned(M8.GenericParams parms) {

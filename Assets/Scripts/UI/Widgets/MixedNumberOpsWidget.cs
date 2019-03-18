@@ -320,6 +320,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
                 continue;
             }
 
+            yield return new WaitForSeconds(0.5f);
+
             if(!dragInstruct)
                 break;
 

@@ -46,7 +46,7 @@ MonoBehaviour:
   victoryScore: 1000
   attackMultiplier: 100
   defenseMultiplier: 100
-  revivePenality: 100
-  roundPar: 5
-  roundBonus: 100
+  revivePenality: 200
+  roundPar: 4
+  roundBonus: 500
   victoryModal: victory

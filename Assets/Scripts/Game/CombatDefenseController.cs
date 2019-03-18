@@ -8,10 +8,11 @@ public class CombatDefenseController : MonoBehaviour {
     public float timerDelay = 90f;
     public float postDefenseDelay = 2f; //delay after defense is finished
     public float postHurtDelay = 0.5f;
-    public MixedNumberGroup[] attackNumberGroups; //pick one per round
-    public MixedNumberGroup[] numberGroups;
-    public bool attackAlignChoices; //if true, the attack index is used as index for number group
 
+    public MixedNumber[] attackNumbers; //number per round
+    public MixedNumber[] defendNumbers; //shuffle and grab numbers
+    public int defendCardCount = 3;
+    
     [Header("UI")]
     public TimerWidget timerWidget;
     public MixedNumberOpsWidget opsWidget;
@@ -42,17 +43,16 @@ public class CombatDefenseController : MonoBehaviour {
     private MixedNumber mDefenseNumber;
     private MixedNumberOps mOperations;
 
-    private int mCurAttackNumbersIndex = 0;
-    private int mCurNumbersIndex = 0;
+    private int mCurAttackNumberIndex = 0;
 
     private Coroutine mRout;
 
     private bool mIsAnswerSubmitted;
     private bool mIsAnswerCorrect;
     private MixedNumber mAnswerNumber;
-
-    private int mLastNumberIndex;
-
+    
+    private MixedNumber[] mDefendNumbers;
+    
     public void Init(CombatCharacterController attacker, CombatCharacterController defender) {
         //create empty subtract operation
         if(mOperations == null || mOperations.operands.Length != opCount) {
@@ -291,28 +291,52 @@ public class CombatDefenseController : MonoBehaviour {
     }
 
     private void FillSlots() {
-        int ind = attackAlignChoices ? mLastNumberIndex : mCurNumbersIndex;
+        if(mDefendNumbers == null)
+            mDefendNumbers = new MixedNumber[defendCardCount];
 
-        if(deckWidget) deckWidget.Fill(numberGroups[ind].GetNumbers());
+        M8.ArrayUtil.Shuffle(defendNumbers);
 
-        mCurNumbersIndex++;
-        if(mCurNumbersIndex == numberGroups.Length)
-            mCurNumbersIndex = 0;
+        int curCount = 0;
+
+        var attackNum = mOperations.operands[0].number;
+
+        for(int i = 0; i < defendNumbers.Length; i++) {
+            //grab number, make sure denominator doesn't match others
+            var num = defendNumbers[i];
+
+            if(num.denominator == attackNum.denominator)
+                continue;
+
+            bool isDenomMatch = false;
+            for(int j = 0; j < curCount; j++) {
+                if(num.denominator == mDefendNumbers[j].denominator) {
+                    isDenomMatch = true;
+                    break;
+                }
+            }
+
+            if(isDenomMatch)
+                continue;
+
+            mDefendNumbers[curCount] = num;
+
+            curCount++;
+            if(curCount == defendCardCount)
+                break;
+        }
+
+        if(deckWidget) deckWidget.Fill(mDefendNumbers);
     }
 
     private MixedNumber GetNumber() {
-        if(attackNumberGroups.Length == 0)
+        if(attackNumbers.Length == 0)
             return new MixedNumber();
 
-        var nums = attackNumberGroups[mCurAttackNumbersIndex].GetNumbers();
+        var num = attackNumbers[mCurAttackNumberIndex];
 
-        mLastNumberIndex = Random.Range(0, nums.Length);
-
-        var num = nums[mLastNumberIndex];
-
-        mCurAttackNumbersIndex++;
-        if(mCurAttackNumbersIndex == attackNumberGroups.Length)
-            mCurAttackNumbersIndex = 0;
+        mCurAttackNumberIndex++;
+        if(mCurAttackNumberIndex == attackNumbers.Length)
+            mCurAttackNumberIndex = 0;
 
         return num;
     }

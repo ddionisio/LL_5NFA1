@@ -10,6 +10,7 @@ public class CombatAttackController : MonoBehaviour {
     public float postAttackDelay = 2f; //delay after attack is finished
     public float hitPerDelay = 1f; //delay per hit subtracting hp
     public MixedNumberGroup[] fixedGroups; //fill operands with these numbers
+    public MixedNumber[] initialDeck; //fill deck the first time with these values
     public MixedNumberGroup[] numberGroups;    
 
     [Header("UI")]
@@ -51,6 +52,8 @@ public class CombatAttackController : MonoBehaviour {
     private bool mIsAnswerSubmitted;
     private bool mIsAnswerCorrect;
     private MixedNumber mAnswerNumber;
+
+    private bool mIsInitialDone;
 
     public void Init(CombatCharacterController attacker, CombatCharacterController defender) {
         if(mAttackNumbers == null || mAttackNumbers.Capacity != attackCount)
@@ -188,8 +191,13 @@ public class CombatAttackController : MonoBehaviour {
             //wait for correct answer, or time expired
             while(true) {
                 if(mIsAnswerSubmitted) {
-                    if(mIsAnswerCorrect)
+                    if(mIsAnswerCorrect) {
+                        mCurNumbersIndex++;
+                        if(mCurNumbersIndex == numberGroups.Length)
+                            mCurNumbersIndex = 0;
+
                         break;
+                    }
 
                     mIsAnswerSubmitted = false;
                 }
@@ -275,13 +283,12 @@ public class CombatAttackController : MonoBehaviour {
                 damageFloater.Play(damageFloaterAnchor.position, attackNum);
 
             yield return waitHit;
-
-            if(mDefender.hpCurrent <= 0)
-                break;
         }
 
         //return to idle, death for defender if hp = 0
         mAttacker.action = CombatCharacterController.Action.Idle;
+
+        yield return waitHit;
 
         //hide defender's hp
         mDefender.hpWidget.Hide();
@@ -319,11 +326,17 @@ public class CombatAttackController : MonoBehaviour {
     }
 
     private void FillSlots() {
-        if(deckWidget) deckWidget.Fill(numberGroups[mCurNumbersIndex].GetNumbers());
+        MixedNumber[] nums;
 
-        mCurNumbersIndex++;
-        if(mCurNumbersIndex == numberGroups.Length)
-            mCurNumbersIndex = 0;
+        if(!mIsInitialDone && initialDeck.Length > 0) {
+            mIsInitialDone = true;
+            nums = initialDeck;
+        }
+        else {
+            nums = numberGroups[mCurNumbersIndex].GetNumbers();
+        }
+
+        if(deckWidget) deckWidget.Fill(nums);
     }
 
     private void RefreshOperands() {

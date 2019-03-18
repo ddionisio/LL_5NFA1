@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class HPWidget : MonoBehaviour {
     [Header("Display")]
@@ -12,6 +13,7 @@ public class HPWidget : MonoBehaviour {
     public Image fillBackImage;
     public float fillBackStartDelay = 0.3f;
     public float fillBackDelay = 0.5f;
+    public UIGridRenderer fillGrid;
 
     [Header("Animation")]
     public M8.Animator.Animate animator;
@@ -39,6 +41,9 @@ public class HPWidget : MonoBehaviour {
 
         fillImage.fillAmount = 1.0f;
         fillBackImage.fillAmount = 1.0f;
+
+        if(fillGrid)
+            fillGrid.GridColumns = Mathf.RoundToInt(hpMax);
 
         if(activeGO) activeGO.SetActive(false);
     }
@@ -101,7 +106,7 @@ public class HPWidget : MonoBehaviour {
 
         while(true) {
             if(fillImage.fillAmount > fillBackImage.fillAmount)
-                fillImage.fillAmount = fillBackImage.fillAmount;
+                fillBackImage.fillAmount = fillImage.fillAmount;
             else if(fillImage.fillAmount < fillBackImage.fillAmount) {
                 var startFill = fillBackImage.fillAmount;
 
