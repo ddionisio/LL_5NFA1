@@ -49,7 +49,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 45920816f7ad1bf4eacaea2f323d349d, type: 3}
     - {fileID: 102900000, guid: ecfb520e4f8b05a49807420253215db2, type: 3}
     - {fileID: 102900000, guid: 0e6518abe24588945b0cbabbef5c6c1c, type: 3}
-    totalSpriteSurfaceArea: 286764
+    totalSpriteSurfaceArea: 304563
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -78,6 +78,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d985b654a2dd4e54482f774cec3f7b9c, type: 3}
   - {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
   - {fileID: 21300000, guid: 1b85440595195d546b12cb24e3fe617f, type: 3}
+  - {fileID: 21300000, guid: 5cdd4e7504b59424389d70443b8e187c, type: 3}
   - {fileID: 21300000, guid: 7a3f6785ea278ed4ea05d6861d08aff7, type: 3}
   - {fileID: 21300000, guid: a9f07236c774e5444866653f76271f35, type: 3}
   - {fileID: 21300000, guid: 0babfc46517c3214188b846ac6742f09, type: 3}
@@ -111,6 +112,7 @@ SpriteAtlas:
   - {fileID: 21300002, guid: 1936bac986127cb4bad904bfad92c266, type: 3}
   - {fileID: 21300000, guid: d8598bc920c01d14cad741af65fa744a, type: 3}
   - {fileID: 21300000, guid: 7168da6aea1c4154bbc52d54856e6639, type: 3}
+  - {fileID: 21300000, guid: 8fbff78af26973249a8a30dfb5173caa, type: 3}
   - {fileID: 21300000, guid: 8772079a36f0a47408cc78af64000e35, type: 3}
   - {fileID: 21300000, guid: c1f5fc9afb034f74aac8e0be2bdbc03e, type: 3}
   - {fileID: 21300000, guid: df668d0b6eafc76449b7ef2e24a9d0e2, type: 3}
@@ -165,6 +167,7 @@ SpriteAtlas:
   - circleGlow
   - explodePixel5
   - pengu_haduken1
+  - backgroundMarineCoast3
   - pengu_haduken0
   - erase
   - thinking3
@@ -198,6 +201,7 @@ SpriteAtlas:
   - shade_bottom
   - treasureChest_top
   - gradient8x8
+  - backgroundMarineCoast2
   - scribble0
   - nextArrow
   - circleGlowTiny
