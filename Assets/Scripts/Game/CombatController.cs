@@ -7,6 +7,7 @@ public class CombatController : GameModeController<CombatController> {
     public float playerHP;
     public float enemyHP;
     public float reviveEndDelay = 0.5f;
+    public M8.SceneAssetPath nextScene;
 
     [Header("Victory Flags")]
     public bool victoryRoundsEnabled = true;
@@ -149,6 +150,8 @@ public class CombatController : GameModeController<CombatController> {
             yield return null;
         
         var victoryInfo = new VictoryInfo();
+
+        victoryInfo.toScene = nextScene;
 
         if(attackControl && mAttackDamage.fValue > 0f) {
             victoryInfo.attackValue = mAttackDamage;

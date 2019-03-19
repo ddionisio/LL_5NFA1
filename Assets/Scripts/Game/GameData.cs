@@ -24,6 +24,7 @@ public struct VictoryInfo {
     public int reviveCount;
     [M8.EnumMask]
     public VictoryStatFlags flags;
+    public M8.SceneAssetPath toScene;
 }
 
 [CreateAssetMenu(fileName = "gameData", menuName = "Game/GameData")]
@@ -32,6 +33,10 @@ public class GameData : M8.SingletonScriptableObject<GameData> {
     public LevelData[] levels; //scene index is based on progress
     public M8.SceneAssetPath sceneLevelProgress; //scene to show progression
     public M8.SceneAssetPath sceneEnd; //ending
+
+    [Header("Game Data")]
+    public float attackDuration = 30f;
+    public float defendDuration = 30f;
 
     [Header("Score Info")]
     public int victoryScore = 1000;
@@ -90,12 +95,17 @@ public class GameData : M8.SingletonScriptableObject<GameData> {
     /// Load level based on current progress
     /// </summary>
     public void ProceedToLevelFromProgress() {
-        var levelData = GetLevelDataFromProgress();
-        if(levelData != null) {
-            levelData.scene.Load();
-        }
+        var curProgress = LoLManager.instance.curProgress;
+        if(curProgress >= levels.Length)
+            sceneEnd.Load();
         else {
-            Debug.LogWarning("Unable to get level data.");
+            var levelData = GetLevelDataFromProgress();
+            if(levelData != null) {
+                levelData.scene.Load();
+            }
+            else {
+                Debug.LogWarning("Unable to get level data.");
+            }
         }
     }
 }

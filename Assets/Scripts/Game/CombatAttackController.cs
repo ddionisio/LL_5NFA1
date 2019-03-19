@@ -6,7 +6,6 @@ public class CombatAttackController : MonoBehaviour {
     [Header("Data")]
     public int attackCount = 1;
     public int opCount = 2;
-    public float timerDelay = 10f;
     public float postAttackDelay = 2f; //delay after attack is finished
     public float hitPerDelay = 1f; //delay per hit subtracting hp
     public MixedNumberGroup[] fixedGroups; //fill operands with these numbers
@@ -95,7 +94,7 @@ public class CombatAttackController : MonoBehaviour {
 
         if(timerWidget) {
             timerWidget.SetActive(false);
-            timerWidget.delay = timerDelay;
+            timerWidget.delay = GameData.instance.attackDuration;
             timerWidget.ResetValue();
         }
 

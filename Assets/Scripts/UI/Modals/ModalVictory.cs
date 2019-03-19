@@ -48,6 +48,8 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.
 
     private bool mIsActivateShown;
 
+    private M8.SceneAssetPath mNextScene;
+
     public void Proceed() {
         Close();
 
@@ -58,10 +60,14 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.
         LoLManager.instance.ApplyProgress(curProgress + 1, curScore + mTotalScore);
         //
 
-        if(GameData.instance.IsCurrentSceneLast())
-            GameData.instance.sceneEnd.Load();
-        else
-            GameData.instance.sceneLevelProgress.Load();
+        if(mNextScene.isValid)
+            mNextScene.Load();
+        else {
+            if(GameData.instance.IsCurrentSceneLast())
+                GameData.instance.sceneEnd.Load();
+            else
+                GameData.instance.sceneLevelProgress.Load();
+        }
     }
 
     void M8.IModalActive.SetActive(bool aActive) {
@@ -81,6 +87,8 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.
         mActivateGOs.Clear();
 
         var inf = parms.GetValue<VictoryInfo>(parmVictoryInfo);
+
+        mNextScene = inf.toScene;
 
         int attackScore = Mathf.CeilToInt(inf.attackValue.fValue * GameData.instance.attackMultiplier);
         int defenseScore = Mathf.CeilToInt(inf.defenseValue.fValue * GameData.instance.defenseMultiplier);

@@ -4149,13 +4149,13 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: levelProgress
+          value: level2
         - useVariable: 0
           name: 
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: Assets/Scenes/levelProgress.unity
+          value: Assets/Scenes/level2.unity
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []

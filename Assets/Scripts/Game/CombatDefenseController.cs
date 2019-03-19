@@ -5,7 +5,6 @@ using UnityEngine;
 public class CombatDefenseController : MonoBehaviour {
     [Header("Data")]
     public int opCount = 2;
-    public float timerDelay = 90f;
     public float postDefenseDelay = 2f; //delay after defense is finished
     public float postHurtDelay = 0.5f;
 
@@ -79,7 +78,7 @@ public class CombatDefenseController : MonoBehaviour {
 
         if(timerWidget) {
             timerWidget.SetActive(false);
-            timerWidget.delay = timerDelay;
+            timerWidget.delay = GameData.instance.defendDuration;
             timerWidget.ResetValue();
         }
 

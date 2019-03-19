@@ -53,6 +53,10 @@
     "level_5_info_3_a": "You can drag the whole number towards the fraction, or vice-versa, to convert.",
     "level_5_info_3_b": "Use this technique to help you out with tricky operations!",
     "level_7_intro_1": "A boulder is blocking Pengu's path!",
-    "level_7_intro_2": "It is time to unleash the most potent of Pengu's fractional powers!"
+    "level_7_intro_2": "It is time to unleash the most potent of Pengu's fractional powers!",
+    "game_complete": "Congratulations! You have uncovered the treasure!",
+    "game_complete_desc": "Thank you for playing!",
+    "finish": "FINISH",
+    "total_score": "TOTAL SCORE:"
   }
 }

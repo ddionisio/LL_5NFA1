@@ -19,3 +19,7 @@ MonoBehaviour:
   languageExtraInfos:
   - key: welcome
     voiceDuration: 1.5
+  - key: game_complete
+    voiceDuration: 4
+  - key: game_complete_desc
+    voiceDuration: 3

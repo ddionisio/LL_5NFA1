@@ -49,7 +49,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 45920816f7ad1bf4eacaea2f323d349d, type: 3}
     - {fileID: 102900000, guid: ecfb520e4f8b05a49807420253215db2, type: 3}
     - {fileID: 102900000, guid: 0e6518abe24588945b0cbabbef5c6c1c, type: 3}
-    totalSpriteSurfaceArea: 333241
+    totalSpriteSurfaceArea: 336614
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -71,6 +71,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 18896b23a53ad474fa7f8ad8b716ffa3, type: 3}
   - {fileID: 21300000, guid: d4ce93735a9a87a4aac63d336c10c2a9, type: 3}
   - {fileID: 21300000, guid: e5dc777390553e4499a405c82af83aef, type: 3}
+  - {fileID: 21300000, guid: 176bba73097047e4db634e32fc3be2d8, type: 3}
   - {fileID: 21300000, guid: 8a3c2b046cb7b1744a3c827fa7c3dd1a, type: 3}
   - {fileID: 21300000, guid: 99ac7114ec581074791736885d4ba03b, type: 3}
   - {fileID: 21300000, guid: e7e16b14b5fd5a545b7ee2c8c6766278, type: 3}
@@ -142,6 +143,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8fe3243f1eb853b48a14971ff4496cff, type: 3}
   - {fileID: 21300000, guid: 71be053f831cf7b4fbaab8a95b9b6638, type: 3}
   - {fileID: 21300000, guid: d100bf3fba8e48343b4f69fe5447d682, type: 3}
+  - {fileID: 21300000, guid: d7cdfb4f342924d49980acf5dcc40d7e, type: 3}
   - {fileID: 21300000, guid: 5e660daf84d52a04bae3e06dd631bb2b, type: 3}
   - {fileID: 21300000, guid: 7df5c8ef0bc054b439174751d62b2814, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -163,6 +165,7 @@ SpriteAtlas:
   - thinking1
   - pengu_swimIdle2
   - explodePixel4
+  - treasureFishes
   - portraitRobot_2
   - ray
   - tileBricksTop
@@ -234,6 +237,7 @@ SpriteAtlas:
   - thinkingPanel
   - penguSwimSilhouette
   - tutorialHandPoint
+  - treasureFish
   - shield
   - pengu_swimIdle1
   m_Tag: main

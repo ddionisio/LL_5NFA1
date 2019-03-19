@@ -287,6 +287,7 @@ public class LoLManager : M8.SingletonBehaviour<LoLManager> {
     public virtual void ApplyProgress(int progress, int score) {
 
         mCurProgress = Mathf.Clamp(progress, 0, _progressMax);
+        mCurScore = score;
 
         LOLSDK.Instance.SubmitProgress(score, mCurProgress, _progressMax);
 
