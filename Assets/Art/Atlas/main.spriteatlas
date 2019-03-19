@@ -49,7 +49,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 45920816f7ad1bf4eacaea2f323d349d, type: 3}
     - {fileID: 102900000, guid: ecfb520e4f8b05a49807420253215db2, type: 3}
     - {fileID: 102900000, guid: 0e6518abe24588945b0cbabbef5c6c1c, type: 3}
-    totalSpriteSurfaceArea: 304563
+    totalSpriteSurfaceArea: 333241
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -120,6 +120,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 08a0274bcff998141b9e6ac11e380035, type: 3}
   - {fileID: 21300000, guid: 1c87455b1ea7ed04389d1172b22219c3, type: 3}
   - {fileID: 21300000, guid: 84abcb5bfe0a64a49b844d13ec2f68f0, type: 3}
+  - {fileID: 21300000, guid: d8c038ab1ea507a4e81b02a47b9b4061, type: 3}
   - {fileID: 21300000, guid: a2bbdc0c4d9a88d40a0f1d356d9a1ecb, type: 3}
   - {fileID: 21300000, guid: fcac813cfcdb8914683513a3874077ee, type: 3}
   - {fileID: 21300000, guid: 9d49a56c817d54d439ccdf584dfff4b1, type: 3}
@@ -131,9 +132,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a703a17dd665cbc47b8e3ec98bb3bcab, type: 3}
   - {fileID: 21300000, guid: c6a22e9df75601345a1798aa403e0507, type: 3}
   - {fileID: 21300000, guid: aa7c52adf7ae54e4a9c071bc0bd0c4ed, type: 3}
+  - {fileID: 21300000, guid: 7b6c55ad1ec60dd408c58cc14be3eb6e, type: 3}
   - {fileID: 21300000, guid: 525dd05e79030fc428c3e0f3b5bf2815, type: 3}
   - {fileID: 21300000, guid: c5a54a7e88b59e547a8905c1ad93d892, type: 3}
   - {fileID: 21300000, guid: 80849a7eece8a744d9d038b9bfca52a1, type: 3}
+  - {fileID: 21300000, guid: ff8110bec940bb147b2ec83cff1a77e4, type: 3}
   - {fileID: 21300000, guid: cad9aacec86ce2f4695bbbc0956b9538, type: 3}
   - {fileID: 21300000, guid: 5b5c890f6857c0046bdc0baef4257b74, type: 3}
   - {fileID: 21300000, guid: 8fe3243f1eb853b48a14971ff4496cff, type: 3}
@@ -209,6 +212,7 @@ SpriteAtlas:
   - bubblePengu
   - pengu_idle3
   - thinking2
+  - fish_hungry
   - pengu_walk2
   - tooth
   - pengu_idle0
@@ -220,9 +224,11 @@ SpriteAtlas:
   - triangleFancy
   - tileGroundRockyTop
   - pengu_swim2
+  - house
   - triangle
   - edge_shade
   - treasureChest_bottom
+  - house_pipe
   - backgroundBorealMountain
   - cork
   - thinkingPanel

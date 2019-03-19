@@ -7,7 +7,10 @@
   "en": {
     "welcome": "Welcome!",
     "test": "Test 123 123",
-    "title": "Pengu and the Unlikely Encounters",
+    "title": "Pengu\n<size=30>and the</size>\nUnlikely Encounters",
+    "play": "PLAY",
+    "credits": "CREDITS",
+    "credits_desc": "Written by: David Dionisio\nMusic from: Kevin Macleod",
     "options": "OPTIONS",
     "sound": "SOUND",
     "music": "MUSIC",
