@@ -228,12 +228,12 @@ MonoBehaviour:
     numLoop: 1
     loopMode: 0
     loopBackToFrame: 0
-    trackCounter: 16
+    trackCounter: 18
     groupCounter: 0
     rootGroup:
       group_name: 
       group_id: 0
-      elements: 02000000030000000400000005000000060000000700000008000000090000000a0000000b0000000f000000100000000e000000
+      elements: 02000000030000000400000005000000060000000700000008000000090000000a0000000b0000000f000000100000000e0000001100000012000000
       foldout: 1
     groupValues: []
   _defaultTakeName: 
@@ -257,6 +257,18 @@ MonoBehaviour:
       _targetPath: 
       obj: {fileID: 1820709493}
       componentName: Animate
+    - id: 17
+      name: Track14
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 912424041}
+      componentName: SoundPlaylistProxy
+    - id: 18
+      name: Track15
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 439412528}
+      componentName: SoundPlaylistProxy
     _eventKeys:
     - version: 0
       interp: 0
@@ -275,6 +287,26 @@ MonoBehaviour:
         val_obj: {fileID: 0}
         val_typeAssembly: 
         lsArray: []
+      methodName: Play
+    - version: 0
+      interp: 0
+      frame: 45
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      useSendMessage: 0
+      parameters: []
+      methodName: Play
+    - version: 0
+      interp: 0
+      frame: 70
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      useSendMessage: 0
+      parameters: []
       methodName: Play
     _goSetActiveTracks:
     - id: 15
@@ -1029,7 +1061,13 @@ MonoBehaviour:
     - type: 4
       index: 1
       keyIndices: 02000000
-    _takeTrackCounts: 0d000000
+    - type: 3
+      index: 1
+      keyIndices: 01000000
+    - type: 3
+      index: 2
+      keyIndices: 02000000
+    _takeTrackCounts: 0f000000
 --- !u!4 &39151692
 Transform:
   m_ObjectHideFlags: 0
@@ -1040,7 +1078,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 912424042}
+  - {fileID: 439412529}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6770,6 +6810,51 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &439412527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439412529}
+  - component: {fileID: 439412528}
+  m_Layer: 0
+  m_Name: audioTreasure
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &439412528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439412527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: achieve
+  mode: 0
+--- !u!4 &439412529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439412527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 39151692}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &540012665
 GameObject:
   m_ObjectHideFlags: 0
@@ -7209,7 +7294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740625935}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01000002, y: 0.09000003, z: 0}
+  m_LocalPosition: {x: 0.010000035, y: 0.09000003, z: 0}
   m_LocalScale: {x: 1.67, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1860167627}
@@ -12040,6 +12125,51 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &912424040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 912424042}
+  - component: {fileID: 912424041}
+  m_Layer: 0
+  m_Name: audioHit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &912424041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912424040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: hit
+  mode: 0
+--- !u!4 &912424042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912424040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 39151692}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &986213022
 GameObject:
   m_ObjectHideFlags: 0

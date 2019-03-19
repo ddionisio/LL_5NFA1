@@ -1307,6 +1307,7 @@ MonoBehaviour:
   mixedNumberSplit: 0.5
   numberWidget: {fileID: 1009670505626939709}
   fractionVisualGO: {fileID: 171592851701493569}
+  audioFractionSwap: boop
   dragRoot: {fileID: 5009156675770337249}
   dragReturnDelay: 0.3
   dragReturnEase: 3
@@ -2593,6 +2594,7 @@ GameObject:
   - component: {fileID: 6263825230043921514}
   - component: {fileID: 3552261739877215984}
   - component: {fileID: 6131856068478465315}
+  - component: {fileID: 2501674707969803104}
   m_Layer: 5
   m_Name: multPrevButton
   m_TagString: Untagged
@@ -2682,9 +2684,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1004192471843474442}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2501674707969803104}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &2501674707969803104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5832931325214780112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: click
+  mode: 0
 --- !u!1 &6439412313576881825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3391,6 +3418,7 @@ GameObject:
   - component: {fileID: 5962047854016639713}
   - component: {fileID: 2973953324561579679}
   - component: {fileID: 7931114673777992413}
+  - component: {fileID: 5512802378394148289}
   m_Layer: 5
   m_Name: multNextButton
   m_TagString: Untagged
@@ -3480,9 +3508,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6602359823312004127}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5512802378394148289}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &5512802378394148289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179813250980884654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: click
+  mode: 0
 --- !u!1 &8513137110739373310
 GameObject:
   m_ObjectHideFlags: 0
@@ -3647,7 +3700,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0000076293945, y: -0.0000038146973}
-  m_SizeDelta: {x: 40, y: 32}
+  m_SizeDelta: {x: 50, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6216551546059926537
 CanvasRenderer:
@@ -3681,16 +3734,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 9c6a166d7c725464fa706b520e0ee024, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_BestFit: 1
+    m_MinSize: 18
+    m_MaxSize: 24
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: x99
+  m_Text: 99x99
 --- !u!114 &5788000407485152578
 MonoBehaviour:
   m_ObjectHideFlags: 0

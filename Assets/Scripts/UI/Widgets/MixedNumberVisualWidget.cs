@@ -63,13 +63,13 @@ public class MixedNumberVisualWidget : MonoBehaviour {
             wholeGO.SetActive(false);
         }
 
-        //mult
-        multText.text = "x" + mMultCount.ToString();
-                
-        //fraction
         mNumerator = mixedNumberWidget.number.numerator / mMultCount;
         mDenominator = mixedNumberWidget.number.denominator / mMultCount;
 
+        //mult
+        multText.text = string.Format("{0}x{1}", mDenominator, mMultCount); //mDenominator.ToString() + "x" + mMultCount.ToString();
+                
+        //fraction
         float fNumerator;
         float fDenominator = mDenominator;
 

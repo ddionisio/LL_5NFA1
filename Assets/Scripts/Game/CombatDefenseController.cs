@@ -29,6 +29,12 @@ public class CombatDefenseController : MonoBehaviour {
     public string takeExit = "exit";
     public float readyDelay = 1.5f;
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string audioHit = "hit";
+    [M8.SoundPlaylist]
+    public string audioDeath = "death";
+
     [Header("Signal")]
     public SignalBoolean signalAnswer;
 
@@ -231,19 +237,21 @@ public class CombatDefenseController : MonoBehaviour {
         opsWidget.gameObject.SetActive(false);
         //
 
-        //show defender's hp
-        mDefender.hpWidget.Show();
-        while(mDefender.hpWidget.isBusy)
-            yield return null;
-
         //hurt defender based on final answer
         var fval = mAnswerNumber.fValue;
         if(fval < 0f)
             fval = 0f;
 
         if(fval > 0f) {
+            //show defender's hp
+            mDefender.hpWidget.Show();
+            while(mDefender.hpWidget.isBusy)
+                yield return null;
+
             mDefender.hpCurrent -= fval;
             mDefender.action = CombatCharacterController.Action.Hurt;
+
+            M8.SoundPlaylist.instance.Play(audioHit, false);
 
             //do fancy hit effect
             if(damageFloater)
@@ -251,10 +259,10 @@ public class CombatDefenseController : MonoBehaviour {
 
             //fancy floaty number
             yield return new WaitForSeconds(postHurtDelay);
-        }
 
-        //hide defender's hp
-        mDefender.hpWidget.Hide();
+            //hide defender's hp
+            mDefender.hpWidget.Hide();
+        }
 
         mAttacker.action = CombatCharacterController.Action.Idle;
         while(mAttacker.isBusy)
@@ -262,8 +270,11 @@ public class CombatDefenseController : MonoBehaviour {
 
         if(mDefender.hpCurrent > 0f)
             mDefender.action = CombatCharacterController.Action.Idle;
-        else
+        else {
+            M8.SoundPlaylist.instance.Play(audioDeath, false);
+
             mDefender.action = CombatCharacterController.Action.Death;
+        }
 
         if(postDefenseDelay > 0f)
             yield return new WaitForSeconds(postDefenseDelay);

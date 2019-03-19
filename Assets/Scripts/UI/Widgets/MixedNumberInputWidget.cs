@@ -121,7 +121,7 @@ public class MixedNumberInputWidget : MonoBehaviour {
     }
 
     public void ClickSubmit() {
-        CloseNumpad();
+        //CloseNumpad();
 
         if(submitCallback != null)
             submitCallback();

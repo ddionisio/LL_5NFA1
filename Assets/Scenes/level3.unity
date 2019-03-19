@@ -376,6 +376,7 @@ Transform:
   - {fileID: 1347364798}
   - {fileID: 587073126}
   - {fileID: 411061039}
+  - {fileID: 587748842}
   m_Father: {fileID: 1936995824}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -415,12 +416,12 @@ MonoBehaviour:
     numLoop: 1
     loopMode: 0
     loopBackToFrame: 0
-    trackCounter: 7
+    trackCounter: 8
     groupCounter: 0
     rootGroup:
       group_name: 
       group_id: 0
-      elements: 020000000300000004000000050000000600000007000000
+      elements: 02000000030000000400000005000000060000000700000008000000
       foldout: 1
     groupValues: []
   - name: blow
@@ -443,12 +444,12 @@ MonoBehaviour:
     numLoop: 1
     loopMode: 0
     loopBackToFrame: 0
-    trackCounter: 11
+    trackCounter: 12
     groupCounter: 0
     rootGroup:
       group_name: Group0
       group_id: 0
-      elements: 020000000300000004000000050000000700000008000000090000000a0000000b000000
+      elements: 020000000300000004000000050000000700000008000000090000000a0000000b0000000c000000
       foldout: 1
     groupValues: []
   _defaultTakeName: 
@@ -472,12 +473,24 @@ MonoBehaviour:
       _targetPath: 
       obj: {fileID: 587073127}
       componentName: CameraShakeControl
+    - id: 8
+      name: Track7
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 587748843}
+      componentName: SoundPlaylistProxy
     - id: 6
       name: Track4
       foldout: 1
       _targetPath: 
       obj: {fileID: 1724971195}
       componentName: ParticleSystem
+    - id: 12
+      name: Track10
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 587748843}
+      componentName: SoundPlaylistProxy
     _eventKeys:
     - version: 0
       interp: 0
@@ -491,7 +504,27 @@ MonoBehaviour:
       methodName: Shake
     - version: 0
       interp: 0
+      frame: 5
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      useSendMessage: 0
+      parameters: []
+      methodName: Play
+    - version: 0
+      interp: 0
       frame: 1
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      useSendMessage: 0
+      parameters: []
+      methodName: Play
+    - version: 0
+      interp: 0
+      frame: 15
       easeType: 1
       amplitude: 0
       period: 0
@@ -1254,6 +1287,9 @@ MonoBehaviour:
     - type: 11
       index: 0
       keyIndices: 00000000
+    - type: 3
+      index: 1
+      keyIndices: 01000000
     - type: 11
       index: 1
       keyIndices: 010000000200000003000000
@@ -1264,8 +1300,8 @@ MonoBehaviour:
       index: 2
       keyIndices: 03000000
     - type: 3
-      index: 1
-      keyIndices: 01000000
+      index: 2
+      keyIndices: 02000000
     - type: 7
       index: 2
       keyIndices: 040000000500000006000000070000000800000009000000
@@ -1293,7 +1329,10 @@ MonoBehaviour:
     - type: 9
       index: 0
       keyIndices: 000000000100000002000000030000000400000005000000
-    _takeTrackCounts: 060000000400000009000000
+    - type: 3
+      index: 3
+      keyIndices: 03000000
+    _takeTrackCounts: 07000000040000000a000000
 --- !u!1 &376265821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2593,6 +2632,51 @@ MonoBehaviour:
   vibrate: 10
   randomness: 90
   fadeOut: 1
+--- !u!1 &587748841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 587748842}
+  - component: {fileID: 587748843}
+  m_Layer: 0
+  m_Name: audioBoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &587748842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587748841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 258552845}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &587748843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587748841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: boom
+  mode: 0
 --- !u!1001 &604840013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8792,7 +8876,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Blow
+        toState: Yeti Grunt
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -8947,8 +9031,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 234
-        y: 374
+        x: 224
+        y: 428
         width: 100
         height: 32
       isBreakpoint: 0
@@ -9508,6 +9592,87 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 0000000000000000010000000000000001000000
         paramByteDataSize: 0000000000000000000000000100000001000000
+    - name: Yeti Grunt
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 231
+        y: 371
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Blow
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.M8.SoundPlaylistPlay
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 7f104f04
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: grunt
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - 
+        byteData: 00000000
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 02000000
+        customTypeNames:
+        - HutongGames.PlayMaker.Actions.M8.FsmSoundPlaylistName
+        paramDataType: 2800000007000000120000001100000017000000
+        paramName:
+        - sound
+        - from
+        - stringRef
+        - wait
+        - waitEndEvent
+        paramDataPos: 0000000000000000000000000000000000000000
+        paramByteDataSize: 0000000004000000000000000000000000000000
     events:
     - name: FINISHED
       isSystemEvent: 1

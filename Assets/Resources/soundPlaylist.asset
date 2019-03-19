@@ -14,7 +14,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: click
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5f579e9411b552747bb561b9883dcc3c, type: 3}
+    spatialBlend: 0
+  - name: correct
+    clip: {fileID: 8300000, guid: 45d701a2744bf924d90ce764028605d2, type: 3}
+    spatialBlend: 0
+  - name: wrong
+    clip: {fileID: 8300000, guid: 8f004321e74471b41ab8fcc894775900, type: 3}
+    spatialBlend: 0
+  - name: achieve
+    clip: {fileID: 8300000, guid: f66ae4a77350b0d4387863e7bf86738b, type: 3}
+    spatialBlend: 0
+  - name: boop
+    clip: {fileID: 8300000, guid: cad5fa3e6c26a944486bb528b465f374, type: 3}
+    spatialBlend: 0
+  - name: death
+    clip: {fileID: 8300000, guid: def3abc69cafdd64bb3fdd2dc5642232, type: 3}
+    spatialBlend: 0
+  - name: paletteOpen
+    clip: {fileID: 8300000, guid: cac0c56c0cb90fc42bc17d3b589ac1ef, type: 3}
+    spatialBlend: 0
+  - name: paletteClose
+    clip: {fileID: 8300000, guid: 47c256ea65dff75489ada61925c20702, type: 3}
+    spatialBlend: 0
+  - name: jump
+    clip: {fileID: 8300000, guid: ce7dd7275f66d4f41804952fe89507ef, type: 3}
+    spatialBlend: 0
+  - name: bang
+    clip: {fileID: 8300000, guid: 890e190f87b5ed74b9031baae71a125c, type: 3}
+    spatialBlend: 0
+  - name: hit
+    clip: {fileID: 8300000, guid: e5981af471edc164b9eb22aa18aecb37, type: 3}
+    spatialBlend: 0
+  - name: drain
+    clip: {fileID: 8300000, guid: 14271af02ff60b74b91fbcd43ac60894, type: 3}
+    spatialBlend: 0
+  - name: swish
+    clip: {fileID: 8300000, guid: 4e2cfc9d7019cc941b77211ea4495a8a, type: 3}
+    spatialBlend: 0
+  - name: droplet
+    clip: {fileID: 8300000, guid: 9860f8753816356459022479c245c0ec, type: 3}
+    spatialBlend: 0
+  - name: revive
+    clip: {fileID: 8300000, guid: f92f35e5d5fa6d043bf3d2f5e7d65932, type: 3}
+    spatialBlend: 0
+  - name: energyBlastReady
+    clip: {fileID: 8300000, guid: b50d2618390a3e946825f89ed61d2fef, type: 3}
+    spatialBlend: 0
+  - name: energyBlast
+    clip: {fileID: 8300000, guid: 9bf560bc81fc1104e82ed471372d446c, type: 3}
+    spatialBlend: 0
+  - name: boom
+    clip: {fileID: 8300000, guid: ce28cfb0354703546811c374e436b8f8, type: 3}
+    spatialBlend: 0
+  - name: grunt
+    clip: {fileID: 8300000, guid: ddf4db587b9e1024c82a974e06d6c9ce, type: 3}
     spatialBlend: 0
   max: 32
   audioMixer: {fileID: 0}

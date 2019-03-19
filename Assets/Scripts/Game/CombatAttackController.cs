@@ -30,6 +30,12 @@ public class CombatAttackController : MonoBehaviour {
     public string takeExit = "exit";
     public float readyDelay = 1.5f;
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string audioHit = "hit";
+    [M8.SoundPlaylist]
+    public string audioDeath = "death";
+
     [Header("Signal")]
     public SignalBoolean signalAnswer;
 
@@ -277,6 +283,8 @@ public class CombatAttackController : MonoBehaviour {
 
             mDefender.hpCurrent -= attackNum.fValue;
 
+            M8.SoundPlaylist.instance.Play(audioHit, false);
+
             //do fancy hit effect
             if(damageFloater)
                 damageFloater.Play(damageFloaterAnchor.position, attackNum);
@@ -293,9 +301,12 @@ public class CombatAttackController : MonoBehaviour {
         mDefender.hpWidget.Hide();
 
         if(mDefender.hpCurrent > 0f)
-            mDefender.action = CombatCharacterController.Action.Idle;        
-        else
+            mDefender.action = CombatCharacterController.Action.Idle;
+        else {
+            M8.SoundPlaylist.instance.Play(audioDeath, false);
+
             mDefender.action = CombatCharacterController.Action.Death;
+        }
 
         while(mAttacker.isBusy || mDefender.isBusy)
             yield return null;

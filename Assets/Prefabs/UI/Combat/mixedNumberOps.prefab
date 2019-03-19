@@ -1600,6 +1600,7 @@ GameObject:
   - component: {fileID: 2498994885890208313}
   - component: {fileID: 2498994885890208314}
   - component: {fileID: 5881516267876641506}
+  - component: {fileID: 8079330778351469096}
   m_Layer: 5
   m_Name: whole
   m_TagString: Untagged
@@ -1678,6 +1679,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8079330778351469096}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &5881516267876641506
@@ -1693,6 +1705,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 9058303586774514902}
+--- !u!114 &8079330778351469096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498994885890208315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: click
+  mode: 0
 --- !u!1 &2498994886040684169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,7 +2024,12 @@ MonoBehaviour:
   takeEnter: enter
   takeExit: exit
   takeWrong: error
+  audioCorrect: correct
+  audioWrong: wrong
   signalAnswer: {fileID: 11400000, guid: af7eadcdb8f7a654ca68735a72f9f180, type: 2}
+  dragInstruct: {fileID: 0}
+  dragInstructDialogGO: {fileID: 0}
+  dragInstructCardDeckWidget: {fileID: 0}
 --- !u!225 &3397064627502694928
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2366,6 +2397,7 @@ GameObject:
   - component: {fileID: 2498994886438753867}
   - component: {fileID: 2498994886438753868}
   - component: {fileID: 2146767412986194567}
+  - component: {fileID: 5261303172542999384}
   m_Layer: 5
   m_Name: denominator
   m_TagString: Untagged
@@ -2444,6 +2476,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5261303172542999384}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2146767412986194567
@@ -2459,6 +2502,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8794447292852395037}
+--- !u!114 &5261303172542999384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498994886438753870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: click
+  mode: 0
 --- !u!1 &2498994886604671935
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,6 +2788,7 @@ GameObject:
   - component: {fileID: 2498994886836596781}
   - component: {fileID: 2498994886836596782}
   - component: {fileID: 7842096789362161411}
+  - component: {fileID: 5643497804523829383}
   m_Layer: 5
   m_Name: numerator
   m_TagString: Untagged
@@ -2809,6 +2867,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5643497804523829383}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &7842096789362161411
@@ -2824,6 +2893,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4789059946604164735}
+--- !u!114 &5643497804523829383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498994886836596784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: click
+  mode: 0
 --- !u!1 &3272403377360200080
 GameObject:
   m_ObjectHideFlags: 0

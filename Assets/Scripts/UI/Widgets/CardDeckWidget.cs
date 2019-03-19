@@ -26,7 +26,13 @@ public class CardDeckWidget : CardDropWidgetBase {
     public string takeShow;
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeHide;
-        
+
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string audioShow;
+    [M8.SoundPlaylist]
+    public string audioHide;
+
     public CardWidget[] cards { get; private set; }
 
     public int count { get; private set; }
@@ -48,11 +54,16 @@ public class CardDeckWidget : CardDropWidgetBase {
 
         if(rootGO) rootGO.SetActive(true);
 
+        M8.SoundPlaylist.instance.Play(audioShow, false);
+
         mRout = StartCoroutine(DoShow());
     }
 
     public void Hide() {
         Stop();
+
+        M8.SoundPlaylist.instance.Play(audioHide, false);
+
         mRout = StartCoroutine(DoHide());
     }
 

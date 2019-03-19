@@ -31,6 +31,12 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeWrong;
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string audioCorrect;
+    [M8.SoundPlaylist]
+    public string audioWrong;
+
     [Header("Signal Invokes")]
     public SignalBoolean signalAnswer; //true if correct
 
@@ -238,8 +244,14 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         opAnswer.isNegative = false;
 
         bool isCorrect = answerInput.number.isValid && answerInput.number == opAnswer;
+        if(isCorrect) {
+            answerInput.CloseNumpad();
 
-        if(!isCorrect) {
+            M8.SoundPlaylist.instance.Play(audioCorrect, false);
+        }
+        else {
+            M8.SoundPlaylist.instance.Play(audioWrong, false);
+
             if(animator && !string.IsNullOrEmpty(takeWrong))
                 animator.Play(takeWrong);
         }

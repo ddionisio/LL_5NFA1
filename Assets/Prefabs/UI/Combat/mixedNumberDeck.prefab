@@ -169,6 +169,7 @@ MonoBehaviour:
   cardPoolCapacity: 4
   cardTemplate: {fileID: 4427489912234164758, guid: 321d573d4dcd22f4bb8ea9ce9101b5ea,
     type: 3}
+  cardWholeEnabled: 1
   highlightTarget: {fileID: 2104621985944887721}
   highlightAmplify: 0.3
   highlightDelay: 1
@@ -180,6 +181,8 @@ MonoBehaviour:
   animator: {fileID: 384263085117862615}
   takeShow: enter
   takeHide: exit
+  audioShow: paletteOpen
+  audioHide: paletteClose
 --- !u!222 &1338013579426982885
 CanvasRenderer:
   m_ObjectHideFlags: 0

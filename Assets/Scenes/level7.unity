@@ -5996,7 +5996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119746338}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07998276, y: 0.039997816, z: 0}
+  m_LocalPosition: {x: -0.07998276, y: 0.039998055, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 626386104}
@@ -6573,6 +6573,8 @@ Transform:
   - {fileID: 352406443}
   - {fileID: 2096660177}
   - {fileID: 1018469083}
+  - {fileID: 1573925612}
+  - {fileID: 1407533238}
   m_Father: {fileID: 1936995824}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6626,12 +6628,12 @@ MonoBehaviour:
     numLoop: 1
     loopMode: 0
     loopBackToFrame: 0
-    trackCounter: 7
+    trackCounter: 9
     groupCounter: 0
     rootGroup:
       group_name: Group0
       group_id: 0
-      elements: 060000000200000003000000040000000500000007000000
+      elements: 0600000002000000030000000400000005000000070000000800000009000000
       foldout: 1
     groupValues: []
   _defaultTakeName: 
@@ -6648,8 +6650,40 @@ MonoBehaviour:
     _audioKeys: []
     _cameraSwitcherTracks: []
     _cameraSwitcherKeys: []
-    _eventTracks: []
-    _eventKeys: []
+    _eventTracks:
+    - id: 8
+      name: Track7
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 1573925613}
+      componentName: SoundPlaylistProxy
+    - id: 9
+      name: Track8
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 1407533239}
+      componentName: SoundPlaylistProxy
+    _eventKeys:
+    - version: 0
+      interp: 0
+      frame: 2
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      useSendMessage: 0
+      parameters: []
+      methodName: Play
+    - version: 0
+      interp: 0
+      frame: 45
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      useSendMessage: 0
+      parameters: []
+      methodName: Play
     _goSetActiveTracks:
     - id: 4
       name: Track2
@@ -7047,7 +7081,13 @@ MonoBehaviour:
     - type: 4
       index: 2
       keyIndices: 03000000
-    _takeTrackCounts: 0200000006000000
+    - type: 3
+      index: 0
+      keyIndices: 00000000
+    - type: 3
+      index: 1
+      keyIndices: 01000000
+    _takeTrackCounts: 0200000008000000
 --- !u!1 &555189450
 GameObject:
   m_ObjectHideFlags: 0
@@ -17967,6 +18007,51 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: -0.48547745, y: -6.0702176, z: -0.0005}
     m_Extent: {x: 18.381245, y: 4.695438, z: 0.0005}
+--- !u!1 &1407533237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407533238}
+  - component: {fileID: 1407533239}
+  m_Layer: 0
+  m_Name: audioBoop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1407533238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407533237}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 493774496}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1407533239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407533237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: boop
+  mode: 0
 --- !u!1 &1529366449
 GameObject:
   m_ObjectHideFlags: 0
@@ -18137,6 +18222,51 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: 0.19093609, y: -7.2390404, z: -0.0005}
     m_Extent: {x: 18.900333, y: 3.2506692, z: 0.0005}
+--- !u!1 &1573925611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1573925612}
+  - component: {fileID: 1573925613}
+  m_Layer: 0
+  m_Name: audioExplode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1573925612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573925611}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 493774496}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1573925613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573925611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: boom
+  mode: 0
 --- !u!1 &1628456307
 GameObject:
   m_ObjectHideFlags: 0
@@ -24610,12 +24740,12 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 650
-        y: 495
+        x: 655
+        y: 455
         width: 162
         height: 32
       isBreakpoint: 0
-      isSequence: 0
+      isSequence: 1
       hideUnused: 0
       transitions:
       - fsmEvent:
@@ -24629,12 +24759,14 @@ MonoBehaviour:
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.M8.Animator.PlayTake
+        - HutongGames.PlayMaker.Actions.M8.SoundPlaylistPlay
         customNames:
         - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: fd9dac03
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000005000000
+        actionHashCodes: fd9dac037f104f04
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -24659,6 +24791,12 @@ MonoBehaviour:
           showInInspector: 1
           networkSync: 0
           value: attackReady
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: energyBlastReady
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -24684,33 +24822,46 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
-        stringParams: []
-        byteData: 
+        stringParams:
+        - 
+        byteData: 00000000
         arrayParamSizes: 
         arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 12000000110000000f0000001100000014000000
+        customTypeSizes: 02000000
+        customTypeNames:
+        - HutongGames.PlayMaker.Actions.M8.FsmSoundPlaylistName
+        paramDataType: 12000000110000000f00000011000000140000002800000007000000120000001100000017000000
         paramName:
         - take
         - loop
         - startAt
         - startAtIsFrame
         - gameObject
-        paramDataPos: 0000000000000000000000000100000000000000
-        paramByteDataSize: 0000000000000000000000000000000000000000
+        - sound
+        - from
+        - stringRef
+        - wait
+        - waitEndEvent
+        paramDataPos: 00000000000000000000000001000000000000000000000000000000010000000200000000000000
+        paramByteDataSize: 00000000000000000000000000000000000000000000000004000000000000000000000000000000
     - name: Wait
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 648
-        y: 558
+        x: 647
+        y: 532
         width: 100
         height: 32
       isBreakpoint: 0
@@ -24799,15 +24950,17 @@ MonoBehaviour:
         colorIndex: 0
       actionData:
         actionNames:
+        - HutongGames.PlayMaker.Actions.M8.SoundPlaylistPlay
         - HutongGames.PlayMaker.Actions.M8.Animator.PlayTake
         - HutongGames.PlayMaker.Actions.M8.Animator.CheckPlaying
         customNames:
         - 
         - 
-        actionEnabled: 0101
-        actionIsOpen: 0101
-        actionStartIndex: 0000000005000000
-        actionHashCodes: fd9dac03489d0303
+        - 
+        actionEnabled: 010101
+        actionIsOpen: 010101
+        actionStartIndex: 00000000050000000a000000
+        actionHashCodes: 7f104f04fd9dac03489d0303
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -24834,6 +24987,12 @@ MonoBehaviour:
         fsmPropertyParams: []
         layoutOptionParams: []
         fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: energyBlast
         - useVariable: 1
           name: penguTakeAttack
           tooltip: 
@@ -24865,6 +25024,12 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         - useVariable: 1
           name: 
           tooltip: 
@@ -24884,14 +25049,21 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams:
         - 
+        - 
         - FINISHED
-        byteData: 
+        byteData: 00000000
         arrayParamSizes: 
         arrayParamTypes: []
-        customTypeSizes: 
-        customTypeNames: []
-        paramDataType: 12000000110000000f00000011000000140000001100000017000000170000001100000014000000
+        customTypeSizes: 02000000
+        customTypeNames:
+        - HutongGames.PlayMaker.Actions.M8.FsmSoundPlaylistName
+        paramDataType: 280000000700000012000000110000001700000012000000110000000f00000011000000140000001100000017000000170000001100000014000000
         paramName:
+        - sound
+        - from
+        - stringRef
+        - wait
+        - waitEndEvent
         - take
         - loop
         - startAt
@@ -24902,8 +25074,8 @@ MonoBehaviour:
         - isFalse
         - everyFrame
         - gameObject
-        paramDataPos: 00000000000000000000000001000000000000000200000000000000010000000300000001000000
-        paramByteDataSize: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+        paramDataPos: 000000000000000000000000000000000000000001000000010000000000000002000000000000000300000001000000020000000400000001000000
+        paramByteDataSize: 000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     - name: Pengu Idle
       description: 
       colorIndex: 0

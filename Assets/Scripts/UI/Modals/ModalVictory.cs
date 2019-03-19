@@ -42,6 +42,10 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.
     public GameObject totalDisplayGO;
     public M8.UI.Texts.TextCounter totalScoreCounter;
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string audioActive;
+
     private int mTotalScore;
 
     private M8.CacheList<GameObject> mActivateGOs = new M8.CacheList<GameObject>(6);
@@ -180,6 +184,8 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.
     }
 
     IEnumerator DoActivate() {
+        M8.SoundPlaylist.instance.Play(audioActive, false);
+
         var wait = new WaitForSeconds(activateDelay);
         for(int i = 0; i < mActivateGOs.Count; i++) {
             mActivateGOs[i].SetActive(true);

@@ -28,6 +28,10 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
     public MixedNumberWidget numberWidget;
     public GameObject fractionVisualGO;
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string audioFractionSwap;
+
     [Header("Drag")]
     public RectTransform dragRoot;
     public float dragReturnDelay = 0.3f;
@@ -218,6 +222,8 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
             case DragAreaType.Whole:
                 if(canDragInside) {
                     if(mDragAreaBeginType == DragAreaType.Fraction) {
+                        M8.SoundPlaylist.instance.Play(audioFractionSwap, false);
+
                         numberWidget.FractionToWhole();
                     }
                 }
@@ -228,6 +234,8 @@ public class CardWidget : MonoBehaviour, M8.IPoolSpawn, M8.IPoolDespawn, IBeginD
             case DragAreaType.Fraction:
                 if(canDragInside) {
                     if(mDragAreaBeginType == DragAreaType.Whole) {
+                        M8.SoundPlaylist.instance.Play(audioFractionSwap, false);
+
                         numberWidget.WholeToFraction();
                     }
                 }
