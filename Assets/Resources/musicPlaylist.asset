@@ -15,6 +15,12 @@ MonoBehaviour:
   music:
   - name: intro
     source: {fileID: 8300000, guid: 2519472090167674aba142c9ca6d5d46, type: 3}
+  - name: overworld
+    source: {fileID: 8300000, guid: 906f778b528dead41af17fdae7323d3b, type: 3}
+  - name: battle1
+    source: {fileID: 8300000, guid: b4e2cdc30a10de14484c6f2e3d611a75, type: 3}
+  - name: battle2
+    source: {fileID: 8300000, guid: 2cb0509d9425adc4e97a8480ed7c4de5, type: 3}
   audioMixer: {fileID: 0}
   muteOnFocusLost: 1
   fadeInDelay: 0.3
