@@ -43,8 +43,8 @@ MonoBehaviour:
   sceneEnd:
     name: end
     path: Assets/Scenes/end.unity
-  attackDuration: 45
-  defendDuration: 40
+  attackDuration: 60
+  defendDuration: 60
   victoryScore: 1000
   attackMultiplier: 100
   defenseMultiplier: 100
