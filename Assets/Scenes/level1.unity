@@ -2010,7 +2010,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a16de5d3cecd5ca41a768f2f00e2f54a, type: 2}
-  m_FillPixelPerUnit: 100
+  m_FillPixelPerUnit: 32
   m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
@@ -4881,7 +4881,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a16de5d3cecd5ca41a768f2f00e2f54a, type: 2}
-  m_FillPixelPerUnit: 100
+  m_FillPixelPerUnit: 32
   m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1

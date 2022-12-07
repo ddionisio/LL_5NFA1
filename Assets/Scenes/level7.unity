@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 10
+    serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 40
     m_AtlasSize: 1024
@@ -62,6 +62,7 @@ LightmapSettings:
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
@@ -76,10 +77,16 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 500
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 2
+    m_PVRDenoiserTypeDirect: 0
+    m_PVRDenoiserTypeIndirect: 0
+    m_PVRDenoiserTypeAO: 0
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
     m_PVRFilterTypeAO: 0
-    m_PVRFilteringMode: 1
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -87,7 +94,9 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -147,7 +156,7 @@ Transform:
 --- !u!199 &3487461
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -159,6 +168,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -171,6 +181,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1561,6 +1572,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 1
     mode: 1
     timeMode: 0
@@ -1678,7 +1690,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 21300000, guid: bf01b0b7199ec26448b016fd2de647e5, type: 3}
     flipU: 0
@@ -2489,8 +2501,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -4882,6 +4947,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4893,6 +4959,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5109,27 +5176,29 @@ MonoBehaviour:
     _cameraSwitcherTracks: []
     _cameraSwitcherKeys: []
     _eventTracks:
-    - id: 7
+    - _version: 1
+      id: 7
       name: Track6
       foldout: 1
       _targetPath: 
       obj: {fileID: 3487462}
       componentName: ParticleSystem
-    - id: 8
+    - _version: 1
+      id: 8
       name: Track7
       foldout: 1
       _targetPath: 
       obj: {fileID: 1895272066}
       componentName: ParticleSystem
-    - id: 10
+    - _version: 1
+      id: 10
       name: Track9
       foldout: 1
       _targetPath: 
       obj: {fileID: 349880116}
       componentName: CameraShakeControl
     _eventKeys:
-    - version: 0
-      interp: 0
+    - interp: 0
       frame: 3
       easeType: 1
       amplitude: 0
@@ -5138,8 +5207,8 @@ MonoBehaviour:
       useSendMessage: 0
       parameters: []
       methodName: Play
-    - version: 0
-      interp: 0
+      componentType: 
+    - interp: 0
       frame: 60
       easeType: 1
       amplitude: 0
@@ -5148,8 +5217,8 @@ MonoBehaviour:
       useSendMessage: 0
       parameters: []
       methodName: Stop
-    - version: 0
-      interp: 0
+      componentType: 
+    - interp: 0
       frame: 3
       easeType: 1
       amplitude: 0
@@ -5158,8 +5227,8 @@ MonoBehaviour:
       useSendMessage: 0
       parameters: []
       methodName: Play
-    - version: 0
-      interp: 0
+      componentType: 
+    - interp: 0
       frame: 60
       easeType: 1
       amplitude: 0
@@ -5168,8 +5237,8 @@ MonoBehaviour:
       useSendMessage: 0
       parameters: []
       methodName: Stop
-    - version: 0
-      interp: 0
+      componentType: 
+    - interp: 0
       frame: 10
       easeType: 1
       amplitude: 0
@@ -5178,28 +5247,31 @@ MonoBehaviour:
       useSendMessage: 0
       parameters: []
       methodName: Shake
+      componentType: 
     _goSetActiveTracks:
-    - id: 4
+    - _version: 1
+      id: 4
       name: Track3
       foldout: 1
       _targetPath: 
       obj: {fileID: 1225709605}
       startActive: 1
-    - id: 4
+    - _version: 1
+      id: 4
       name: Track3
       foldout: 1
       _targetPath: 
       obj: {fileID: 248879747}
       startActive: 0
-    - id: 9
+    - _version: 1
+      id: 9
       name: Track8
       foldout: 1
       _targetPath: 
       obj: {fileID: 1225709605}
       startActive: 0
     _goSetActiveKeys:
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 1
       easeType: 1
       amplitude: 0
@@ -5207,8 +5279,7 @@ MonoBehaviour:
       customEase: []
       setActive: 1
       endFrame: -1
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 2
       easeType: 1
       amplitude: 0
@@ -5216,8 +5287,7 @@ MonoBehaviour:
       customEase: []
       setActive: 1
       endFrame: 70
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 70
       easeType: 1
       amplitude: 0
@@ -5225,8 +5295,7 @@ MonoBehaviour:
       customEase: []
       setActive: 0
       endFrame: -1
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 1
       easeType: 1
       amplitude: 0
@@ -5239,7 +5308,8 @@ MonoBehaviour:
     _orientationTracks: []
     _orientationKeys: []
     _propertyTracks:
-    - id: 3
+    - _version: 1
+      id: 3
       name: Track2
       foldout: 1
       _targetPath: 
@@ -5249,7 +5319,8 @@ MonoBehaviour:
       componentName: SpriteRenderer
       fieldName: 
       propertyName: sprite
-    - id: 3
+    - _version: 1
+      id: 3
       name: Track2
       foldout: 1
       _targetPath: 
@@ -5259,7 +5330,8 @@ MonoBehaviour:
       componentName: SpriteRenderer
       fieldName: 
       propertyName: sprite
-    - id: 3
+    - _version: 1
+      id: 3
       name: Track2
       foldout: 1
       _targetPath: 
@@ -5269,7 +5341,8 @@ MonoBehaviour:
       componentName: SpriteRenderer
       fieldName: 
       propertyName: sprite
-    - id: 3
+    - _version: 1
+      id: 3
       name: Track2
       foldout: 1
       _targetPath: 
@@ -5279,7 +5352,8 @@ MonoBehaviour:
       componentName: SpriteRenderer
       fieldName: 
       propertyName: sprite
-    - id: 6
+    - _version: 1
+      id: 6
       name: Track5
       foldout: 1
       _targetPath: 
@@ -5289,7 +5363,8 @@ MonoBehaviour:
       componentName: SpriteRenderer
       fieldName: 
       propertyName: color
-    - id: 3
+    - _version: 1
+      id: 3
       name: Track2
       foldout: 1
       _targetPath: 
@@ -5300,350 +5375,379 @@ MonoBehaviour:
       fieldName: 
       propertyName: sprite
     _propertyKeys:
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 5
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 5
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 10
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 34ac0110162539f4ab3eefa7ba405ff8, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 10
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 15
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 15
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 20
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: aa7c52adf7ae54e4a9c071bc0bd0c4ed, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 20
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 25
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 25
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 30
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 34ac0110162539f4ab3eefa7ba405ff8, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 30
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 8
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 352cab806c024b541915bd606a3f6434, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 8
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 15
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 7df5c8ef0bc054b439174751d62b2814, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 15
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 22
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 352cab806c024b541915bd606a3f6434, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 22
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: d4ce93735a9a87a4aac63d336c10c2a9, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 7a3f6785ea278ed4ea05d6861d08aff7, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 1b85440595195d546b12cb24e3fe617f, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 2
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 10
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 1, y: 0.8431373, z: 0.6, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 10
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 60
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 1, y: 0.8431373, z: 0.6, w: 0.72156864}
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 60
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 70
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 1, y: 0.8431373, z: 0.6, w: 0.72156864}
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 70
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 1, y: 0.8431373, z: 0.6, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 5
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 5
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 10
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 34ac0110162539f4ab3eefa7ba405ff8, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 10
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 15
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 15
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 20
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: aa7c52adf7ae54e4a9c071bc0bd0c4ed, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 20
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 25
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 25
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 30
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 34ac0110162539f4ab3eefa7ba405ff8, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 30
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 35
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 35
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 40
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: aa7c52adf7ae54e4a9c071bc0bd0c4ed, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 40
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 45
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 45
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 50
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 34ac0110162539f4ab3eefa7ba405ff8, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 50
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 55
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: f675f5ecbe4ec764eaefa098811b678c, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 55
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: aa7c52adf7ae54e4a9c071bc0bd0c4ed, type: 3}
@@ -5653,35 +5757,40 @@ MonoBehaviour:
     _rotationTracks: []
     _rotationKeys: []
     _translationTracks:
-    - id: 2
+    - _version: 1
+      id: 2
       name: Track1
       foldout: 1
       _targetPath: 
       _obj: {fileID: 626386104}
       pixelSnap: 0
       pixelPerUnit: 100
-    - id: 2
+    - _version: 1
+      id: 2
       name: Track1
       foldout: 1
       _targetPath: 
       _obj: {fileID: 626386104}
       pixelSnap: 0
       pixelPerUnit: 100
-    - id: 2
+    - _version: 1
+      id: 2
       name: Track1
       foldout: 1
       _targetPath: 
       _obj: {fileID: 626386104}
       pixelSnap: 0
       pixelPerUnit: 100
-    - id: 2
+    - _version: 1
+      id: 2
       name: Track1
       foldout: 1
       _targetPath: 
       _obj: {fileID: 626386104}
       pixelSnap: 0
       pixelPerUnit: 100
-    - id: 2
+    - _version: 1
+      id: 2
       name: Track1
       foldout: 1
       _targetPath: 
@@ -5689,232 +5798,237 @@ MonoBehaviour:
       pixelSnap: 0
       pixelPerUnit: 100
     _translationKeys:
-    - version: 2
-      interp: 0
+    - interp: 0
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: -6.29, y: 0, z: 0}
       endFrame: 30
-      path:
-      - {x: -6.29, y: 0, z: 0}
-      - {x: 0, y: 0, z: 0}
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: -6.29, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 30
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 30
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 28
-      path:
-      - {x: 0, y: 0, z: 0}
-      - {x: 0, y: 0.2, z: 0}
-      - {x: 0, y: 0, z: 0}
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 15
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0.2, z: 0}
       endFrame: 15
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0.2, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 28
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 28
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 9
-      path:
-      - {x: 0, y: 0, z: 0}
-      - {x: -0.1, y: 0, z: 0}
-      - {x: 0.1, y: 0, z: 0}
-      - {x: -0.1, y: 0, z: 0}
-      - {x: 0, y: 0, z: 0}
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 3
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: -0.1, y: 0, z: 0}
       endFrame: 3
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: -0.1, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 5
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0.1, y: 0, z: 0}
       endFrame: 5
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0.1, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 7
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: -0.1, y: 0, z: 0}
       endFrame: 7
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: -0.1, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 9
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 9
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 1
-      path:
-      - {x: 0, y: 0, z: 0}
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 60
-      path:
-      - {x: 0, y: 0, z: 0}
-      - {x: 12.48, y: -1.25, z: 0}
-      - {x: 22.25, y: 0.55, z: 0}
-      - {x: 30.61, y: -0.06, z: 0}
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 34
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 12.48, y: -1.25, z: 0}
       endFrame: 34
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 12.48, y: -1.25, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 48
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 22.25, y: 0.55, z: 0}
       endFrame: 48
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 22.25, y: 0.55, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 60
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 30.61, y: -0.06, z: 0}
       endFrame: 60
-      path: []
       isConstSpeed: 1
+      _paths: []
+      position: {x: 30.61, y: -0.06, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
     _unityAnimationTracks: []
     _unityAnimationKeys: []
     _scaleTracks:
-    - id: 5
+    - _version: 1
+      id: 5
       name: Track4
       foldout: 1
       _targetPath: 
       axis: -1
       _obj: {fileID: 406324563}
     _scaleKeys:
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 2
       easeType: 3
       amplitude: 0
       period: 0
       customEase: []
-      scale: {x: 0, y: 1, z: 1}
       endFrame: 10
-    - version: 1
-      interp: 2
+      isConstSpeed: 0
+      _paths: []
+      scale: {x: 0, y: 1, z: 1}
+    - interp: 2
       frame: 10
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      scale: {x: 1, y: 1, z: 1}
       endFrame: 60
-    - version: 1
-      interp: 1
+      isConstSpeed: 0
+      _paths: []
+      scale: {x: 1, y: 1, z: 1}
+    - interp: 1
       frame: 60
       easeType: 2
       amplitude: 0
       period: 0
       customEase: []
-      scale: {x: 1, y: 1, z: 1}
       endFrame: 70
-    - version: 1
-      interp: 1
+      isConstSpeed: 0
+      _paths: []
+      scale: {x: 1, y: 1, z: 1}
+    - interp: 1
       frame: 70
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      scale: {x: 0, y: 1, z: 1}
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
+      scale: {x: 0, y: 1, z: 1}
     _trackLookups:
     - type: 10
       index: 0
@@ -6016,6 +6130,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6027,6 +6142,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6095,6 +6211,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6106,6 +6223,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6324,12 +6442,20 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: 597645601bcc117448d1fb78487cc3ec, type: 2}
+  m_FillPixelPerUnit: 16
+  m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
-  m_UpdateCollider: 0
+  m_StretchUV: 0
+  m_WorldSpaceUV: 0
+  m_CornerAngleThreshold: 30
   m_ColliderDetail: 4
   m_ColliderOffset: 0
-  m_ColliderCornerType: 0
+  m_UpdateCollider: 0
+  m_OptimizeCollider: 1
+  m_OptimizeGeometry: 1
+  m_EnableTangents: 0
+  m_GeometryCached: 0
 --- !u!1971053207 &352406445
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -6344,9 +6470,11 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -6355,6 +6483,7 @@ SpriteShapeRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6372,17 +6501,9 @@ SpriteShapeRenderer:
   m_ShapeTexture: {fileID: 2800000, guid: 52bb885dfb3d27d41a17dbf5e82b5157, type: 3}
   m_Sprites:
   - {fileID: 21300000, guid: c6a22e9df75601345a1798aa403e0507, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_LocalAABB:
-    m_Center: {x: 0.35194695, y: -0.11748302, z: -0.001}
-    m_Extent: {x: 3.8565602, y: 2.9686031, z: 0.001}
+    m_Center: {x: 0.35194707, y: -0.11865187, z: -0.0001}
+    m_Extent: {x: 3.8565602, y: 2.9697719, z: 0.0001}
 --- !u!1 &406324562
 GameObject:
   m_ObjectHideFlags: 0
@@ -6428,6 +6549,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6439,6 +6561,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6507,6 +6630,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6518,6 +6642,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -6651,21 +6776,22 @@ MonoBehaviour:
     _cameraSwitcherTracks: []
     _cameraSwitcherKeys: []
     _eventTracks:
-    - id: 8
+    - _version: 1
+      id: 8
       name: Track7
       foldout: 1
       _targetPath: 
       obj: {fileID: 1573925613}
       componentName: SoundPlaylistProxy
-    - id: 9
+    - _version: 1
+      id: 9
       name: Track8
       foldout: 1
       _targetPath: 
       obj: {fileID: 1407533239}
       componentName: SoundPlaylistProxy
     _eventKeys:
-    - version: 0
-      interp: 0
+    - interp: 0
       frame: 2
       easeType: 1
       amplitude: 0
@@ -6674,8 +6800,8 @@ MonoBehaviour:
       useSendMessage: 0
       parameters: []
       methodName: Play
-    - version: 0
-      interp: 0
+      componentType: 
+    - interp: 0
       frame: 45
       easeType: 1
       amplitude: 0
@@ -6684,28 +6810,31 @@ MonoBehaviour:
       useSendMessage: 0
       parameters: []
       methodName: Play
+      componentType: 
     _goSetActiveTracks:
-    - id: 4
+    - _version: 1
+      id: 4
       name: Track2
       foldout: 1
       _targetPath: 
       obj: {fileID: 1018469082}
       startActive: 1
-    - id: 4
+    - _version: 1
+      id: 4
       name: Track3
       foldout: 1
       _targetPath: 
       obj: {fileID: 2096660176}
       startActive: 0
-    - id: 7
+    - _version: 1
+      id: 7
       name: Track6
       foldout: 1
       _targetPath: 
       obj: {fileID: 1018469082}
       startActive: 0
     _goSetActiveKeys:
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 1
       easeType: 1
       amplitude: 0
@@ -6713,8 +6842,7 @@ MonoBehaviour:
       customEase: []
       setActive: 1
       endFrame: -1
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 45
       easeType: 1
       amplitude: 0
@@ -6722,8 +6850,7 @@ MonoBehaviour:
       customEase: []
       setActive: 1
       endFrame: 70
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 70
       easeType: 1
       amplitude: 0
@@ -6731,8 +6858,7 @@ MonoBehaviour:
       customEase: []
       setActive: 0
       endFrame: -1
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 1
       easeType: 1
       amplitude: 0
@@ -6745,7 +6871,8 @@ MonoBehaviour:
     _orientationTracks: []
     _orientationKeys: []
     _propertyTracks:
-    - id: 5
+    - _version: 1
+      id: 5
       name: Track4
       foldout: 1
       _targetPath: 
@@ -6756,103 +6883,113 @@ MonoBehaviour:
       fieldName: 
       propertyName: sprite
     _propertyKeys:
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 45
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 50
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: bf01b0b7199ec26448b016fd2de647e5, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 50
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 55
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 1abaebf232c3b9d409c5c9383ee84f5d, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 55
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 60
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 44a2e43498084d140b46c5499e074241, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 60
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 65
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: e5dc777390553e4499a405c82af83aef, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 2
+    - interp: 2
       frame: 65
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
       vect4: {x: 0, y: 0, z: 0, w: 0}
     _rotationEulerTracks:
-    - id: 3
+    - _version: 1
+      id: 3
       name: Track2
       foldout: 1
       _targetPath: 
       axis: -1
       _obj: {fileID: 352406443}
     _rotationEulerKeys:
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 25
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      rotation: {x: -0, y: 0, z: 0}
       endFrame: 45
-    - version: 1
-      interp: 1
+      isConstSpeed: 0
+      _paths: []
+      rotation: {x: -0, y: 0, z: 0}
+    - interp: 1
       frame: 45
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      rotation: {x: -0, y: 0, z: 360}
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
+      rotation: {x: -0, y: 0, z: 360}
     _rotationTracks: []
     _rotationKeys: []
     _translationTracks:
-    - id: 2
+    - _version: 1
+      id: 2
       name: Track1
       foldout: 1
       _targetPath: 
       _obj: {fileID: 352406443}
       pixelSnap: 0
       pixelPerUnit: 100
-    - id: 6
+    - _version: 1
+      id: 6
       name: Track5
       foldout: 1
       _targetPath: 
@@ -6860,202 +6997,205 @@ MonoBehaviour:
       pixelSnap: 0
       pixelPerUnit: 100
     _translationKeys:
-    - version: 2
-      interp: 0
+    - interp: 0
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 15
-      path:
-      - {x: 0, y: 0, z: 0}
-      - {x: -0.4, y: 0, z: 0}
-      - {x: 0.29, y: 0, z: 0}
-      - {x: -0.34, y: 0, z: 0}
-      - {x: 0.18, y: 0, z: 0}
-      - {x: 0, y: 0, z: 0}
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 4
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: -0.4, y: 0, z: 0}
       endFrame: 4
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: -0.4, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 7
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0.29, y: 0, z: 0}
       endFrame: 7
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0.29, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 10
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: -0.34, y: 0, z: 0}
       endFrame: 10
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: -0.34, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 13
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0.18, y: 0, z: 0}
       endFrame: 13
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0.18, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 15
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 15
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 20
-      path:
-      - {x: 0, y: 0, z: 0}
-      - {x: -0.21, y: 0.17, z: 0}
-      - {x: 0.07, y: 0.03, z: 0}
-      - {x: 0.04, y: 0.24, z: 0}
-      - {x: -0.06, y: -0.04, z: 0}
-      - {x: 0.15, y: 0.13, z: 0}
-      - {x: -0.08, y: -0.05, z: 0}
-      - {x: 0, y: 0, z: 0}
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 4
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: -0.21, y: 0.17, z: 0}
       endFrame: 4
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: -0.21, y: 0.17, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 7
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0.07, y: 0.03, z: 0}
       endFrame: 7
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0.07, y: 0.03, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 10
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0.04, y: 0.24, z: 0}
       endFrame: 10
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0.04, y: 0.24, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 13
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: -0.06, y: -0.04, z: 0}
       endFrame: 13
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: -0.06, y: -0.04, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 16
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0.15, y: 0.13, z: 0}
       endFrame: 16
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: 0.15, y: 0.13, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 19
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: -0.08, y: -0.05, z: 0}
       endFrame: 19
-      path: []
       isConstSpeed: 1
-    - version: 2
-      interp: 0
+      _paths: []
+      position: {x: -0.08, y: -0.05, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
+    - interp: 0
       frame: 20
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      position: {x: 0, y: 0, z: 0}
       endFrame: 20
-      path: []
       isConstSpeed: 1
+      _paths: []
+      position: {x: 0, y: 0, z: 0}
+      orientMode: 0
+      orientLockAxis: 0
     _unityAnimationTracks: []
     _unityAnimationKeys: []
     _scaleTracks:
-    - id: 2
+    - _version: 1
+      id: 2
       name: Track1
       foldout: 1
       _targetPath: 
       axis: -1
       _obj: {fileID: 352406443}
     _scaleKeys:
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 25
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      scale: {x: 1, y: 1, z: 1}
       endFrame: 45
-    - version: 1
-      interp: 1
+      isConstSpeed: 0
+      _paths: []
+      scale: {x: 1, y: 1, z: 1}
+    - interp: 1
       frame: 45
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      scale: {x: 0, y: 0, z: 1}
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
+      scale: {x: 0, y: 0, z: 1}
     _trackLookups:
     - type: 10
       index: 0
@@ -7134,6 +7274,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7145,6 +7286,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7214,6 +7356,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7225,6 +7368,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7260,6 +7404,10 @@ PrefabInstance:
       value: sceneCamera
       objectReference: {fileID: 0}
     - target: {fileID: 4936926241476708, guid: b9aed749047e1b34a91971378d3132ac, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936926241476708, guid: b9aed749047e1b34a91971378d3132ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -7272,6 +7420,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4936926241476708, guid: b9aed749047e1b34a91971378d3132ac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936926241476708, guid: b9aed749047e1b34a91971378d3132ac, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -7282,14 +7434,6 @@ PrefabInstance:
     - target: {fileID: 4936926241476708, guid: b9aed749047e1b34a91971378d3132ac, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936926241476708, guid: b9aed749047e1b34a91971378d3132ac, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4936926241476708, guid: b9aed749047e1b34a91971378d3132ac, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4936926241476708, guid: b9aed749047e1b34a91971378d3132ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7305,8 +7449,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 20490728748771628, guid: b9aed749047e1b34a91971378d3132ac,
         type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.05973334
+      propertyPath: m_BackGroundColor.b
+      value: 0.084
       objectReference: {fileID: 0}
     - target: {fileID: 20490728748771628, guid: b9aed749047e1b34a91971378d3132ac,
         type: 3}
@@ -7315,8 +7459,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 20490728748771628, guid: b9aed749047e1b34a91971378d3132ac,
         type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.084
+      propertyPath: m_BackGroundColor.r
+      value: 0.05973334
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9aed749047e1b34a91971378d3132ac, type: 3}
@@ -7366,6 +7510,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7377,6 +7522,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7445,6 +7591,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7456,6 +7603,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -7594,7 +7742,7 @@ Transform:
 --- !u!199 &731876624
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -7606,6 +7754,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7618,6 +7767,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -8981,6 +9131,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 1
     mode: 1
     timeMode: 0
@@ -9098,7 +9249,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 21300000, guid: bf01b0b7199ec26448b016fd2de647e5, type: 3}
     flipU: 0
@@ -9909,8 +10060,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -12308,6 +12512,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12319,6 +12524,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -12377,7 +12583,7 @@ Transform:
 --- !u!199 &1018469084
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12389,6 +12595,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12401,6 +12608,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -13764,6 +13972,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 1
     mode: 1
     timeMode: 0
@@ -13881,7 +14090,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 21300000, guid: bf01b0b7199ec26448b016fd2de647e5, type: 3}
     - sprite: {fileID: 21300000, guid: 1abaebf232c3b9d409c5c9383ee84f5d, type: 3}
@@ -14696,8 +14905,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -17090,6 +17352,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17101,6 +17364,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -17208,7 +17472,8 @@ MonoBehaviour:
     _orientationTracks: []
     _orientationKeys: []
     _propertyTracks:
-    - id: 4
+    - _version: 1
+      id: 4
       name: Track2
       foldout: 1
       _targetPath: 
@@ -17218,7 +17483,8 @@ MonoBehaviour:
       componentName: SpriteRenderer
       fieldName: 
       propertyName: color
-    - id: 6
+    - _version: 1
+      id: 6
       name: Track4
       foldout: 1
       _targetPath: 
@@ -17229,128 +17495,140 @@ MonoBehaviour:
       fieldName: 
       propertyName: color
     _propertyKeys:
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 1
       easeType: 2
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 15
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 0.98823535, y: 0.6901961, z: 0.47450984, w: 0.16078432}
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 15
       easeType: 3
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 30
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 0.98823535, y: 0.6901961, z: 0.47450984, w: 1}
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 30
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 0.98823535, y: 0.6901961, z: 0.47450984, w: 0.16078432}
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 1
       easeType: 2
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 15
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 1, y: 0.86666673, z: 0.627451, w: 1}
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 15
       easeType: 3
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 30
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 1, y: 0.86666673, z: 0.627451, w: 0.32156864}
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 30
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 1, y: 0.86666673, z: 0.627451, w: 1}
     _rotationEulerTracks:
-    - id: 2
+    - _version: 1
+      id: 2
       name: Track1
       foldout: 1
       _targetPath: 
       axis: -1
       _obj: {fileID: 192793783}
-    - id: 5
+    - _version: 1
+      id: 5
       name: Track3
       foldout: 1
       _targetPath: 
       axis: -1
       _obj: {fileID: 1628456308}
     _rotationEulerKeys:
-    - version: 1
-      interp: 0
+    - interp: 0
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      rotation: {x: -0, y: 0, z: 0}
       endFrame: 30
-    - version: 1
-      interp: 1
+      isConstSpeed: 0
+      _paths: []
+      rotation: {x: -0, y: 0, z: 0}
+    - interp: 1
       frame: 30
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
+      endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       rotation: {x: -0, y: 0, z: 360}
-      endFrame: -1
-    - version: 1
-      interp: 1
+    - interp: 1
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      rotation: {x: -0, y: 0, z: 0}
       endFrame: 30
-    - version: 1
-      interp: 1
+      isConstSpeed: 0
+      _paths: []
+      rotation: {x: -0, y: 0, z: 0}
+    - interp: 1
       frame: 30
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
-      rotation: {x: -0, y: 0, z: -360}
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
+      rotation: {x: -0, y: 0, z: -360}
     _rotationTracks: []
     _rotationKeys: []
     _translationTracks: []
@@ -17484,12 +17762,20 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a38d532dcb682294cb05669bf6740a8b, type: 2}
+  m_FillPixelPerUnit: 50
+  m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
-  m_UpdateCollider: 0
+  m_StretchUV: 0
+  m_WorldSpaceUV: 0
+  m_CornerAngleThreshold: 30
   m_ColliderDetail: 4
   m_ColliderOffset: 0
-  m_ColliderCornerType: 0
+  m_UpdateCollider: 0
+  m_OptimizeCollider: 1
+  m_OptimizeGeometry: 1
+  m_EnableTangents: 0
+  m_GeometryCached: 0
 --- !u!1971053207 &1276818964
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -17504,9 +17790,11 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -17515,6 +17803,7 @@ SpriteShapeRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -17532,17 +17821,9 @@ SpriteShapeRenderer:
   m_ShapeTexture: {fileID: 2800000, guid: d1529e8879d300546ba88e6b22993d9f, type: 3}
   m_Sprites:
   - {fileID: 21300000, guid: e7e16b14b5fd5a545b7ee2c8c6766278, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_LocalAABB:
-    m_Center: {x: -6.567295, y: -5.078999, z: -0.0005}
-    m_Extent: {x: 18.787067, y: 4.484716, z: 0.0005}
+    m_Center: {x: -6.567293, y: -4.7818575, z: -0.0001}
+    m_Extent: {x: 18.787067, y: 4.7818575, z: 0.0001}
 --- !u!1 &1284956139
 GameObject:
   m_ObjectHideFlags: 0
@@ -17588,6 +17869,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17599,6 +17881,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -17629,10 +17912,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 29620557}
     m_Modifications:
-    - target: {fileID: 3988082976677517977, guid: e8c28cc760c8b394e8652f79af97c2d4,
+    - target: {fileID: 571694821623984799, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
-      propertyPath: m_Name
-      value: oceanBubbleFX (1)
+      propertyPath: startDelay.scalar
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
@@ -17651,6 +17939,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -17663,16 +17956,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
@@ -17689,10 +17972,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 571694821623984799, guid: e8c28cc760c8b394e8652f79af97c2d4,
+    - target: {fileID: 3988082976677517977, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
-      propertyPath: startDelay.scalar
-      value: 1.5
+      propertyPath: m_Name
+      value: oceanBubbleFX (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6236754830784822870, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
@@ -17714,14 +17997,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1642619446}
     m_Modifications:
-    - target: {fileID: 8959099334892706177, guid: 20bcca2716aec0048b8572ba9291496c,
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
         type: 3}
-      propertyPath: m_Name
-      value: success
+      propertyPath: m_Pivot.x
+      value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706177, guid: 20bcca2716aec0048b8572ba9291496c,
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
@@ -17741,6 +18059,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -17756,13 +18079,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 2
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
         type: 3}
@@ -17779,55 +18102,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
+    - target: {fileID: 8959099334892706177, guid: 20bcca2716aec0048b8572ba9291496c,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
+      propertyPath: m_Name
+      value: success
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959099334892706177, guid: 20bcca2716aec0048b8572ba9291496c,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959099334892706176, guid: 20bcca2716aec0048b8572ba9291496c,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20bcca2716aec0048b8572ba9291496c, type: 3}
@@ -17948,12 +18231,20 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a38d532dcb682294cb05669bf6740a8b, type: 2}
+  m_FillPixelPerUnit: 24
+  m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
-  m_UpdateCollider: 0
+  m_StretchUV: 0
+  m_WorldSpaceUV: 0
+  m_CornerAngleThreshold: 30
   m_ColliderDetail: 4
   m_ColliderOffset: 0
-  m_ColliderCornerType: 0
+  m_UpdateCollider: 0
+  m_OptimizeCollider: 1
+  m_OptimizeGeometry: 1
+  m_EnableTangents: 0
+  m_GeometryCached: 0
 --- !u!1971053207 &1349746369
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -17968,9 +18259,11 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -17979,6 +18272,7 @@ SpriteShapeRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -17996,17 +18290,9 @@ SpriteShapeRenderer:
   m_ShapeTexture: {fileID: 2800000, guid: d1529e8879d300546ba88e6b22993d9f, type: 3}
   m_Sprites:
   - {fileID: 21300000, guid: e7e16b14b5fd5a545b7ee2c8c6766278, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_LocalAABB:
-    m_Center: {x: -0.48547745, y: -6.0702176, z: -0.0005}
-    m_Extent: {x: 18.381245, y: 4.695438, z: 0.0005}
+    m_Center: {x: -0.48547745, y: -5.3828278, z: -0.0001}
+    m_Extent: {x: 18.381245, y: 5.3828278, z: 0.0001}
 --- !u!1 &1407533237
 GameObject:
   m_ObjectHideFlags: 0
@@ -18163,12 +18449,20 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a38d532dcb682294cb05669bf6740a8b, type: 2}
+  m_FillPixelPerUnit: 24
+  m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
-  m_UpdateCollider: 0
+  m_StretchUV: 0
+  m_WorldSpaceUV: 0
+  m_CornerAngleThreshold: 30
   m_ColliderDetail: 4
   m_ColliderOffset: 0
-  m_ColliderCornerType: 0
+  m_UpdateCollider: 0
+  m_OptimizeCollider: 1
+  m_OptimizeGeometry: 1
+  m_EnableTangents: 0
+  m_GeometryCached: 0
 --- !u!1971053207 &1529366452
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -18183,9 +18477,11 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -18194,6 +18490,7 @@ SpriteShapeRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -18211,17 +18508,9 @@ SpriteShapeRenderer:
   m_ShapeTexture: {fileID: 2800000, guid: d1529e8879d300546ba88e6b22993d9f, type: 3}
   m_Sprites:
   - {fileID: 21300000, guid: e7e16b14b5fd5a545b7ee2c8c6766278, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_LocalAABB:
-    m_Center: {x: 0.19093609, y: -7.2390404, z: -0.0005}
-    m_Extent: {x: 18.900333, y: 3.2506692, z: 0.0005}
+    m_Center: {x: 0.19093513, y: -5.244855, z: -0.0001}
+    m_Extent: {x: 18.900333, y: 5.244855, z: 0.0001}
 --- !u!1 &1573925611
 GameObject:
   m_ObjectHideFlags: 0
@@ -18312,6 +18601,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18323,6 +18613,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -18391,6 +18682,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18402,6 +18694,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -18436,6 +18729,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: sceneCanvasInteractive
       objectReference: {fileID: 0}
+    - target: {fileID: 223202754098094910, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18450,6 +18793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
         type: 3}
@@ -18468,13 +18816,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 5
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
         type: 3}
@@ -18490,61 +18838,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224794904166385706, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 223202754098094910, guid: 3b39c4987e1807742ae7b35c468fd939,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b39c4987e1807742ae7b35c468fd939, type: 3}
@@ -18561,14 +18854,179 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1642619446}
     m_Modifications:
-    - target: {fileID: 2498994886082257264, guid: 292b5ee80f64f61459e78eda675a0314,
+    - target: {fileID: 2498994884966052678, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
-      propertyPath: m_Name
-      value: mixedNumberOps
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257264, guid: 292b5ee80f64f61459e78eda675a0314,
+    - target: {fileID: 2498994884966052678, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994884966052678, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994884966052678, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885305900565, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885305900565, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885305900565, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 281
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885305900565, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885309480197, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885309480197, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885309480197, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885309480197, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885553647031, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 578
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885553647031, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885830989876, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885830989876, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885830989876, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 520
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885830989876, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885890208311, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885890208311, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885890208311, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5.9999967
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994885890208311, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886044857112, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886044857112, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886044857112, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 127
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886044857112, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
@@ -18588,6 +19046,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -18603,12 +19066,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
-      propertyPath: m_RootOrder
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
@@ -18626,114 +19089,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
+    - target: {fileID: 2498994886082257264, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
+      propertyPath: m_Name
+      value: mixedNumberOps
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886082257264, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886082257263, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885553647031, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 578
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885553647031, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885830989876, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885830989876, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885830989876, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 520
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885830989876, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886044857112, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886044857112, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886044857112, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 127
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886044857112, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994886836589317, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2498994886836589317, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498994886836589317, guid: 292b5ee80f64f61459e78eda675a0314,
+        type: 3}
+      propertyPath: m_AnchorMin.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2498994886836589317, guid: 292b5ee80f64f61459e78eda675a0314,
@@ -18746,54 +19119,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -55
       objectReference: {fileID: 0}
-    - target: {fileID: 2498994884966052678, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994884966052678, guid: 292b5ee80f64f61459e78eda675a0314,
+    - target: {fileID: 8272436422538052699, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994884966052678, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994884966052678, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885305900565, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885305900565, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885305900565, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 281
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885305900565, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -55
       objectReference: {fileID: 0}
     - target: {fileID: 8272436422538052699, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8272436422538052699, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8272436422538052699, guid: 292b5ee80f64f61459e78eda675a0314,
@@ -18808,12 +19141,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112696569667805362, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
-      propertyPath: m_AnchorMin.y
+      propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9112696569667805362, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
-      propertyPath: m_AnchorMax.y
+      propertyPath: m_AnchorMin.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9112696569667805362, guid: 292b5ee80f64f61459e78eda675a0314,
@@ -18822,46 +19155,6 @@ PrefabInstance:
       value: 204
       objectReference: {fileID: 0}
     - target: {fileID: 9112696569667805362, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885890208311, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885890208311, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885890208311, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 5.9999967
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885890208311, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885309480197, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885309480197, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885309480197, guid: 292b5ee80f64f61459e78eda675a0314,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 85
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498994885309480197, guid: 292b5ee80f64f61459e78eda675a0314,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -55
@@ -18887,10 +19180,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 29620557}
     m_Modifications:
-    - target: {fileID: 3988082976677517977, guid: e8c28cc760c8b394e8652f79af97c2d4,
+    - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
-      propertyPath: m_Name
-      value: oceanBubbleFX
+      propertyPath: m_RootOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
@@ -18909,6 +19202,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -18924,16 +19222,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311055890943984007, guid: e8c28cc760c8b394e8652f79af97c2d4,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
       objectReference: {fileID: 0}
@@ -18946,6 +19234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988082976677517977, guid: e8c28cc760c8b394e8652f79af97c2d4,
+        type: 3}
+      propertyPath: m_Name
+      value: oceanBubbleFX
       objectReference: {fileID: 0}
     - target: {fileID: 6236754830784822870, guid: e8c28cc760c8b394e8652f79af97c2d4,
         type: 3}
@@ -19071,12 +19364,20 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a38d532dcb682294cb05669bf6740a8b, type: 2}
+  m_FillPixelPerUnit: 50
+  m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
-  m_UpdateCollider: 0
+  m_StretchUV: 0
+  m_WorldSpaceUV: 0
+  m_CornerAngleThreshold: 30
   m_ColliderDetail: 4
   m_ColliderOffset: 0
-  m_ColliderCornerType: 0
+  m_UpdateCollider: 0
+  m_OptimizeCollider: 1
+  m_OptimizeGeometry: 1
+  m_EnableTangents: 0
+  m_GeometryCached: 0
 --- !u!1971053207 &1793899747
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -19091,9 +19392,11 @@ SpriteShapeRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -19102,6 +19405,7 @@ SpriteShapeRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -19119,17 +19423,9 @@ SpriteShapeRenderer:
   m_ShapeTexture: {fileID: 2800000, guid: d1529e8879d300546ba88e6b22993d9f, type: 3}
   m_Sprites:
   - {fileID: 21300000, guid: e7e16b14b5fd5a545b7ee2c8c6766278, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_LocalAABB:
-    m_Center: {x: -0.35083675, y: -5.671232, z: -0.0005}
-    m_Extent: {x: 18.959778, y: 4.477089, z: 0.0005}
+    m_Center: {x: -0.3508358, y: -5.0741606, z: -0.0001}
+    m_Extent: {x: 18.959778, y: 5.0741606, z: 0.0001}
 --- !u!1 &1895272063
 GameObject:
   m_ObjectHideFlags: 0
@@ -19165,7 +19461,7 @@ Transform:
 --- !u!199 &1895272065
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -19177,6 +19473,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19189,6 +19486,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -20561,6 +20859,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 1
     mode: 1
     timeMode: 0
@@ -20678,7 +20977,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 21300000, guid: df668d0b6eafc76449b7ef2e24a9d0e2, type: 3}
     flipU: 0
@@ -21489,8 +21788,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -23915,6 +24267,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23926,6 +24279,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -23994,6 +24348,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24005,6 +24360,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -24134,6 +24490,7 @@ MonoBehaviour:
         toState: Wait Scene Loading
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -24212,6 +24569,7 @@ MonoBehaviour:
         toState: Pengu Enter
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -24292,6 +24650,7 @@ MonoBehaviour:
         toState: Pengu Idle
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -24420,6 +24779,7 @@ MonoBehaviour:
         toState: Ops Open
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -24543,6 +24903,7 @@ MonoBehaviour:
         toState: Wait Answer
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -24613,6 +24974,7 @@ MonoBehaviour:
         toState: Ops Close
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -24685,6 +25047,7 @@ MonoBehaviour:
         toState: Pengu Attack Ready
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -24755,6 +25118,7 @@ MonoBehaviour:
         toState: Wait
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -24875,6 +25239,7 @@ MonoBehaviour:
         toState: Rock Rumble
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -24947,6 +25312,7 @@ MonoBehaviour:
         toState: Pengu Idle 2
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -25096,6 +25462,7 @@ MonoBehaviour:
         toState: Dialog
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -25195,6 +25562,7 @@ MonoBehaviour:
         toState: Rock Disappear
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -25294,6 +25662,7 @@ MonoBehaviour:
         toState: Pengu Attack
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -25393,6 +25762,7 @@ MonoBehaviour:
         toState: Success
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -25521,6 +25891,7 @@ MonoBehaviour:
         toState: Pengu Exit
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -25608,6 +25979,7 @@ MonoBehaviour:
         toState: Progress
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -25882,10 +26254,13 @@ MonoBehaviour:
     password: 
     locked: 0
     manualUpdate: 0
+    outVariableIndices: 
     keepDelayedEventsOnStateExit: 0
     preprocessed: 0
     ExposedEvents: []
+    OutputEvents: []
     RestartOnEnable: 1
+    ResetVariablesOnEnable: 0
     EnableDebugFlow: 0
     EnableBreakpoints: 1
     editorFlags: 3
@@ -25977,6 +26352,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25988,6 +26364,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26057,6 +26434,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26068,6 +26446,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26136,6 +26515,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26147,6 +26527,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -26177,10 +26558,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1642619446}
     m_Modifications:
-    - target: {fileID: 3525215188610996223, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
         type: 3}
-      propertyPath: m_Name
-      value: dragArea
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
         type: 3}
@@ -26199,6 +26620,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -26214,13 +26640,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 1
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
         type: 3}
@@ -26237,55 +26663,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
+    - target: {fileID: 3525215188610996223, guid: b8ac04cdc772fea44a5e118cf2e974c7,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3525215188610996160, guid: b8ac04cdc772fea44a5e118cf2e974c7,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
+      propertyPath: m_Name
+      value: dragArea
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8ac04cdc772fea44a5e118cf2e974c7, type: 3}

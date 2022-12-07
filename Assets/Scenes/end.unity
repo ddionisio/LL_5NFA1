@@ -1618,7 +1618,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a38d532dcb682294cb05669bf6740a8b, type: 2}
-  m_FillPixelPerUnit: 100
+  m_FillPixelPerUnit: 42
   m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
@@ -2121,7 +2121,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a38d532dcb682294cb05669bf6740a8b, type: 2}
-  m_FillPixelPerUnit: 100
+  m_FillPixelPerUnit: 24
   m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
@@ -7338,7 +7338,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a38d532dcb682294cb05669bf6740a8b, type: 2}
-  m_FillPixelPerUnit: 100
+  m_FillPixelPerUnit: 24
   m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
@@ -15369,7 +15369,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 0
   m_SpriteShape: {fileID: 11400000, guid: a38d532dcb682294cb05669bf6740a8b, type: 2}
-  m_FillPixelPerUnit: 100
+  m_FillPixelPerUnit: 42
   m_StretchTiling: 1
   m_SplineDetail: 4
   m_AdaptiveUV: 1
