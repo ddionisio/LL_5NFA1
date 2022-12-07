@@ -72,11 +72,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d4ce93735a9a87a4aac63d336c10c2a9, type: 3}
   - {fileID: 21300000, guid: e5dc777390553e4499a405c82af83aef, type: 3}
   - {fileID: 21300000, guid: 176bba73097047e4db634e32fc3be2d8, type: 3}
-  - {fileID: 21300000, guid: 8a3c2b046cb7b1744a3c827fa7c3dd1a, type: 3}
   - {fileID: 21300000, guid: 99ac7114ec581074791736885d4ba03b, type: 3}
   - {fileID: 21300000, guid: e7e16b14b5fd5a545b7ee2c8c6766278, type: 3}
   - {fileID: 21300000, guid: 44a2e43498084d140b46c5499e074241, type: 3}
   - {fileID: 21300000, guid: d985b654a2dd4e54482f774cec3f7b9c, type: 3}
+  - {fileID: 21300000, guid: c41b7ac4773379f42bec55818efbfab5, type: 3}
   - {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
   - {fileID: 21300000, guid: 1b85440595195d546b12cb24e3fe617f, type: 3}
   - {fileID: 21300000, guid: 5cdd4e7504b59424389d70443b8e187c, type: 3}
@@ -124,6 +124,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d8c038ab1ea507a4e81b02a47b9b4061, type: 3}
   - {fileID: 21300000, guid: a2bbdc0c4d9a88d40a0f1d356d9a1ecb, type: 3}
   - {fileID: 21300000, guid: fcac813cfcdb8914683513a3874077ee, type: 3}
+  - {fileID: 21300000, guid: 6e46d65c795b56344b389f1886fb3982, type: 3}
   - {fileID: 21300000, guid: 9d49a56c817d54d439ccdf584dfff4b1, type: 3}
   - {fileID: 21300000, guid: 1c63538c1e449394a84049ac965097f9, type: 3}
   - {fileID: 21300000, guid: 8691e89c165f66d4eb4aadb5103286d8, type: 3}
@@ -145,6 +146,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d100bf3fba8e48343b4f69fe5447d682, type: 3}
   - {fileID: 21300000, guid: d7cdfb4f342924d49980acf5dcc40d7e, type: 3}
   - {fileID: 21300000, guid: 5e660daf84d52a04bae3e06dd631bb2b, type: 3}
+  - {fileID: 21300000, guid: 49f63cbf9fa458c4cbc656fbdbb5124a, type: 3}
   - {fileID: 21300000, guid: 7df5c8ef0bc054b439174751d62b2814, type: 3}
   m_PackedSpriteNamesToIndex:
   - pengu_swim1
@@ -166,11 +168,11 @@ SpriteAtlas:
   - pengu_swimIdle2
   - explodePixel4
   - treasureFishes
-  - portraitRobot_2
   - ray
   - tileBricksTop
   - explodePixel3
   - circleGlow
+  - devicerBody
   - explodePixel5
   - pengu_haduken1
   - backgroundMarineCoast3
@@ -218,6 +220,7 @@ SpriteAtlas:
   - fish_hungry
   - pengu_walk2
   - tooth
+  - devicerMouthClose
   - pengu_idle0
   - cherub
   - scribblePanel
@@ -239,6 +242,7 @@ SpriteAtlas:
   - tutorialHandPoint
   - treasureFish
   - shield
+  - devicerMouthOpen
   - pengu_swimIdle1
   m_Tag: main
   m_IsVariant: 0
