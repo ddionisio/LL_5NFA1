@@ -29,6 +29,9 @@ public class MixedNumberWidget : MonoBehaviour {
     public string takeWholeToFraction;
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeFractionToWhole;
+
+    [Header("Signal Invoke")]
+    public M8.Signal signalInvokeNumberUpdate;
     
     public bool isWholeEnabled {
         get { return wholeRootGO && mIsWholeEnabled; }
@@ -60,6 +63,9 @@ public class MixedNumberWidget : MonoBehaviour {
 
                 if(numberUpdateCallback != null)
                     numberUpdateCallback();
+
+                if(signalInvokeNumberUpdate)
+                    signalInvokeNumberUpdate.Invoke();
             }
         }
     }

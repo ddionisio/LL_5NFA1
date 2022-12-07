@@ -30,6 +30,7 @@ public class MixedNumberInputWidget : MonoBehaviour {
     [Header("Denominator")]
     public GameObject denominatorActiveGO;
     public Text denominatorText;
+    public bool denominatorEnabled = true;
 
     [Header("Submit")]
     public Selectable submitSelectable;
@@ -76,6 +77,24 @@ public class MixedNumberInputWidget : MonoBehaviour {
 
     private bool mIsLocked;
 
+    public void SetDenominator(int denominator) {
+        var _num = number;
+
+        _num.denominator = denominator;
+        denominatorText.text = denominator.ToString();
+
+        number = _num;
+    }
+
+    public void SetDenominatorInvalid() {
+        var _num = number;
+
+        _num.denominator = 0;
+        denominatorText.text = "??";
+
+        number = _num;
+    }
+
     public void CloseNumpad() {
         if(M8.ModalManager.main && M8.ModalManager.main.IsInStack(modalNumpad))
             M8.ModalManager.main.CloseUpTo(modalNumpad, true);
@@ -109,6 +128,9 @@ public class MixedNumberInputWidget : MonoBehaviour {
     }
 
     public void ClickDenominator() {
+        if(!denominatorEnabled)
+            return;
+
         if(mCurSelect != SelectType.Denominator) {
             SetSelect(SelectType.Denominator);
             OnSignalValueChanged(number.denominator);
@@ -269,7 +291,12 @@ public class MixedNumberInputWidget : MonoBehaviour {
                 ClickNumerator();
                 break;
             case SelectType.Numerator:
-                ClickDenominator();
+                if(denominatorEnabled)
+                    ClickDenominator();
+                else {
+                    if(mIsWholeEnabled)
+                        ClickWhole();
+                }
                 break;
             case SelectType.Denominator:
             case SelectType.None:
@@ -287,7 +314,10 @@ public class MixedNumberInputWidget : MonoBehaviour {
 
         switch(mCurSelect) {
             case SelectType.Whole:
-                ClickDenominator();
+                if(denominatorEnabled)
+                    ClickDenominator();
+                else
+                    ClickNumerator();
                 break;
             case SelectType.Denominator:
                 ClickNumerator();

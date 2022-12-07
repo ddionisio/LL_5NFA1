@@ -20,6 +20,7 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
     [Header("Answer")]
     public bool answerWholeEnabled = true;
+    public bool answerAutoCompleteDenominator = false;
     public MixedNumberInputWidget answerInput;
         
     [Header("Animation")]
@@ -36,6 +37,9 @@ public class MixedNumberOpsWidget : MonoBehaviour {
     public string audioCorrect;
     [M8.SoundPlaylist]
     public string audioWrong;
+
+    [Header("Signal Listen")]
+    public M8.Signal signalCardNumberChanged;
 
     [Header("Signal Invokes")]
     public SignalBoolean signalAnswer; //true if correct
@@ -72,6 +76,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
                     bool isValid = mOperation != null ? !mOperation.isAnyOperandEmpty : false;
 
                     answerInput.isLocked = !isValid;
+
+                    OnCardNumberUpdate();
                 }
             }
         }
@@ -215,6 +221,9 @@ public class MixedNumberOpsWidget : MonoBehaviour {
 
         if(operandSlots)
             operandSlots.updateCallback -= OnSlotUpdated;
+
+        if(signalCardNumberChanged)
+            signalCardNumberChanged.callback -= OnCardNumberUpdate;
     }
 
     void Awake() {
@@ -231,6 +240,9 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         }
 
         if(dragInstructDialogGO) dragInstructDialogGO.SetActive(false);
+
+        if(signalCardNumberChanged)
+            signalCardNumberChanged.callback += OnCardNumberUpdate;
     }
 
     void OnInputSubmit() {
@@ -407,6 +419,8 @@ public class MixedNumberOpsWidget : MonoBehaviour {
             answerInput.Init(false, false);
 
         answerInput.isLocked = mAnswerIsLocked || !isValid;
+
+        OnCardNumberUpdate();
     }
 
     private void DragInstructStart() {
@@ -429,5 +443,35 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         if(dragInstructDialogGO) dragInstructDialogGO.SetActive(false);
 
         mDragInstructEnabled = false;
+    }
+
+    void OnCardNumberUpdate() {
+        //update answer's denominator if all operands have the same denominator value.
+        if(answerAutoCompleteDenominator) {
+            int denominator = 0; //non-zero if valid
+
+            var operandCount = mOperation.operands.Length;
+            for(int i = 0; i < operandCount; i++) {
+                var card = operandSlots.slots[i].card;
+                if(card && card.numberWidget) {
+                    var num = card.numberWidget.number;
+                    if(denominator == 0)
+                        denominator = num.denominator;
+                    else if(num.denominator != denominator) {
+                        denominator = 0;
+                        break;
+                    }
+                }
+                else {
+                    denominator = 0;
+                    break;
+                }
+            }
+
+            if(denominator > 0)
+                answerInput.SetDenominator(denominator);
+            else
+                answerInput.SetDenominatorInvalid();
+        }
     }
 }
