@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class StartController : GameModeController<StartController> {
     [Header("Signals")]
-    public M8.Signal signalProceed;
+    public M8.Signal signalNew;
+    public M8.Signal signalContinue;
 
     protected override void OnInstanceDeinit() {
-        signalProceed.callback -= OnSignalProceed;
+        if(signalNew)
+            signalNew.callback -= OnSignalNew;
+
+        if(signalContinue)
+            signalContinue.callback -= OnSignalProceed;
 
         base.OnInstanceDeinit();
     }
@@ -15,7 +20,16 @@ public class StartController : GameModeController<StartController> {
     protected override void OnInstanceInit() {
         base.OnInstanceInit();
 
-        signalProceed.callback += OnSignalProceed;
+        if(signalNew)
+            signalNew.callback += OnSignalNew;
+
+        if(signalContinue)
+            signalContinue.callback += OnSignalProceed;
+    }
+
+    void OnSignalNew() {
+        LoLManager.instance.ApplyProgress(0, 0);
+        GameData.instance.ProceedToLevelFromProgress();
     }
 
     void OnSignalProceed() {

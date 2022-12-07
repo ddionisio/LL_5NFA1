@@ -57,7 +57,9 @@
     "game_complete": "Congratulations! You have uncovered the treasure!",
     "game_complete_desc": "Thank you for playing!",
     "finish": "FINISH",
-    "total_score": "TOTAL SCORE:"
+    "total_score": "TOTAL SCORE:",
+    "new_game": "NEW GAME",
+    "continue": "CONTINUE"
   },
   "es": {
     "welcome": "¡Bienvenido!",
@@ -112,6 +114,8 @@
     "game_complete": "¡En hora buena! ¡Has descubierto el tesoro!",
     "game_complete_desc": "¡Gracias por jugar!",
     "finish": "ACABADO",
-    "total_score": "PUNTOS TOTALES:"
+    "total_score": "PUNTOS TOTALES:",
+    "new_game": "NUEVO JUEGO",
+    "continue": "CONTINUAR"
   }
 }

@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c372b416f6d43f847b493219522630af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userData: {fileID: 11400000, guid: 9ab6acfbc605b1b45aa1c7a95ea3ebb6, type: 2}
+  userData: {fileID: 11400000, guid: 9d49958e44f75d147a748c1b9fa7ee0e, type: 2}
 --- !u!114 &463627589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7162,7 +7162,7 @@ RectTransform:
   - {fileID: 8503224246728566730}
   - {fileID: 463627587}
   m_Father: {fileID: 7264393508780563955}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8751,7 +8751,7 @@ RectTransform:
   m_Children:
   - {fileID: 7694129688706916197}
   m_Father: {fileID: 7264393508780563955}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8772,12 +8772,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4331954922962159261
 MonoBehaviour:
@@ -12258,8 +12258,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 3010858016809975255}
   - {fileID: 702230288877368318}
+  - {fileID: 3010858016809975255}
   - {fileID: 2472202392429167948}
   m_Father: {fileID: 2139917855624230869}
   m_RootOrder: 0
