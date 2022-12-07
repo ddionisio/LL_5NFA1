@@ -41,6 +41,8 @@ public class OperationsIntroDefenseController : MonoBehaviour {
 
     private int mWrongNegativeCount;
 
+    private MixedNumber[] mDeckNumberCache;
+
     void OnDestroy() {
         if(signalOpen) signalOpen.callback -= OnSignalOpen;
         if(signalClose) signalClose.callback -= OnSignalClose;
@@ -55,6 +57,13 @@ public class OperationsIntroDefenseController : MonoBehaviour {
 
         mItemInd = Random.Range(0, items.Length);
         mDeckInd = 0;
+
+        int cacheSize = 0;
+        for(int i = 0; i < items[mItemInd].deckNumbers.Length; i++) {
+            if(items[mItemInd].deckNumbers[i].numbers.Length > cacheSize)
+                cacheSize = items[mItemInd].deckNumbers[i].numbers.Length;
+        }
+        mDeckNumberCache = new MixedNumber[cacheSize];
 
         mWrongNegativeCount = 0;
 
@@ -188,7 +197,29 @@ public class OperationsIntroDefenseController : MonoBehaviour {
         var nums = items[mItemInd].deckNumbers[mDeckInd].numbers;
         M8.ArrayUtil.Shuffle(nums);
 
-        deckWidget.Fill(nums);
+        int count = 0;
+
+        //make sure numbers are less than current first operand        
+        var card = opsWidget.operandSlots.GetCard(0);
+        if(card) {
+            var opNum = card.number;
+
+            for(int i = 0; i < nums.Length; i++) {
+                var num = nums[i];
+                if(num <= opNum) {
+                    mDeckNumberCache[count] = num;
+                    count++;
+                }
+            }
+
+            //if none of these numbers or there's only one, then just add card with same number as operand
+            if(count <= 1) {
+                mDeckNumberCache[count] = opNum.simplified;
+                count++;
+            }
+        }
+
+        deckWidget.Fill(mDeckNumberCache, count);
 
         mDeckInd++;
         if(mDeckInd == items[mItemInd].deckNumbers.Length)

@@ -232,8 +232,16 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
         return a.fValue < b.fValue;
     }
 
+    public static bool operator <=(MixedNumber a, MixedNumber b) {
+        return a.fValue <= b.fValue;
+    }
+
+    public static bool operator >=(MixedNumber a, MixedNumber b) {
+        return a.fValue >= b.fValue;
+    }
+
     public static bool operator >(MixedNumber a, MixedNumber b) {
-        return a.fValue < b.fValue;
+        return a.fValue > b.fValue;
     }
 }
 

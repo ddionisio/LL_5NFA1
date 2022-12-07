@@ -68,6 +68,10 @@ public class CardDeckWidget : CardDropWidgetBase {
     }
 
     public void Fill(MixedNumber[] numbers) {
+        Fill(numbers, numbers.Length);
+    }
+
+    public void Fill(MixedNumber[] numbers, int length) {
         if(!mPool) {
             mPool = M8.PoolController.CreatePool(cardPoolGroup);
             mPool.AddType(cardTemplate, cardPoolCapacity, cardPoolCapacity);
@@ -78,12 +82,12 @@ public class CardDeckWidget : CardDropWidgetBase {
         else
             cards = new CardWidget[slotAnchors.Length];
 
-        M8.ArrayUtil.Shuffle(numbers);
+        M8.ArrayUtil.Shuffle(numbers, 0, length);
 
-        count = numbers.Length;
+        count = length;
         if(count > slotAnchors.Length)
             count = slotAnchors.Length;
-                
+
         for(int i = 0; i < count; i++) {
             mCardParms[CardWidget.parmWholeEnabled] = cardWholeEnabled;
             mCardParms[CardWidget.parmNumber] = numbers[i];

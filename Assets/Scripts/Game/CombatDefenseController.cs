@@ -224,7 +224,7 @@ public class CombatDefenseController : MonoBehaviour {
             yield return waitBrief;
         }
 
-        if(mAnswerNumber.fValue == 0f)
+        if(!(mIsAnswerCorrect || mIsAnswerSubmitted) && mAnswerNumber.fValue == 0f)
             mAnswerNumber = mOperations.operands[0].number;
 
         //hide interfaces
@@ -308,34 +308,47 @@ public class CombatDefenseController : MonoBehaviour {
 
         int curCount = 0;
 
-        var attackNum = mOperations.operands[0].number;
+        var card = opsWidget.operandSlots.GetCard(0);
+        if(card) {
+            var attackNum = card.number;
 
-        for(int i = 0; i < defendNumbers.Length; i++) {
-            //grab number, make sure denominator doesn't match others
-            var num = defendNumbers[i];
+            for(int i = 0; i < defendNumbers.Length; i++) {
+                //grab number, make sure denominator doesn't match others
+                var num = defendNumbers[i];
 
-            if(num.denominator == attackNum.denominator)
-                continue;
+                //if(num.denominator == attackNum.denominator)
+                    //continue;
 
-            bool isDenomMatch = false;
-            for(int j = 0; j < curCount; j++) {
-                if(num.denominator == mDefendNumbers[j].denominator) {
-                    isDenomMatch = true;
-                    break;
+                bool isDenomMatch = false;
+                for(int j = 0; j < curCount; j++) {
+                    if(num.denominator == mDefendNumbers[j].denominator) {
+                        isDenomMatch = true;
+                        break;
+                    }
                 }
+
+                if(isDenomMatch)
+                    continue;
+
+                //don't include number that is greater than attack
+                if(num > attackNum)
+                    continue;
+
+                mDefendNumbers[curCount] = num;
+
+                curCount++;
+                if(curCount == defendCardCount)
+                    break;
             }
 
-            if(isDenomMatch)
-                continue;
-
-            mDefendNumbers[curCount] = num;
-
-            curCount++;
-            if(curCount == defendCardCount)
-                break;
+            //if none of these numbers or there's only one, then just add card with same number as operand
+            if(curCount <= 1) {
+                mDefendNumbers[curCount] = attackNum.simplified;
+                curCount++;
+            }
         }
 
-        if(deckWidget) deckWidget.Fill(mDefendNumbers);
+        if(deckWidget) deckWidget.Fill(mDefendNumbers, curCount);
     }
 
     private MixedNumber GetNumber() {

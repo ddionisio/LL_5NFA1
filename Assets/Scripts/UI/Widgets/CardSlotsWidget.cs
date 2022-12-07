@@ -55,6 +55,15 @@ public class CardSlotsWidget : CardDropWidgetBase {
         mHighlightIndex = -1;
     }
 
+    public CardWidget GetCard(int index) {
+        if(index < 0 || index >= slots.Length) {
+            Debug.LogWarning("Invalid index: " + index);
+            return null;
+        }
+
+        return slots[index].card;
+    }
+
     public void SetCard(int index, CardWidget card) {
         if(index < 0 || index >= slots.Length) {
             Debug.LogWarning("Invalid index: " + index);
