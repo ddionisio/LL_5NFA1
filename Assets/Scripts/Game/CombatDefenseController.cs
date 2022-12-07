@@ -316,8 +316,8 @@ public class CombatDefenseController : MonoBehaviour {
                 //grab number, make sure denominator doesn't match others
                 var num = defendNumbers[i];
 
-                //if(num.denominator == attackNum.denominator)
-                    //continue;
+                if(num.denominator == attackNum.denominator)
+                    continue;
 
                 bool isDenomMatch = false;
                 for(int j = 0; j < curCount; j++) {
@@ -343,8 +343,11 @@ public class CombatDefenseController : MonoBehaviour {
 
             //if none of these numbers or there's only one, then just add card with same number as operand
             if(curCount <= 1) {
-                mDefendNumbers[curCount] = attackNum.simplified;
-                curCount++;
+                var newNum = attackNum.simplified;
+                if(newNum != mDefendNumbers[curCount]) {
+                    mDefendNumbers[curCount] = attackNum.simplified;
+                    curCount++;
+                }
             }
         }
 

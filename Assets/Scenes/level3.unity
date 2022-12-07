@@ -429,12 +429,12 @@ MonoBehaviour:
     numLoop: 1
     loopMode: 0
     loopBackToFrame: 0
-    trackCounter: 8
+    trackCounter: 10
     groupCounter: 0
     rootGroup:
       group_name: 
       group_id: 0
-      elements: 02000000030000000400000005000000060000000700000008000000
+      elements: 020000000300000004000000050000000700000008000000090000000a000000
       foldout: 1
     groupValues: []
   - name: blow
@@ -443,12 +443,12 @@ MonoBehaviour:
     numLoop: -1
     loopMode: 1
     loopBackToFrame: 0
-    trackCounter: 6
+    trackCounter: 8
     groupCounter: 0
     rootGroup:
       group_name: Group0
       group_id: 0
-      elements: 02000000040000000300000006000000
+      elements: 0200000004000000060000000700000008000000
       foldout: 1
     groupValues: []
   - name: end
@@ -558,6 +558,34 @@ MonoBehaviour:
       obj: {fileID: 702846373}
       startActive: 0
     - _version: 1
+      id: 9
+      name: Track8
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 2086068979}
+      startActive: 1
+    - _version: 1
+      id: 10
+      name: Track8
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 1744348705}
+      startActive: 0
+    - _version: 1
+      id: 7
+      name: Track4
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 2086068979}
+      startActive: 0
+    - _version: 1
+      id: 8
+      name: Track5
+      foldout: 1
+      _targetPath: 
+      obj: {fileID: 1744348705}
+      startActive: 1
+    - _version: 1
       id: 5
       name: Track4
       foldout: 1
@@ -588,6 +616,38 @@ MonoBehaviour:
       customEase: []
       setActive: 0
       endFrame: -1
+    - interp: 0
+      frame: 1
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      setActive: 1
+      endFrame: -1
+    - interp: 0
+      frame: 1
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      setActive: 0
+      endFrame: -1
+    - interp: 0
+      frame: 1
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      setActive: 0
+      endFrame: -1
+    - interp: 0
+      frame: 1
+      easeType: 1
+      amplitude: 0
+      period: 0
+      customEase: []
+      setActive: 1
+      endFrame: -1
     - interp: 1
       frame: 1
       easeType: 1
@@ -617,29 +677,7 @@ MonoBehaviour:
     _orientationTracks: []
     _orientationKeys: []
     _propertyTracks:
-    - _version: 1
-      id: 6
-      name: Track5
-      foldout: 1
-      _targetPath: 
-      valueType: 4
-      obj: {fileID: 2086068979}
-      component: {fileID: 2086068981}
-      componentName: SpriteRenderer
-      fieldName: 
-      propertyName: size
-    - _version: 1
-      id: 3
-      name: Track2
-      foldout: 1
-      _targetPath: 
-      valueType: 4
-      obj: {fileID: 2086068979}
-      component: {fileID: 2086068981}
-      componentName: SpriteRenderer
-      fieldName: 
-      propertyName: size
-    - _version: 1
+    - _version: 4
       id: 2
       name: Track1
       foldout: 1
@@ -650,7 +688,7 @@ MonoBehaviour:
       componentName: SpriteColorGroup
       fieldName: 
       propertyName: color
-    - _version: 1
+    - _version: 4
       id: 8
       name: Track7
       foldout: 1
@@ -661,7 +699,7 @@ MonoBehaviour:
       componentName: SpriteRenderer
       fieldName: 
       propertyName: flipX
-    - _version: 1
+    - _version: 4
       id: 9
       name: Track8
       foldout: 1
@@ -673,58 +711,6 @@ MonoBehaviour:
       fieldName: 
       propertyName: sprite
     _propertyKeys:
-    - interp: 1
-      frame: 1
-      easeType: 1
-      amplitude: 0
-      period: 0
-      customEase: []
-      endFrame: -1
-      isConstSpeed: 0
-      _paths: []
-      val: 0
-      valString: 
-      valObj: {fileID: 0}
-      vect4: {x: 2.03125, y: 1, z: 0, w: 0}
-    - interp: 1
-      frame: 1
-      easeType: 3
-      amplitude: 0
-      period: 0
-      customEase: []
-      endFrame: 20
-      isConstSpeed: 0
-      _paths: []
-      val: 0
-      valString: 
-      valObj: {fileID: 0}
-      vect4: {x: 2.03125, y: 2.06, z: 0, w: 0}
-    - interp: 1
-      frame: 20
-      easeType: 2
-      amplitude: 0
-      period: 0
-      customEase: []
-      endFrame: 40
-      isConstSpeed: 0
-      _paths: []
-      val: 0
-      valString: 
-      valObj: {fileID: 0}
-      vect4: {x: 2.03125, y: 2.78, z: 0, w: 0}
-    - interp: 1
-      frame: 40
-      easeType: 1
-      amplitude: 0
-      period: 0
-      customEase: []
-      endFrame: -1
-      isConstSpeed: 0
-      _paths: []
-      val: 0
-      valString: 
-      valObj: {fileID: 0}
-      vect4: {x: 2.03125, y: 2.06, z: 0, w: 0}
     - interp: 1
       frame: 1
       easeType: 1
@@ -874,7 +860,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: -1
+      endFrame: 70
       isConstSpeed: 0
       _paths: []
       val: -1
@@ -965,7 +951,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: -1
+      endFrame: 70
       isConstSpeed: 0
       _paths: []
       val: 0
@@ -975,7 +961,7 @@ MonoBehaviour:
     _rotationEulerTracks: []
     _rotationEulerKeys: []
     _rotationTracks:
-    - _version: 1
+    - _version: 5
       id: 11
       name: Track10
       foldout: 1
@@ -1043,7 +1029,7 @@ MonoBehaviour:
       _paths: []
       rotation: {x: 0, y: 0, z: 0.058086745, w: 0.9983115}
     _translationTracks:
-    - _version: 1
+    - _version: 3
       id: 2
       name: Track1
       foldout: 1
@@ -1051,7 +1037,7 @@ MonoBehaviour:
       _obj: {fileID: 54924145}
       pixelSnap: 0
       pixelPerUnit: 100
-    - _version: 1
+    - _version: 3
       id: 5
       name: Track4
       foldout: 1
@@ -1059,7 +1045,7 @@ MonoBehaviour:
       _obj: {fileID: 2086068980}
       pixelSnap: 0
       pixelPerUnit: 100
-    - _version: 1
+    - _version: 3
       id: 4
       name: Track3
       foldout: 1
@@ -1067,7 +1053,7 @@ MonoBehaviour:
       _obj: {fileID: 2086068980}
       pixelSnap: 0
       pixelPerUnit: 100
-    - _version: 1
+    - _version: 3
       id: 3
       name: Track2
       foldout: 1
@@ -1075,7 +1061,7 @@ MonoBehaviour:
       _obj: {fileID: 54924145}
       pixelSnap: 0
       pixelPerUnit: 100
-    - _version: 1
+    - _version: 3
       id: 4
       name: Track3
       foldout: 1
@@ -1083,7 +1069,7 @@ MonoBehaviour:
       _obj: {fileID: 431621599}
       pixelSnap: 0
       pixelPerUnit: 100
-    - _version: 1
+    - _version: 3
       id: 10
       name: Track9
       foldout: 1
@@ -1110,7 +1096,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 30
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: 0, y: 1.38, z: 0}
@@ -1122,7 +1108,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 1
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: 0.019999912, y: 0.52, z: 0}
@@ -1134,7 +1120,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 1
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: 0.019999912, y: 0.04, z: 0}
@@ -1148,7 +1134,174 @@ MonoBehaviour:
       customEase: []
       endFrame: 15
       isConstSpeed: 1
-      _paths: []
+      _paths:
+      - type: 1
+        subdivisionsXSegment: 10
+        wps:
+        - vals:
+          - 0
+          - 1.38
+          - 0
+        - vals:
+          - -0.13
+          - 1.3799999
+          - 0
+        - vals:
+          - 0.18
+          - 1.3799999
+          - 0
+        - vals:
+          - -0.05
+          - 1.3799999
+          - 0
+        - vals:
+          - 0.24
+          - 1.3799999
+          - 0
+        - vals:
+          - 0
+          - 1.38
+          - 0
+        wpsTimeTable: []
+        controlPoints:
+        - a:
+            vals:
+            - 0.24
+            - 1.3799999
+            - 0
+          b:
+            vals: []
+        - a:
+            vals:
+            - -0.13
+            - 1.3799999
+            - 0
+          b:
+            vals: []
+        length: 1.210139
+        timesTable:
+        - 0.016666668
+        - 0.033333335
+        - 0.050000004
+        - 0.06666667
+        - 0.083333336
+        - 0.10000001
+        - 0.116666675
+        - 0.13333334
+        - 0.15
+        - 0.16666667
+        - 0.18333334
+        - 0.20000002
+        - 0.21666668
+        - 0.23333335
+        - 0.25
+        - 0.26666668
+        - 0.28333336
+        - 0.3
+        - 0.3166667
+        - 0.33333334
+        - 0.35000002
+        - 0.36666667
+        - 0.38333336
+        - 0.40000004
+        - 0.4166667
+        - 0.43333337
+        - 0.45000002
+        - 0.4666667
+        - 0.48333335
+        - 0.5
+        - 0.5166667
+        - 0.53333336
+        - 0.55
+        - 0.5666667
+        - 0.5833334
+        - 0.6
+        - 0.6166667
+        - 0.6333334
+        - 0.65000004
+        - 0.6666667
+        - 0.6833334
+        - 0.70000005
+        - 0.7166667
+        - 0.73333335
+        - 0.75000006
+        - 0.7666667
+        - 0.78333336
+        - 0.8000001
+        - 0.8166667
+        - 0.8333334
+        - 0.85
+        - 0.86666673
+        - 0.8833334
+        - 0.90000004
+        - 0.9166667
+        - 0.9333334
+        - 0.95000005
+        - 0.9666667
+        - 0.9833334
+        - 1
+        lengthsTable:
+        - 0.01608507
+        - 0.033125002
+        - 0.05054688
+        - 0.067777775
+        - 0.084244795
+        - 0.09937501
+        - 0.11259549
+        - 0.123333335
+        - 0.13101563
+        - 0.13506944
+        - 0.13521703
+        - 0.14013891
+        - 0.1522859
+        - 0.17259263
+        - 0.19935764
+        - 0.23087966
+        - 0.26545724
+        - 0.30138892
+        - 0.33697346
+        - 0.3705093
+        - 0.4002952
+        - 0.42462966
+        - 0.44181138
+        - 0.45013893
+        - 0.45205444
+        - 0.4632408
+        - 0.4818577
+        - 0.5060649
+        - 0.53402203
+        - 0.5638889
+        - 0.59382534
+        - 0.6219908
+        - 0.6465452
+        - 0.6656482
+        - 0.67745954
+        - 0.68013895
+        - 0.6877865
+        - 0.704514
+        - 0.7284984
+        - 0.7579168
+        - 0.7909464
+        - 0.8257641
+        - 0.86054707
+        - 0.8934724
+        - 0.9227172
+        - 0.94645846
+        - 0.96287334
+        - 0.97013897
+        - 0.971933
+        - 0.9807409
+        - 0.99545157
+        - 1.014954
+        - 1.0381368
+        - 1.0638891
+        - 1.0910997
+        - 1.1186577
+        - 1.1454517
+        - 1.1703706
+        - 1.1923035
+        - 1.210139
+        _isConstantSpeed: 1
       position: {x: 0, y: 1.38, z: 0}
       orientMode: 0
       orientLockAxis: 0
@@ -1158,7 +1311,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 4
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: -0.13, y: 1.3799999, z: 0}
@@ -1170,7 +1323,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 7
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: 0.18, y: 1.3799999, z: 0}
@@ -1182,7 +1335,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 10
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: -0.05, y: 1.3799999, z: 0}
@@ -1194,7 +1347,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 13
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: 0.24, y: 1.3799999, z: 0}
@@ -1206,7 +1359,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 15
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: 0, y: 1.38, z: 0}
@@ -1230,7 +1383,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 25
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: 0, y: 13.03, z: 0}
@@ -1244,7 +1397,102 @@ MonoBehaviour:
       customEase: []
       endFrame: 90
       isConstSpeed: 1
-      _paths: []
+      _paths:
+      - type: 1
+        subdivisionsXSegment: 10
+        wps:
+        - vals:
+          - -0.010000229
+          - 1.1
+          - 0
+        - vals:
+          - 4
+          - 0.2
+          - 0
+        - vals:
+          - 7.95
+          - -2.67
+          - 0
+        wpsTimeTable: []
+        controlPoints:
+        - a:
+            vals:
+            - 4
+            - 0.2
+            - 0
+          b:
+            vals: []
+        - a:
+            vals:
+            - 11.9
+            - -5.54
+            - 0
+          b:
+            vals: []
+        length: 9.016225
+        timesTable:
+        - 0.033333335
+        - 0.06666667
+        - 0.10000001
+        - 0.13333334
+        - 0.16666667
+        - 0.20000002
+        - 0.23333335
+        - 0.26666668
+        - 0.3
+        - 0.33333334
+        - 0.36666667
+        - 0.40000004
+        - 0.43333337
+        - 0.4666667
+        - 0.5
+        - 0.53333336
+        - 0.5666667
+        - 0.6
+        - 0.6333334
+        - 0.6666667
+        - 0.70000005
+        - 0.73333335
+        - 0.7666667
+        - 0.8000001
+        - 0.8333334
+        - 0.86666673
+        - 0.90000004
+        - 0.9333334
+        - 0.9666667
+        - 1
+        lengthsTable:
+        - 0.03477257
+        - 0.13434094
+        - 0.29158884
+        - 0.49941218
+        - 0.75072217
+        - 1.0384495
+        - 1.3555497
+        - 1.6950115
+        - 2.0498676
+        - 2.4132104
+        - 2.7782168
+        - 3.1381865
+        - 3.4865983
+        - 3.8172152
+        - 4.12426
+        - 4.421339
+        - 4.7254415
+        - 5.036324
+        - 5.3535295
+        - 5.6764264
+        - 6.0042496
+        - 6.336126
+        - 6.671107
+        - 7.0081873
+        - 7.346326
+        - 7.684465
+        - 8.021545
+        - 8.356526
+        - 8.688403
+        - 9.016225
+        _isConstantSpeed: 1
       position: {x: -0.010000229, y: 1.1, z: 0}
       orientMode: 0
       orientLockAxis: 0
@@ -1254,7 +1502,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 80
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: 4, y: 0.2, z: 0}
@@ -1266,7 +1514,7 @@ MonoBehaviour:
       amplitude: 0
       period: 0
       customEase: []
-      endFrame: 90
+      endFrame: -1
       isConstSpeed: 1
       _paths: []
       position: {x: 7.95, y: -2.67, z: 0}
@@ -1275,14 +1523,14 @@ MonoBehaviour:
     _unityAnimationTracks: []
     _unityAnimationKeys: []
     _scaleTracks:
-    - _version: 1
+    - _version: 3
       id: 7
       name: Track6
       foldout: 1
       _targetPath: 
       axis: -1
       _obj: {fileID: 54924145}
-    - _version: 1
+    - _version: 3
       id: 2
       name: Track1
       foldout: 1
@@ -1331,19 +1579,10 @@ MonoBehaviour:
       _paths: []
       scale: {x: 1.05, y: 0.95, z: 1}
     _trackLookups:
-    - type: 10
-      index: 0
-      keyIndices: 0000000001000000
     - type: 4
       index: 0
       keyIndices: 0000000001000000
     - type: 3
-      index: 0
-      keyIndices: 00000000
-    - type: 10
-      index: 1
-      keyIndices: 02000000
-    - type: 7
       index: 0
       keyIndices: 00000000
     - type: 11
@@ -1352,21 +1591,36 @@ MonoBehaviour:
     - type: 3
       index: 1
       keyIndices: 01000000
+    - type: 4
+      index: 1
+      keyIndices: 02000000
+    - type: 4
+      index: 2
+      keyIndices: 03000000
+    - type: 10
+      index: 0
+      keyIndices: 0000000001000000
+    - type: 10
+      index: 1
+      keyIndices: 02000000
     - type: 11
       index: 1
       keyIndices: 010000000200000003000000
-    - type: 7
-      index: 1
-      keyIndices: 010000000200000003000000
-    - type: 10
-      index: 2
-      keyIndices: 03000000
     - type: 3
       index: 2
       keyIndices: 02000000
-    - type: 7
+    - type: 4
+      index: 3
+      keyIndices: 04000000
+    - type: 4
+      index: 4
+      keyIndices: 05000000
+    - type: 10
       index: 2
-      keyIndices: 040000000500000006000000070000000800000009000000
+      keyIndices: 03000000
+    - type: 7
+      index: 0
+      keyIndices: 000000000100000002000000030000000400000005000000
     - type: 10
       index: 3
       keyIndices: 040000000500000006000000070000000800000009000000
@@ -1374,17 +1628,17 @@ MonoBehaviour:
       index: 4
       keyIndices: 0a0000000b000000
     - type: 4
-      index: 1
-      keyIndices: 0200000003000000
+      index: 5
+      keyIndices: 0600000007000000
     - type: 4
+      index: 6
+      keyIndices: 08000000
+    - type: 7
+      index: 1
+      keyIndices: 060000000700000008000000090000000a0000000b000000
+    - type: 7
       index: 2
-      keyIndices: 04000000
-    - type: 7
-      index: 3
-      keyIndices: 0a0000000b0000000c0000000d0000000e0000000f000000
-    - type: 7
-      index: 4
-      keyIndices: 10000000110000001200000013000000140000001500000016000000
+      keyIndices: 0c0000000d0000000e0000000f000000100000001100000012000000
     - type: 10
       index: 5
       keyIndices: 0c0000000d0000000e000000
@@ -1394,7 +1648,7 @@ MonoBehaviour:
     - type: 3
       index: 3
       keyIndices: 03000000
-    _takeTrackCounts: 07000000040000000a000000
+    _takeTrackCounts: 08000000050000000a000000
 --- !u!1 &376265821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,7 +1754,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411061038}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.010000229, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1635,6 +1889,7 @@ Transform:
   - {fileID: 2073160367}
   - {fileID: 1370409353}
   - {fileID: 2086068980}
+  - {fileID: 1744348706}
   m_Father: {fileID: 54924145}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3004,7 +3259,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10494,7 +10748,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15978,7 +16231,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20707,6 +20959,87 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1744348705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1744348706}
+  - component: {fileID: 1744348707}
+  m_Layer: 0
+  m_Name: yeti_mouth_open
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1744348706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744348705}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.019999912, y: 0.04, z: 0}
+  m_LocalScale: {x: 1, y: 0.65954775, z: 1}
+  m_Children: []
+  m_Father: {fileID: 431621599}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1744348707
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744348705}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 160055587
+  m_SortingLayer: -1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 1d141dfbc1b1290419b4f8f27a095d5d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 1
+  m_Size: {x: 2.03125, y: 2.78}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1781182634
 GameObject:
   m_ObjectHideFlags: 0
@@ -21612,7 +21945,7 @@ GameObject:
   - component: {fileID: 2086068980}
   - component: {fileID: 2086068981}
   m_Layer: 0
-  m_Name: yeti_mouth
+  m_Name: yeti_mouth_neutral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21626,7 +21959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086068979}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019999912, y: 0.5200002, z: 0}
+  m_LocalPosition: {x: 0.019999912, y: 0.52, z: 0}
   m_LocalScale: {x: 1, y: 0.65954775, z: 1}
   m_Children: []
   m_Father: {fileID: 431621599}

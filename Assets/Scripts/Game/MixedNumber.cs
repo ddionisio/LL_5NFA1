@@ -101,7 +101,16 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
     }
 
     public int GetWholeFromFraction() {
-        return _numerator >= _denominator ? Mathf.FloorToInt((float)_numerator / _denominator) : 0;
+        if(_numerator < _denominator)
+            return 0;
+
+        if(_denominator == 0)
+            return 0;
+
+        var fnumerator = (float)_numerator;
+        var fdenominator = (float)_denominator;
+
+        return Mathf.FloorToInt(fnumerator / fdenominator);
     }
 
     public int GetGreatestCommonFactor() {

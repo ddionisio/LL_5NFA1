@@ -47,17 +47,25 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: a6f5aab1ce15a37479a5210bce2d2eeb, type: 3}
+  - {fileID: 21300000, guid: 6c725db1440797f46a607f36b986b2e5, type: 3}
   - {fileID: 21300000, guid: d8748c8a7ed2b5143a31adf7f5fe5990, type: 3}
   - {fileID: 21300000, guid: 5938280cb1e56484c82fa03d02127187, type: 3}
   - {fileID: 21300000, guid: dc4a461cbbe530d42a8a93f8caf253a2, type: 3}
   - {fileID: 21300000, guid: 686e672c53090c64fa0b50d61e4092fd, type: 3}
+  - {fileID: 21300000, guid: 5bea128c27c15c6478da8b370f016b40, type: 3}
+  - {fileID: 21300000, guid: 7543b8fc240e7904e961e29c5cb51bb2, type: 3}
+  - {fileID: 21300000, guid: 65736d6e4c6db6f449ed6a955490087f, type: 3}
   - {fileID: 21300000, guid: 9d570a3f515249a43853abfb454f4ee5, type: 3}
   m_PackedSpriteNamesToIndex:
   - leopardSeal_head_bite
+  - leopardSeal_head_cry
   - leopardSeal_head_neutral
   - leopardSeal_head_disorient
   - leopardSeal_body_idle
   - leopardSeal_head_angry
+  - leopardSeal_mouth_wiggle1
+  - leopardSeal_mouth_wiggle2
+  - leopardSeal_mouth_wiggle0
   - leopardSeal_body_swim
   m_Tag: level4
   m_IsVariant: 0

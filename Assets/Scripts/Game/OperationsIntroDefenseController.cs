@@ -214,8 +214,11 @@ public class OperationsIntroDefenseController : MonoBehaviour {
 
             //if none of these numbers or there's only one, then just add card with same number as operand
             if(count <= 1) {
-                mDeckNumberCache[count] = opNum.simplified;
-                count++;
+                var newNum = opNum.simplified;
+                if(newNum != mDeckNumberCache[count]) {
+                    mDeckNumberCache[count] = opNum.simplified;
+                    count++;
+                }
             }
         }
 
