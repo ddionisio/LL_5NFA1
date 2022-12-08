@@ -249,13 +249,28 @@ public class MixedNumberOpsWidget : MonoBehaviour {
         //fail-safe, shouldn't be able to submit
         if(mOperation == null || mOperation.isAnyOperandEmpty || isBusy)
             return;
+
+        var ansNum = answerInput.number;
+        ansNum.WholeToFraction();
+        ansNum.Simplify();
                 
         var opAnswer = mOperation.Evaluate();
 
         //NOTE: assume we can only input positives
         opAnswer.isNegative = false;
 
-        bool isCorrect = answerInput.number.isValid && answerInput.number == opAnswer;
+        opAnswer.WholeToFraction();
+        opAnswer.Simplify();
+
+        /*for(int i = 0; i < mOperation.operands.Length; i++) {
+            Debug.LogWarning("op" + i + ": " + mOperation.operands[i].number + " fval: " + mOperation.operands[i].number.fValue);
+        }
+        Debug.LogWarning("opAnswer: " + opAnswer + " fval: " + opAnswer.fValue);
+        Debug.LogWarning("ansNum: " + ansNum + " fval: " + ansNum.fValue);
+        Debug.LogWarning("ansNum valid: " + ansNum.isValid);
+        Debug.LogWarning("ansNum equal fval: " + (ansNum.fValue == opAnswer.fValue));*/
+
+        bool isCorrect = ansNum.isValid && ansNum.fValue == opAnswer.fValue;
         if(isCorrect) {
             answerInput.CloseNumpad();
 

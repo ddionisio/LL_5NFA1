@@ -48,7 +48,10 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
             if(_denominator == 0) //fail-safe
                 return sign * _whole;
 
-            return sign * (_whole + (float)_numerator / _denominator);
+            var fnumerator = (float)_numerator;
+            var fdenominator = (float)_denominator;
+
+            return sign * (_whole + fnumerator / fdenominator);
         }
     }
 
@@ -132,8 +135,14 @@ public struct MixedNumber : System.IComparable, System.IComparable<MixedNumber> 
     /// Convert _numerators to _whole, and simplify fraction. E.g. [6/4] => [1 1/2]
     /// </summary>
     public void Simplify() {
+        if(_denominator == 0)
+            return;
+
         if(_numerator > _denominator) {
-            int amt = Mathf.FloorToInt((float)_numerator / _denominator);
+            var fnumerator = (float)_numerator;
+            var fdenominator = (float)_denominator;
+
+            int amt = Mathf.FloorToInt(fnumerator / fdenominator);
             _whole += amt;
             _numerator -= amt * _denominator;
         }
