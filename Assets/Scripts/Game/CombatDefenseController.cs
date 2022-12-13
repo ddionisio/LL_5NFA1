@@ -344,8 +344,8 @@ public class CombatDefenseController : MonoBehaviour {
             //if none of these numbers or there's only one, then just add card with same number as operand
             if(curCount <= 1) {
                 var newNum = attackNum.simplified;
-                if(newNum != mDefendNumbers[curCount]) {
-                    mDefendNumbers[curCount] = attackNum.simplified;
+                if(curCount == 0 || newNum != mDefendNumbers[0]) {
+                    mDefendNumbers[curCount] = newNum;
                     curCount++;
                 }
             }
