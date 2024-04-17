@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
+using TMPro;
 
 public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.IModalActive {
     public const string parmVictoryInfo = "victoryInfo";
@@ -13,34 +14,34 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.
     public GameObject attackRootGO;
     public GameObject attackDisplayGO;
     public MixedNumberWidget attackValueDisplay;
-    public Text attackScoreText;
+    public TMP_Text attackScoreText;
 
     [Header("Defense Stats")]
     public GameObject defenseRootGO;
     public GameObject defenseDisplayGO;
     public MixedNumberWidget defenseValueDisplay;
-    public Text defenseScoreText;
+    public TMP_Text defenseScoreText;
 
     [Header("Rounds Stats")]
     public GameObject roundsRootGO;
     public GameObject roundsDisplayGO;
-    public Text roundsText;
+    public TMP_Text roundsText;
     public string roundsFormat = "{0}/{1}";
-    public Text roundsScoreText;
+    public TMP_Text roundsScoreText;
 
     [Header("Finish Stats")]
     public GameObject finishDisplayGO;
-    public Text finishScoreText;
+    public TMP_Text finishScoreText;
 
     [Header("Revive Stats")]
     public GameObject reviveRootGO;
     public GameObject reviveDisplayGO;
-    public Text reviveCountText;
-    public Text reviveScoreText;
+    public TMP_Text reviveCountText;
+    public TMP_Text reviveScoreText;
 
     [Header("Total XP")]
     public GameObject totalDisplayGO;
-    public M8.UI.Texts.TextCounter totalScoreCounter;
+    public M8.TextMeshPro.TextMeshProCounter totalScoreCounter;
 
     [Header("Audio")]
     [M8.SoundPlaylist]

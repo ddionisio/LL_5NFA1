@@ -55,6 +55,7 @@ SpriteAtlas:
     - 9f893580893e30144b99400bff1a7d9a: 21300000
     - 352cab806c024b541915bd606a3f6434: 21300000
     - 290075c09938f764b8f3992e96d8effd: 21300000
+    - 0d06c2012e50a6141a382bccc0635633: 21300000
     - b4d5cc1154e5b46419dea4dfd397ce84: 21300000
     - 2c182d91a96c3c949bcbade9ea5d4ba4: 21300002
     - 2c182d91a96c3c949bcbade9ea5d4ba4: 21300000
@@ -87,6 +88,7 @@ SpriteAtlas:
     - e7f6ccd41b30a1c4e9aeac08248e82d0: 21300000
     - 21c769e4040edd24e83c0830fb109b60: 21300000
     - 1b85440595195d546b12cb24e3fe617f: 21300000
+    - 4b630a15ca4efef4daa3d79c0930b178: 21300000
     - 5cdd4e7504b59424389d70443b8e187c: 21300000
     - 7a3f6785ea278ed4ea05d6861d08aff7: 21300000
     - a9f07236c774e5444866653f76271f35: 21300000
@@ -95,6 +97,7 @@ SpriteAtlas:
     - a3694ac6248fad949b3731055603d664: 21300000
     - c2b5d73707e82dd4095e6d021a960d9e: 21300000
     - 024d3d37b4dc5d9418f717c5bbcf071a: 21300000
+    - 8a5d4ca726b80b34188cdee1c37d7246: 21300000
     - bf01b0b7199ec26448b016fd2de647e5: 21300000
     - 326ab6c73d9e81346bb6774298a0d825: 21300000
     - a2496af712d007343acc9ca3c8c168c5: 21300000
@@ -130,6 +133,7 @@ SpriteAtlas:
     - d8748c8a7ed2b5143a31adf7f5fe5990: 21300000
     - 8772079a36f0a47408cc78af64000e35: 21300000
     - c1f5fc9afb034f74aac8e0be2bdbc03e: 21300000
+    - cb537bfaf8bd74e48aa79857c230c57f: 21300000
     - df668d0b6eafc76449b7ef2e24a9d0e2: 21300000
     - 3d9fe54b51dab3b488dbf4c265cf6f39: 21300000
     - 08a0274bcff998141b9e6ac11e380035: 21300000
@@ -158,14 +162,18 @@ SpriteAtlas:
     - aa7c52adf7ae54e4a9c071bc0bd0c4ed: 21300000
     - 7b6c55ad1ec60dd408c58cc14be3eb6e: 21300000
     - a917380ea7d1275479ab7f9461cc6099: 21300000
+    - 62596d0e14b6bc3459ecb28947df2ffb: 21300000
     - 3889ed4e08a2fa542afff71c130be124: 21300000
     - 525dd05e79030fc428c3e0f3b5bf2815: 21300000
+    - ea4d385eaec0ae44c86724950b9fe338: 21300000
     - 65736d6e4c6db6f449ed6a955490087f: 21300000
     - c5a54a7e88b59e547a8905c1ad93d892: 21300000
     - 80849a7eece8a744d9d038b9bfca52a1: 21300000
     - ff8110bec940bb147b2ec83cff1a77e4: 21300000
     - cad9aacec86ce2f4695bbbc0956b9538: 21300000
+    - e19de2de95eed6048871d5c4816ad289: 21300000
     - 5b5c890f6857c0046bdc0baef4257b74: 21300000
+    - 7d45db0f568eba54d94269bf83a08a74: 21300000
     - 8fe3243f1eb853b48a14971ff4496cff: 21300000
     - 71be053f831cf7b4fbaab8a95b9b6638: 21300000
     - 9d570a3f515249a43853abfb454f4ee5: 21300000
@@ -182,6 +190,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9f893580893e30144b99400bff1a7d9a, type: 3}
   - {fileID: 21300000, guid: 352cab806c024b541915bd606a3f6434, type: 3}
   - {fileID: 21300000, guid: 290075c09938f764b8f3992e96d8effd, type: 3}
+  - {fileID: 21300000, guid: 0d06c2012e50a6141a382bccc0635633, type: 3}
   - {fileID: 21300000, guid: b4d5cc1154e5b46419dea4dfd397ce84, type: 3}
   - {fileID: 21300002, guid: 2c182d91a96c3c949bcbade9ea5d4ba4, type: 3}
   - {fileID: 21300000, guid: 2c182d91a96c3c949bcbade9ea5d4ba4, type: 3}
@@ -214,6 +223,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e7f6ccd41b30a1c4e9aeac08248e82d0, type: 3}
   - {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
   - {fileID: 21300000, guid: 1b85440595195d546b12cb24e3fe617f, type: 3}
+  - {fileID: 21300000, guid: 4b630a15ca4efef4daa3d79c0930b178, type: 3}
   - {fileID: 21300000, guid: 5cdd4e7504b59424389d70443b8e187c, type: 3}
   - {fileID: 21300000, guid: 7a3f6785ea278ed4ea05d6861d08aff7, type: 3}
   - {fileID: 21300000, guid: a9f07236c774e5444866653f76271f35, type: 3}
@@ -222,6 +232,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a3694ac6248fad949b3731055603d664, type: 3}
   - {fileID: 21300000, guid: c2b5d73707e82dd4095e6d021a960d9e, type: 3}
   - {fileID: 21300000, guid: 024d3d37b4dc5d9418f717c5bbcf071a, type: 3}
+  - {fileID: 21300000, guid: 8a5d4ca726b80b34188cdee1c37d7246, type: 3}
   - {fileID: 21300000, guid: bf01b0b7199ec26448b016fd2de647e5, type: 3}
   - {fileID: 21300000, guid: 326ab6c73d9e81346bb6774298a0d825, type: 3}
   - {fileID: 21300000, guid: a2496af712d007343acc9ca3c8c168c5, type: 3}
@@ -257,6 +268,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d8748c8a7ed2b5143a31adf7f5fe5990, type: 3}
   - {fileID: 21300000, guid: 8772079a36f0a47408cc78af64000e35, type: 3}
   - {fileID: 21300000, guid: c1f5fc9afb034f74aac8e0be2bdbc03e, type: 3}
+  - {fileID: 21300000, guid: cb537bfaf8bd74e48aa79857c230c57f, type: 3}
   - {fileID: 21300000, guid: df668d0b6eafc76449b7ef2e24a9d0e2, type: 3}
   - {fileID: 21300000, guid: 3d9fe54b51dab3b488dbf4c265cf6f39, type: 3}
   - {fileID: 21300000, guid: 08a0274bcff998141b9e6ac11e380035, type: 3}
@@ -285,14 +297,18 @@ SpriteAtlas:
   - {fileID: 21300000, guid: aa7c52adf7ae54e4a9c071bc0bd0c4ed, type: 3}
   - {fileID: 21300000, guid: 7b6c55ad1ec60dd408c58cc14be3eb6e, type: 3}
   - {fileID: 21300000, guid: a917380ea7d1275479ab7f9461cc6099, type: 3}
+  - {fileID: 21300000, guid: 62596d0e14b6bc3459ecb28947df2ffb, type: 3}
   - {fileID: 21300000, guid: 3889ed4e08a2fa542afff71c130be124, type: 3}
   - {fileID: 21300000, guid: 525dd05e79030fc428c3e0f3b5bf2815, type: 3}
+  - {fileID: 21300000, guid: ea4d385eaec0ae44c86724950b9fe338, type: 3}
   - {fileID: 21300000, guid: 65736d6e4c6db6f449ed6a955490087f, type: 3}
   - {fileID: 21300000, guid: c5a54a7e88b59e547a8905c1ad93d892, type: 3}
   - {fileID: 21300000, guid: 80849a7eece8a744d9d038b9bfca52a1, type: 3}
   - {fileID: 21300000, guid: ff8110bec940bb147b2ec83cff1a77e4, type: 3}
   - {fileID: 21300000, guid: cad9aacec86ce2f4695bbbc0956b9538, type: 3}
+  - {fileID: 21300000, guid: e19de2de95eed6048871d5c4816ad289, type: 3}
   - {fileID: 21300000, guid: 5b5c890f6857c0046bdc0baef4257b74, type: 3}
+  - {fileID: 21300000, guid: 7d45db0f568eba54d94269bf83a08a74, type: 3}
   - {fileID: 21300000, guid: 8fe3243f1eb853b48a14971ff4496cff, type: 3}
   - {fileID: 21300000, guid: 71be053f831cf7b4fbaab8a95b9b6638, type: 3}
   - {fileID: 21300000, guid: 9d570a3f515249a43853abfb454f4ee5, type: 3}
@@ -308,6 +324,7 @@ SpriteAtlas:
   - pengu_hurt2
   - pengu_swimIdle0
   - kelp_body
+  - fancyRect_sm_outline_2
   - macaroni_dead0
   - tutorialArrow2_bottom
   - tutorialArrow2
@@ -340,6 +357,7 @@ SpriteAtlas:
   - macaroni_swimIdle0
   - explodePixel5
   - pengu_haduken1
+  - fancyRect_sm_outline_1
   - backgroundMarineCoast3
   - pengu_haduken0
   - erase
@@ -348,6 +366,7 @@ SpriteAtlas:
   - scribble1
   - macaroni_swimIdle1
   - pengu_dead0
+  - arrowThing
   - explodePixel1
   - circle32x32
   - pengu_walk3
@@ -383,6 +402,7 @@ SpriteAtlas:
   - leopardSeal_head_neutral
   - scribble0
   - nextArrow
+  - fancyRect_outline_2
   - circleGlowTiny
   - pengu_idle2
   - bubblePengu
@@ -411,14 +431,18 @@ SpriteAtlas:
   - pengu_swim2
   - house
   - macaroni_dead1
+  - fancyRect
   - macaroni_swim1
   - triangle
+  - options_handle
   - leopardSeal_mouth_wiggle0
   - edge_shade
   - treasureChest_bottom
   - house_pipe
   - backgroundBorealMountain
+  - fancyRect_sm
   - cork
+  - right_triangle
   - thinkingPanel
   - penguSwimSilhouette
   - leopardSeal_body_swim

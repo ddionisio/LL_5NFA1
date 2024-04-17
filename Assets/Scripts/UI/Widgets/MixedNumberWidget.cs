@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
+
+using TMPro;
 
 public class MixedNumberWidget : MonoBehaviour {
     [Header("Display")]
     public GameObject wholeRootGO; //if this is null, whole number is disabled
-    public Text wholeText;
+    public TMP_Text wholeText;
 
     public GameObject fractionRootGO;
     public bool fractionHideIfZero = true; //only if fractionRootGO is valid
-    public Text numeratorText;
-    public Text denominatorText;
+    public TMP_Text numeratorText;
+    public TMP_Text denominatorText;
 
     [Header("Fraction FX")]
     public GameObject fractionFXGO; //root for fraction fx
-    public Text fractionFXNumeratorText;
-    public Text fractionFXDenominatorText;
+    public TMP_Text fractionFXNumeratorText;
+    public TMP_Text fractionFXDenominatorText;
 
     [Header("Number Pulse")]
     public float pulseDelay = 0.3f;

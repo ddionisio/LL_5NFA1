@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
+
+using TMPro;
 
 /// <summary>
 /// Basic calculator
@@ -65,8 +66,8 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, 
     InputKeyboardFlag _inputKeyboardFlags = InputKeyboardFlag.Numeric | InputKeyboardFlag.Proceed | InputKeyboardFlag.Erase;
 
     [Header("Display")]
-    public Text inputLabel;
-    public Text numericLabel;
+    public TMP_Text inputLabel;
+    public TMP_Text numericLabel;
 
     [Header("Signal Listens")]
     public SignalFloat signalValueChanged;
