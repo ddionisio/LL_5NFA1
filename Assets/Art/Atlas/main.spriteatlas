@@ -54,7 +54,9 @@ SpriteAtlas:
     - 10d174409848ab442a1218264de576ee: 21300000
     - 9f893580893e30144b99400bff1a7d9a: 21300000
     - 352cab806c024b541915bd606a3f6434: 21300000
+    - 4653b5b08dc496746841c26f3e1babef: 21300000
     - 290075c09938f764b8f3992e96d8effd: 21300000
+    - 3aa509e049dfa244591be4edb52a976d: 21300000
     - 0d06c2012e50a6141a382bccc0635633: 21300000
     - b4d5cc1154e5b46419dea4dfd397ce84: 21300000
     - 2c182d91a96c3c949bcbade9ea5d4ba4: 21300002
@@ -118,6 +120,7 @@ SpriteAtlas:
     - 02cb7109eec577d45a27167e2308de23: 21300002
     - 02cb7109eec577d45a27167e2308de23: 21300012
     - 02cb7109eec577d45a27167e2308de23: 21300004
+    - bc5e83497defa264fb18c43f2c9b2810: 21300000
     - 6d1768595c651c44aa2679d1311c4f56: 21300000
     - 5e4eec59a02aabd4cb70c21a789e68ac: 21300000
     - 5276e969b5465db4b83e1a7c4ca5c5e1: 21300000
@@ -127,6 +130,7 @@ SpriteAtlas:
     - 1936bac986127cb4bad904bfad92c266: 21300002
     - d8598bc920c01d14cad741af65fa744a: 21300000
     - 5364a41adb3acc645a4ee638962af21d: 21300000
+    - 9d325c1a5c25a144b90c24881a972b4d: 21300000
     - 2cb4622ac2fe078488c97749ae8eb452: 21300000
     - 7168da6aea1c4154bbc52d54856e6639: 21300000
     - 8fbff78af26973249a8a30dfb5173caa: 21300000
@@ -147,6 +151,7 @@ SpriteAtlas:
     - 686e672c53090c64fa0b50d61e4092fd: 21300000
     - fcac813cfcdb8914683513a3874077ee: 21300000
     - 6e46d65c795b56344b389f1886fb3982: 21300000
+    - b3e9ec5c471c43d449e208d234e5f8c7: 21300000
     - 9d49a56c817d54d439ccdf584dfff4b1: 21300000
     - 5bea128c27c15c6478da8b370f016b40: 21300000
     - 1c63538c1e449394a84049ac965097f9: 21300000
@@ -189,7 +194,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 10d174409848ab442a1218264de576ee, type: 3}
   - {fileID: 21300000, guid: 9f893580893e30144b99400bff1a7d9a, type: 3}
   - {fileID: 21300000, guid: 352cab806c024b541915bd606a3f6434, type: 3}
+  - {fileID: 21300000, guid: 4653b5b08dc496746841c26f3e1babef, type: 3}
   - {fileID: 21300000, guid: 290075c09938f764b8f3992e96d8effd, type: 3}
+  - {fileID: 21300000, guid: 3aa509e049dfa244591be4edb52a976d, type: 3}
   - {fileID: 21300000, guid: 0d06c2012e50a6141a382bccc0635633, type: 3}
   - {fileID: 21300000, guid: b4d5cc1154e5b46419dea4dfd397ce84, type: 3}
   - {fileID: 21300002, guid: 2c182d91a96c3c949bcbade9ea5d4ba4, type: 3}
@@ -253,6 +260,7 @@ SpriteAtlas:
   - {fileID: 21300002, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
   - {fileID: 21300012, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
   - {fileID: 21300004, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
+  - {fileID: 21300000, guid: bc5e83497defa264fb18c43f2c9b2810, type: 3}
   - {fileID: 21300000, guid: 6d1768595c651c44aa2679d1311c4f56, type: 3}
   - {fileID: 21300000, guid: 5e4eec59a02aabd4cb70c21a789e68ac, type: 3}
   - {fileID: 21300000, guid: 5276e969b5465db4b83e1a7c4ca5c5e1, type: 3}
@@ -262,6 +270,7 @@ SpriteAtlas:
   - {fileID: 21300002, guid: 1936bac986127cb4bad904bfad92c266, type: 3}
   - {fileID: 21300000, guid: d8598bc920c01d14cad741af65fa744a, type: 3}
   - {fileID: 21300000, guid: 5364a41adb3acc645a4ee638962af21d, type: 3}
+  - {fileID: 21300000, guid: 9d325c1a5c25a144b90c24881a972b4d, type: 3}
   - {fileID: 21300000, guid: 2cb4622ac2fe078488c97749ae8eb452, type: 3}
   - {fileID: 21300000, guid: 7168da6aea1c4154bbc52d54856e6639, type: 3}
   - {fileID: 21300000, guid: 8fbff78af26973249a8a30dfb5173caa, type: 3}
@@ -282,6 +291,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 686e672c53090c64fa0b50d61e4092fd, type: 3}
   - {fileID: 21300000, guid: fcac813cfcdb8914683513a3874077ee, type: 3}
   - {fileID: 21300000, guid: 6e46d65c795b56344b389f1886fb3982, type: 3}
+  - {fileID: 21300000, guid: b3e9ec5c471c43d449e208d234e5f8c7, type: 3}
   - {fileID: 21300000, guid: 9d49a56c817d54d439ccdf584dfff4b1, type: 3}
   - {fileID: 21300000, guid: 5bea128c27c15c6478da8b370f016b40, type: 3}
   - {fileID: 21300000, guid: 1c63538c1e449394a84049ac965097f9, type: 3}
@@ -323,7 +333,9 @@ SpriteAtlas:
   - elephantSeal_sleep_over
   - pengu_hurt2
   - pengu_swimIdle0
+  - cardAttackBase
   - kelp_body
+  - attackDeckIconBase
   - fancyRect_sm_outline_2
   - macaroni_dead0
   - tutorialArrow2_bottom
@@ -387,6 +399,7 @@ SpriteAtlas:
   - blank4x4
   - blank4x4_left
   - blank4x4_topLeft
+  - cardFractionHighlight
   - pengu_idle1
   - treasureChestGlow
   - pengu_defend0
@@ -396,6 +409,7 @@ SpriteAtlas:
   - shade_bottom
   - treasureChest_top
   - macaroni_hurt0
+  - counterIconBase
   - macaroni_hurt2
   - gradient8x8
   - backgroundMarineCoast2
@@ -416,6 +430,7 @@ SpriteAtlas:
   - leopardSeal_head_angry
   - tooth
   - devicerMouthClose
+  - cardGenericBase
   - pengu_idle0
   - leopardSeal_mouth_wiggle1
   - cherub

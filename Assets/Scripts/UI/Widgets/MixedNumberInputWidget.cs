@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 public class MixedNumberInputWidget : MonoBehaviour {
     public enum SelectType {
         None,
@@ -21,15 +23,15 @@ public class MixedNumberInputWidget : MonoBehaviour {
     public GameObject negativeSignGO;
     public GameObject wholeRootGO;
     public GameObject wholeActiveGO;
-    public Text wholeText;
+    public TMP_Text wholeText;
 
     [Header("Numerator")]
     public GameObject numeratorActiveGO;
-    public Text numeratorText;
+    public TMP_Text numeratorText;
 
     [Header("Denominator")]
     public GameObject denominatorActiveGO;
-    public Text denominatorText;
+    public TMP_Text denominatorText;
     public bool denominatorEnabled = true;
 
     [Header("Submit")]

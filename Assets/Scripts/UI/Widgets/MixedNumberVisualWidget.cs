@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UI.Extensions;
 
+using TMPro;
+
 public class MixedNumberVisualWidget : MonoBehaviour {
     public const int fractionMaxMult = 32;
     public const int fractionMaxRow = 25;
@@ -13,7 +15,7 @@ public class MixedNumberVisualWidget : MonoBehaviour {
 
     [Header("Whole")]
     public GameObject wholeGO;
-    public Text wholeAmountText;
+    public TMP_Text wholeAmountText;
 
     [Header("Fraction")]
     public Image fractionFill;
@@ -22,7 +24,7 @@ public class MixedNumberVisualWidget : MonoBehaviour {
 
     [Header("Interface")]
     public MixedNumberWidget mixedNumberWidget;
-    public Text multText;
+    public TMP_Text multText;
     public Button multButtonLeft;
     public Button multButtonRight;
 
