@@ -125,6 +125,7 @@ SpriteAtlas:
     - 5e4eec59a02aabd4cb70c21a789e68ac: 21300000
     - 5276e969b5465db4b83e1a7c4ca5c5e1: 21300000
     - bb8a087995e8ab149b0f5c36c07f3d96: 21300000
+    - eba1db8976dab2745a51c16d07d1c4a6: 21300000
     - 9c6d4b999c02410408642dfc6b162547: 21300000
     - 1936bac986127cb4bad904bfad92c266: 21300000
     - 1936bac986127cb4bad904bfad92c266: 21300002
@@ -139,6 +140,7 @@ SpriteAtlas:
     - c1f5fc9afb034f74aac8e0be2bdbc03e: 21300000
     - cb537bfaf8bd74e48aa79857c230c57f: 21300000
     - df668d0b6eafc76449b7ef2e24a9d0e2: 21300000
+    - c3490d1b6accaba4bbff1e9f18726a1d: 21300000
     - 3d9fe54b51dab3b488dbf4c265cf6f39: 21300000
     - 08a0274bcff998141b9e6ac11e380035: 21300000
     - 1c87455b1ea7ed04389d1172b22219c3: 21300000
@@ -153,6 +155,7 @@ SpriteAtlas:
     - 6e46d65c795b56344b389f1886fb3982: 21300000
     - b3e9ec5c471c43d449e208d234e5f8c7: 21300000
     - 9d49a56c817d54d439ccdf584dfff4b1: 21300000
+    - 076d6e7ccbcba9c40ab5c22be70610cc: 21300000
     - 5bea128c27c15c6478da8b370f016b40: 21300000
     - 1c63538c1e449394a84049ac965097f9: 21300000
     - 8691e89c165f66d4eb4aadb5103286d8: 21300000
@@ -265,6 +268,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5e4eec59a02aabd4cb70c21a789e68ac, type: 3}
   - {fileID: 21300000, guid: 5276e969b5465db4b83e1a7c4ca5c5e1, type: 3}
   - {fileID: 21300000, guid: bb8a087995e8ab149b0f5c36c07f3d96, type: 3}
+  - {fileID: 21300000, guid: eba1db8976dab2745a51c16d07d1c4a6, type: 3}
   - {fileID: 21300000, guid: 9c6d4b999c02410408642dfc6b162547, type: 3}
   - {fileID: 21300000, guid: 1936bac986127cb4bad904bfad92c266, type: 3}
   - {fileID: 21300002, guid: 1936bac986127cb4bad904bfad92c266, type: 3}
@@ -279,6 +283,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c1f5fc9afb034f74aac8e0be2bdbc03e, type: 3}
   - {fileID: 21300000, guid: cb537bfaf8bd74e48aa79857c230c57f, type: 3}
   - {fileID: 21300000, guid: df668d0b6eafc76449b7ef2e24a9d0e2, type: 3}
+  - {fileID: 21300000, guid: c3490d1b6accaba4bbff1e9f18726a1d, type: 3}
   - {fileID: 21300000, guid: 3d9fe54b51dab3b488dbf4c265cf6f39, type: 3}
   - {fileID: 21300000, guid: 08a0274bcff998141b9e6ac11e380035, type: 3}
   - {fileID: 21300000, guid: 1c87455b1ea7ed04389d1172b22219c3, type: 3}
@@ -293,6 +298,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6e46d65c795b56344b389f1886fb3982, type: 3}
   - {fileID: 21300000, guid: b3e9ec5c471c43d449e208d234e5f8c7, type: 3}
   - {fileID: 21300000, guid: 9d49a56c817d54d439ccdf584dfff4b1, type: 3}
+  - {fileID: 21300000, guid: 076d6e7ccbcba9c40ab5c22be70610cc, type: 3}
   - {fileID: 21300000, guid: 5bea128c27c15c6478da8b370f016b40, type: 3}
   - {fileID: 21300000, guid: 1c63538c1e449394a84049ac965097f9, type: 3}
   - {fileID: 21300000, guid: 8691e89c165f66d4eb4aadb5103286d8, type: 3}
@@ -404,6 +410,7 @@ SpriteAtlas:
   - treasureChestGlow
   - pengu_defend0
   - optionButton
+  - cardAttackEnemyBase
   - yeti_body_lower
   - shade
   - shade_bottom
@@ -418,6 +425,7 @@ SpriteAtlas:
   - nextArrow
   - fancyRect_outline_2
   - circleGlowTiny
+  - cardDefendBase
   - pengu_idle2
   - bubblePengu
   - pengu_idle3
@@ -432,6 +440,7 @@ SpriteAtlas:
   - devicerMouthClose
   - cardGenericBase
   - pengu_idle0
+  - defenseDeckIconBase
   - leopardSeal_mouth_wiggle1
   - cherub
   - scribblePanel

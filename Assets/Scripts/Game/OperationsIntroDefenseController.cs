@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
+using TMPro;
 
 public class OperationsIntroDefenseController : MonoBehaviour {
     [System.Serializable]
@@ -24,7 +25,7 @@ public class OperationsIntroDefenseController : MonoBehaviour {
 
     [Header("Hint")]
     public GameObject hintNegativeGO;
-    public Text hintNegativeText;
+    public TMP_Text hintNegativeText;
     public int hintNegativeShowWrongCount = 3; //show hint after this amount of error
     public float hintNegativeShowDelay = 60f;
 
